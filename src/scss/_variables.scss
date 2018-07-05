@@ -1,0 +1,8 @@
+$main-color: #77c1bb;
+$reg-font: 'Roboto-Regular';
+$med-font: 'Roboto-Medium';
+
+
+@function rem($pxsize) {
+  @return ($pxsize/16)+rem;
+}
