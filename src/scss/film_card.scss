@@ -7,7 +7,7 @@ body {
 }
 
 .main-card {
-  min-width: 340px;
+  min-width: 320px;
   max-width: 1040px;
   padding: 10px;
   margin: 0 auto;
@@ -241,13 +241,13 @@ body {
     width: 24%;
     //display: inline-block;
     text-align: center;
-    padding: 0 10px;
-    display: flex !important;
+    //padding: 0 10px;
+    display: flex;
     flex-direction: column;
     align-items: center;
-    @media (min-width: 1024px){
-      padding: 0 20px;
-    }
+    // @media (min-width: 1024px){
+    //   padding: 0 20px;
+    // }
     img {
       width: 60px;
       height: 60px;
@@ -536,4 +536,17 @@ body {
 .screenshots-slider {
   display: flex;
   position: relative;
+  justify-content: space-between;
+  //width: 20%;
+  padding: 0 15px;
+  div {
+    width: 60%;
+    margin-right: 7px;
+  }
+  div:last-of-type {
+    margin-right: 0;
+  }
+  .arrow.back {
+    left: 0;
+  }
 }

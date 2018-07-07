@@ -375,7 +375,7 @@ body {
 }
 
 .main-card {
-  min-width: 340px;
+  min-width: 320px;
   max-width: 1040px;
   padding: 10px;
   margin: 0 auto;
@@ -475,8 +475,7 @@ body {
 .main-actors .actor-blk {
   width: 24%;
   text-align: center;
-  padding: 0 10px;
-  display: flex !important;
+  display: flex;
   flex-direction: column;
   align-items: center;
 }
@@ -631,6 +630,21 @@ body {
 .screenshots-slider {
   display: flex;
   position: relative;
+  justify-content: space-between;
+  padding: 0 15px;
+}
+
+.screenshots-slider div {
+  width: 60%;
+  margin-right: 7px;
+}
+
+.screenshots-slider div:last-of-type {
+  margin-right: 0;
+}
+
+.screenshots-slider .arrow.back {
+  left: 0;
 }
 
 @media (min-width: 480px) {
@@ -910,10 +924,6 @@ body {
   .main-actors .main-block-header {
     font-size: 1.25rem;
     margin-bottom: 30px;
-  }
-
-  .main-actors .actor-blk {
-    padding: 0 20px;
   }
 
   .main-actors .actor-blk img {

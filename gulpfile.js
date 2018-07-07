@@ -41,7 +41,11 @@ gulp.task('styles', () =>
         reporters: [{ formatter: 'string', console: true }],
       }),
     )
-    .pipe(sass())
+    .pipe(sass({
+      style: 'expanded',
+      quiet: true,
+      trace: true
+    }))
     .pipe(postcss([autoprefixer()]))
     .pipe(gcmq())
     .pipe(gulp.dest('./build/css'))
@@ -86,7 +90,9 @@ gulp.task('images', () =>
       imagemin([
         imagemin.jpegtran({ progressive: true }),
         imagemin.optipng({ optimizationLevel: 3 }),
-        // imagemin.svgo(),
+        // imagemin.svgo({
+        //   plugins: [{ removeViewBox: false }, { cleanupIDs: false }],
+        // }),
       ]),
     )
     .pipe(gulp.dest('./build/img')),
@@ -99,7 +105,7 @@ gulp.task('fonts', () =>
 gulp.task('watch', () => {
   gulp.watch('src/**/*.html', ['html']).on('change', browserSync.reload);
   gulp.watch('src/scss/**/*.scss', ['styles']).on('change', browserSync.reload);
-  gulp.watch('src/js/**/*.js', ['scripts']);
+  gulp.watch('src/js/**/*.js', ['scripts']).on('change', browserSync.reload);
 });
 
 gulp.task('serve', ['styles'], () =>
