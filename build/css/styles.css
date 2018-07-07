@@ -1,0 +1,806 @@
+/*
+	HTML5 Reset :: style.css
+	----------------------------------------------------------
+	We have learned much from/been inspired by/taken code where offered from:
+
+	Eric Meyer					:: http://meyerweb.com
+	HTML5 Doctor				:: http://html5doctor.com
+	and the HTML5 Boilerplate	:: http://html5boilerplate.com
+
+-------------------------------------------------------------------------------*/
+
+/* Let's default this puppy out
+-------------------------------------------------------------------------------*/
+
+html,
+body,
+body div,
+span,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+abbr,
+address,
+cite,
+code,
+del,
+dfn,
+em,
+img,
+ins,
+kbd,
+q,
+samp,
+small,
+strong,
+sub,
+sup,
+var,
+b,
+i,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+legend,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td,
+article,
+aside,
+figure,
+footer,
+header,
+menu,
+nav,
+section,
+time,
+mark,
+audio,
+video,
+details,
+summary {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font-weight: normal;
+  vertical-align: baseline;
+  background: transparent;
+}
+
+article,
+aside,
+figure,
+footer,
+header,
+nav,
+section,
+details,
+summary {
+  display: block;
+}
+
+/* Handle box-sizing while better addressing child elements:
+   http://css-tricks.com/inheriting-box-sizing-probably-slightly-better-best-practice/ */
+
+html {
+  box-sizing: border-box;
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
+
+/* consider resetting the default cursor: https://gist.github.com/murtaugh/5247154 */
+
+/* Responsive images and other embedded objects
+*/
+
+img,
+object,
+embed {
+  max-width: 100%;
+}
+
+/*
+   Note: keeping IMG here will cause problems if you're using foreground images as sprites.
+	 In fact, it *will* cause problems with Google Maps' controls at small size.
+	If this is the case for you, try uncommenting the following:
+
+#map img {
+		max-width: none;
+}
+*/
+
+/* force a vertical scrollbar to prevent a jumpy page */
+
+html {
+  overflow-y: scroll;
+}
+
+/* we use a lot of ULs that aren't bulleted.
+	don't forget to restore the bullets within content. */
+
+ul {
+  list-style: none;
+}
+
+blockquote,
+q {
+  quotes: none;
+}
+
+blockquote:before,
+blockquote:after,
+q:before,
+q:after {
+  content: '';
+  content: none;
+}
+
+a {
+  margin: 0;
+  padding: 0;
+  font-size: 100%;
+  vertical-align: baseline;
+  background: transparent;
+}
+
+del {
+  text-decoration: line-through;
+}
+
+abbr[title],
+dfn[title] {
+  border-bottom: 1px dotted #000;
+  cursor: help;
+}
+
+/* tables still need cellspacing="0" in the markup */
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+th {
+  font-weight: bold;
+  vertical-align: bottom;
+}
+
+td {
+  font-weight: normal;
+  vertical-align: top;
+}
+
+hr {
+  display: block;
+  height: 1px;
+  border: 0;
+  border-top: 1px solid #ccc;
+  margin: 1em 0;
+  padding: 0;
+}
+
+input,
+select {
+  vertical-align: middle;
+}
+
+pre {
+  white-space: pre;
+  /* CSS2 */
+  white-space: pre-wrap;
+  /* CSS 2.1 */
+  white-space: pre-line;
+  /* CSS 3 (and 2.1 as well, actually) */
+  word-wrap: break-word;
+  /* IE */
+}
+
+input[type="radio"] {
+  vertical-align: text-bottom;
+}
+
+input[type="checkbox"] {
+  vertical-align: bottom;
+}
+
+.ie7 input[type="checkbox"] {
+  vertical-align: baseline;
+}
+
+.ie6 input {
+  vertical-align: text-bottom;
+}
+
+select,
+input,
+textarea {
+  font: 99% sans-serif;
+}
+
+table {
+  font-size: inherit;
+  font: 100%;
+}
+
+small {
+  font-size: 85%;
+}
+
+strong {
+  font-weight: bold;
+}
+
+td,
+td img {
+  vertical-align: top;
+}
+
+/* Make sure sup and sub don't mess with your line-heights http://gist.github.com/413930 */
+
+sub,
+sup {
+  font-size: 75%;
+  line-height: 0;
+  position: relative;
+}
+
+sup {
+  top: -0.5em;
+}
+
+sub {
+  bottom: -0.25em;
+}
+
+/* standardize any monospaced elements */
+
+pre,
+code,
+kbd,
+samp {
+  font-family: monospace, sans-serif;
+}
+
+/* hand cursor on clickable elements */
+
+.clickable,
+label,
+input[type=button],
+input[type=submit],
+input[type=file],
+button {
+  cursor: pointer;
+}
+
+/* Webkit browsers add a 2px margin outside the chrome of form elements */
+
+button,
+input,
+select,
+textarea {
+  margin: 0;
+}
+
+/* make buttons play nice in IE */
+
+button,
+input[type=button] {
+  width: auto;
+  overflow: visible;
+}
+
+/* scale images in IE7 more attractively */
+
+.ie7 img {
+  -ms-interpolation-mode: bicubic;
+}
+
+/* prevent BG image flicker upon hover
+   (commented out as usage is rare, and the filter syntax messes with some pre-processors)
+.ie6 html {filter: expression(document.execCommand("BackgroundImageCache", false, true));}
+*/
+
+/* let's clear some floats */
+
+.clearfix:before,
+.clearfix:after {
+  content: "\0020";
+  display: block;
+  height: 0;
+  overflow: hidden;
+}
+
+.clearfix:after {
+  clear: both;
+}
+
+.clearfix {
+  zoom: 1;
+}
+
+@font-face {
+  font-family: 'Roboto-Regular';
+  src: url("../fonts/Roboto-Regular.woff") format("truetype");
+  font-style: normal;
+  font-weight: normal;
+}
+
+@font-face {
+  font-family: 'Roboto-Medium';
+  src: url("../fonts/Roboto-Medium.woff") format("truetype");
+  font-style: normal;
+  font-weight: normal;
+}
+
+body {
+  position: relative;
+  min-height: 100vh;
+}
+
+.header__nav {
+  background-color: #77c1bb;
+  padding: 20px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.header__menu {
+  display: inline-block;
+  margin-right: 10px;
+}
+
+.header__menu:hover {
+  cursor: pointer;
+}
+
+.header__menu-icon {
+  width: 20px;
+  height: 15px;
+  display: inline-block;
+  fill: #372c48;
+}
+
+.header__logo {
+  height: 25px;
+  width: 25px;
+  vertical-align: bottom;
+}
+
+.header__logo-link {
+  font-size: 1.25rem;
+  font-family: "Roboto-Medium";
+  color: #372c48;
+  text-decoration: none;
+}
+
+.header__form input[type="search"] {
+  display: none;
+  background-color: inherit;
+  border: none;
+  color: #372c48;
+  font-size: 0.875rem;
+  font-family: "Roboto-Medium";
+  vertical-align: bottom;
+}
+
+.header__form input[type="search"]:focus {
+  outline: 0;
+}
+
+.header__form input[type="search"]::-webkit-input-placeholder {
+  color: #372c48;
+  font-size: 0.875rem;
+  font-family: "Roboto-Medium";
+}
+
+.header__form input[type="search"]::-ms-clear {
+  background: #333;
+  color: #fff;
+}
+
+.search-icon {
+  width: 20px;
+  height: 20px;
+}
+
+.hidden {
+  background-color: #77c1bb;
+  position: absolute;
+  width: 100%;
+  padding: 60px;
+  transition: .2s all;
+  z-index: 100;
+  top: -100%;
+}
+
+.js-show-hidden {
+  top: 0;
+}
+
+.hidden__logo-block {
+  text-align: center;
+  font-size: 1.51125rem;
+  font-family: "Roboto-Medium";
+  margin-bottom: 60px;
+  color: #372c48;
+}
+
+.hidden__logo-img {
+  display: block;
+  margin: auto;
+  margin-bottom: 15px;
+  width: 122px;
+  height: 115px;
+}
+
+.hidden__form-block {
+  padding: 5px;
+  max-width: 200px;
+  margin: auto;
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 1px solid #fff;
+}
+
+.hidden__search-icon {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  fill: #fff;
+  flex-basis: 10%;
+}
+
+.hidden__form {
+  display: inline-block;
+  flex-basis: 85%;
+}
+
+.hidden__form input {
+  display: inline-block;
+}
+
+.hidden__form input[type="search"] {
+  background-color: inherit;
+  width: 85%;
+  border: none;
+  color: #fff;
+  font-size: 1rem;
+  font-family: "Roboto-Regular";
+}
+
+.hidden__form input[type="search"]:focus {
+  outline: 0;
+}
+
+.hidden__form input[type="search"]::-webkit-input-placeholder {
+  color: #fff;
+  font-size: 1rem;
+  font-family: "Roboto-Medium";
+}
+
+.hidden__form-send {
+  width: 20px;
+  height: 20px;
+}
+
+.stub {
+  background-color: rgba(0, 0, 0, 0.3);
+  width: 100%;
+  height: 100vh;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 99;
+  display: none;
+}
+
+.js-show-stub {
+  display: block;
+}
+
+.aside {
+  width: 250px;
+  min-height: 100vh;
+  background-color: #fff;
+  position: absolute;
+  top: 0;
+  left: -100%;
+  transition: .3s all;
+  z-index: 100;
+}
+
+.js-show-aside {
+  left: 0;
+}
+
+.aside-logo {
+  display: flex;
+  justify-content: center;
+  padding: 20px;
+  text-align: center;
+  font-size: 1.25rem;
+  font-family: "Roboto-Medium";
+  background-color: #77c1bb;
+  width: 100%;
+  color: #372c48;
+}
+
+.aside-logo__img {
+  margin-right: 10px;
+  width: 25px;
+  height: 25px;
+}
+
+.aside__list {
+  line-height: 1.8;
+  padding: 20px;
+}
+
+.aside__item {
+  position: relative;
+  margin-left: 60px;
+  margin-bottom: 20px;
+}
+
+.aside__item::before {
+  content: url(../img/folder-21.svg);
+  display: inline-block;
+  width: 23px;
+  height: 20px;
+  position: absolute;
+  left: -60px;
+}
+
+.aside__item-active {
+  color: #77c1bb;
+}
+
+.aside__item-active::before {
+  content: url(../img/folder-20.svg);
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  fill: #77c1bb;
+  position: absolute;
+  left: -60px;
+}
+
+.favorites::before {
+  content: url(../img/star.svg);
+  display: inline-block;
+  width: 23px;
+  height: 20px;
+  position: absolute;
+  left: -60px;
+}
+
+.category__list {
+  padding-left: 10px;
+  transition: .5s all;
+  display: none;
+}
+
+.js-show-category-list {
+  display: block;
+}
+
+.category__list-link {
+  text-decoration: none;
+  color: #372c48;
+  font-size: 0.75rem;
+  font-family: "Roboto-Medium";
+}
+
+.category__list-link:hover {
+  color: #77c1bb;
+}
+
+.footer {
+  padding: 15px;
+  background-color: #77c1bb;
+  color: #372c48;
+  border-top: 1px solid #333;
+}
+
+.social__menu {
+  list-style: none;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.social__item {
+  width: 20px;
+  height: 20px;
+  margin-right: 7px;
+}
+
+.social__link {
+  display: inline-block;
+  line-height: 0;
+  border-radius: 50%;
+}
+
+.social__icon {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  fill: #372c48;
+  transition: .5s all;
+}
+
+.social__icon--mod:hover {
+  fill: #fff;
+}
+
+.info__list {
+  display: flex;
+  justify-content: center;
+}
+
+.info__item {
+  margin-right: 15px;
+}
+
+.info__link {
+  font-size: 0.6875rem;
+  text-decoration: none;
+  color: #372c48;
+  transition: .5s all;
+}
+
+.info__link:hover {
+  color: #fff;
+}
+
+body {
+  min-width: 320px;
+  font-family: "Roboto-Regular";
+}
+
+@media (min-width: 480px) {
+  .header__menu-icon {
+    width: 27px;
+    height: 19px;
+  }
+
+  .header__logo {
+    width: 35px;
+    height: 32px;
+  }
+
+  .header__logo-link {
+    font-size: 1.5625rem;
+  }
+
+  .search-icon {
+    width: 25px;
+    height: 25px;
+    vertical-align: -webkit-baseline-middle;
+  }
+
+  .hidden {
+    padding: 75px;
+  }
+
+  .hidden__logo-block {
+    font-size: 2.01437rem;
+  }
+
+  .hidden__logo-img {
+    width: 165px;
+    height: 145px;
+  }
+
+  .hidden__form-block {
+    max-width: 280px;
+  }
+
+  .hidden__form input[type="search"] {
+    font-size: 1.25rem;
+  }
+
+  .hidden__form input[type="search"]::-webkit-input-placeholder {
+    font-size: 1.25rem;
+  }
+
+  .hidden__form-send {
+    width: 25px;
+    height: 25px;
+  }
+
+  .aside {
+    width: 300px;
+  }
+
+  .aside-logo {
+    font-size: 1.5625rem;
+  }
+
+  .aside-logo__img {
+    width: 35px;
+    height: 32px;
+  }
+
+  .aside__item::before {
+    width: 30px;
+    height: 25px;
+  }
+
+  .aside__item-active::before {
+    width: 30px;
+    height: 25px;
+  }
+
+  .favorites::before {
+    width: 30px;
+    height: 25px;
+  }
+
+  .category__list-link {
+    font-size: 0.9375rem;
+  }
+}
+
+@media (min-width: 768px) {
+  .header__form {
+    padding-bottom: 5px;
+    border-bottom: 1px solid #372c48;
+  }
+
+  .header__form input[type="search"] {
+    display: inline-block;
+  }
+
+  .search-icon {
+    margin-right: 5px;
+  }
+
+  .aside-logo {
+    font-size: 1.25rem;
+    display: block;
+  }
+
+  .aside-logo__img {
+    display: block;
+    width: 70px;
+    height: 67px;
+    margin: auto;
+    margin-bottom: 15px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .header__form input[type="search"] {
+    display: inline-block;
+    font-size: 1rem;
+  }
+
+  .info__link {
+    font-size: 1rem;
+  }
+}

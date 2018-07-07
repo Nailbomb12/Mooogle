@@ -1,0 +1,362 @@
+body {
+  position: relative;
+  min-height: 100vh;
+}
+.header {
+  // position: relative;
+}
+.header__nav {
+  background-color: $main-color;
+  padding: 20px;
+  display: flex;
+  justify-content: space-between;
+}
+.header__menu {
+  display: inline-block;
+  margin-right: 10px;
+}
+.header__menu:hover {
+  cursor: pointer;
+}
+
+.header__menu-icon {
+  width: 20px;
+  height: 15px;
+  display: inline-block;
+  fill: $header_text_color;
+  @media (min-width: 480px) {
+    width: 27px;
+    height: 19px;
+  }
+}
+.header__logo {
+  height: 25px;
+  width: 25px;
+  vertical-align: bottom;
+  @media (min-width: 480px) {
+    width: 35px;
+    height: 32px;
+  }
+}
+.header__logo-link {
+  font-size: rem(20);
+  font-family: $med-font;
+  color: $header_text_color;
+  text-decoration: none;
+  @media (min-width: 480px) {
+    font-size: rem(25);
+  }
+}
+.header__form {
+  // display: none;
+  @media (min-width: 768px) {
+    // display: inline-block;
+    padding-bottom: 5px;
+    border-bottom: 1px solid $header_text_color;
+  }
+}
+.header__form input[type="search"] {
+  display: none;
+  background-color: inherit;
+  border: none;
+  color: $header_text_color;
+  font-size: rem(14);
+  font-family: $med-font;
+  vertical-align: bottom; 
+  @media (min-width: 768px) {
+    display: inline-block;
+    // border-bottom: 1px solid #372c48;
+  }
+  @media (min-width: 1024px) {
+    display: inline-block;
+    font-size: rem(16);
+    // border-bottom: 1px solid #372c48;
+  }
+}
+.header__form input[type="search"]:focus {
+  outline: 0;
+}
+
+.header__form input[type="search"]::-webkit-input-placeholder {
+  color: #372c48;
+  font-size: rem(14);
+  font-family: $med-font;
+ } 
+ .header__form input[type="search"]::-ms-clear {
+  background: #333;
+  color: #fff;
+ }
+.search-icon {
+  width: 20px;
+  height: 20px;
+  @media (min-width: 480px) {
+    width: 25px;
+    height: 25px;
+    vertical-align: -webkit-baseline-middle;
+  }
+  @media (min-width: 768px) {
+    margin-right: 5px;
+  }
+}
+
+.hidden {
+  background-color: $main-color;
+  position: absolute;
+  width: 100%;
+  padding: 60px;
+  transition: .2s all;
+  z-index: 100;
+  top:-100%;
+  @media (min-width: 480px) {
+    padding: 75px;
+  }
+}
+.js-show-hidden {
+  top: 0;
+}
+
+.hidden__logo-block {
+  text-align: center;
+  font-size: rem(24.18);
+  font-family: $med-font;
+  margin-bottom: 60px;
+  color: $header_text_color;
+  @media (min-width: 480px) {
+    font-size: rem(32.23);
+  }
+}
+.hidden__logo-img {
+  display: block;
+  margin: auto;
+  margin-bottom: 15px;
+  width: 122px;
+  height: 115px;
+  @media (min-width: 480px) {
+    width: 165px;
+    height: 145px;
+  }
+}
+
+.hidden__form-block {
+  padding: 5px;
+  max-width: 200px;
+  margin: auto;
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 1px solid #fff;
+  @media (min-width: 480px) {
+    max-width: 280px;
+  }
+}
+
+.hidden__search-icon{
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  fill: #fff;
+  flex-basis: 10%;
+}
+
+.hidden__form {
+  display:  inline-block;
+  flex-basis: 85%;
+}
+.hidden__form input {
+  display:  inline-block;
+}
+.hidden__form input[type="search"] {
+  background-color: inherit;
+  width: 85%;
+  border: none;
+  color: #fff;
+  font-size: rem(16);
+  font-family: $reg-font;
+  @media (min-width: 480px) {
+    font-size: rem(20)
+  }
+}
+.hidden__form input[type="search"]:focus {
+  outline: 0;
+}
+.hidden__form input[type="search"]::-webkit-input-placeholder {
+  color: #fff;
+  font-size: rem(16);
+  font-family: $med-font;
+  @media (min-width: 480px) {
+    font-size: rem(20)
+  }
+ } 
+
+ .hidden__form-send {
+  width: 20px;
+  height: 20px;
+  @media (min-width: 480px) {
+    width: 25px;
+    height: 25px;
+  }
+  @media (min-width: 768px) {
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.stub {
+  background-color: rgba(0,0,0,0.3);
+  width: 100%;
+  height: 100vh;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 99;
+  display: none;
+}
+.js-show-stub{
+  display: block;
+}
+
+.aside {
+  width: 250px;
+  min-height: 100vh;
+  background-color: #fff;
+  position: absolute;
+  top: 0;
+  left: -100%;
+  transition: .3s all;
+  z-index: 100;
+  @media (min-width: 480px){
+    width: 300px;
+  }
+}
+.js-show-aside {
+  left: 0;
+}
+.aside-logo {
+  display: flex;
+  justify-content: center;
+  padding: 20px;
+  text-align: center;
+  font-size: rem(20);
+  font-family: $med-font;
+  background-color: $main-color;
+  width: 100%;
+  color: $header_text_color;
+  @media (min-width: 480px) {
+    font-size: rem(25);
+    
+  }
+  @media (min-width: 768px) {
+    font-size: rem(20);
+    display: block;
+  }
+}
+.aside-logo__img {
+  margin-right: 10px;
+  width: 25px;
+  height: 25px;
+  @media (min-width: 480px) {
+    width: 35px;
+    height: 32px;
+  }
+  @media (min-width: 768px) {
+    display: block;
+    width: 70px;
+    height: 67px;
+    margin: auto; 
+    margin-bottom: 15px;
+  }
+}
+.aside__list {
+  line-height: 1.8;
+  padding: 20px;
+}
+.aside__item {
+  position: relative;
+  margin-left: 60px;
+  margin-bottom: 20px;
+}
+.aside__item::before {
+  content: url(../img/folder-21.svg);
+  display: inline-block;
+  width: 23px;
+  height: 20px;
+  position: absolute;
+  left: -60px;
+  @media (min-width: 480px){
+    width: 30px;
+    height: 25px;
+  }
+}
+.aside__item-active {
+  color: $main-color;
+}
+.aside__item-active::before {
+  content: url(../img/folder-20.svg);
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  fill: $main-color;
+  position: absolute;
+  left: -60px;
+  @media (min-width: 480px){
+    width: 30px;
+    height: 25px;
+  }
+}
+.favorites::before {
+  content: url(../img/star.svg);
+  display: inline-block;
+  width: 23px;
+  height: 20px;
+  position: absolute;
+  left: -60px;
+  @media (min-width: 480px){
+    width: 30px;
+    height: 25px;
+  }
+}
+
+.category__list {
+  padding-left: 10px;
+  transition: .5s all;
+  display: none;
+}
+.js-show-category-list{
+  display: block;
+}
+
+.category__list-link {
+  text-decoration: none;
+  color: $header_text_color;
+  font-size: rem(12);
+  font-family: $med-font;
+  @media (min-width: 480px){
+    font-size: rem(15);
+  }
+}
+.category__list-link:hover {
+  color: $main-color;
+}
