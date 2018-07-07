@@ -21,25 +21,25 @@ const browserSync = require('browser-sync').create();
 const sequence = require('run-sequence');
 
 gulp.task('html', () =>
-  gulp
+    gulp
     .src('./src/*.html')
     .pipe(rigger())
     .pipe(
-      htmlmin({
-        collapseWhitespace: true,
-      }),
+        htmlmin({
+            collapseWhitespace: true,
+        }),
     )
     .pipe(gulp.dest('./build')),
 );
 
 gulp.task('styles', () =>
-  gulp
+    gulp
     .src('./src/scss/styles.scss')
     .pipe(plumber())
     .pipe(
-      stylelint({
-        reporters: [{ formatter: 'string', console: true }],
-      }),
+        stylelint({
+            reporters: [{ formatter: 'string', console: true }],
+        }),
     )
     .pipe(sass())
     .pipe(postcss([autoprefixer()]))
@@ -52,13 +52,13 @@ gulp.task('styles', () =>
 );
 
 gulp.task('scripts', () =>
-  gulp
+    gulp
     .src('./src/js/**/*.js')
     .pipe(plumber())
     .pipe(
-      babel({
-        presets: ['env'],
-      }),
+        babel({
+            presets: ['env'],
+        }),
     )
     .pipe(concat('scripts.js'))
     .pipe(gulp.dest('./build/js'))
@@ -68,53 +68,53 @@ gulp.task('scripts', () =>
 );
 
 gulp.task('svg-sprite', () =>
-  gulp
+    gulp
     .src('./src/img/sprite/**/*.svg')
     .pipe(
-      svgstore({
-        inlineSvg: true,
-      }),
+        svgstore({
+            inlineSvg: true,
+        }),
     )
     .pipe(rename('sprite.svg'))
     .pipe(gulp.dest('./build/img')),
 );
 
 gulp.task('images', () =>
-  gulp
+    gulp
     .src(['./src/img/**/*.{png,jpg,jpeg,svg}', '!./src/img/sprite/**/*.*'])
     .pipe(
-      imagemin([
-        imagemin.jpegtran({ progressive: true }),
-        imagemin.optipng({ optimizationLevel: 3 }),
-        imagemin.svgo({
-          plugins: [{ removeViewBox: false }, { cleanupIDs: false }],
-        }),
-      ]),
+        imagemin([
+            imagemin.jpegtran({ progressive: true }),
+            imagemin.optipng({ optimizationLevel: 3 }),
+            // imagemin.svgo({
+            //     plugins: [{ removeViewBox: false }, { cleanupIDs: false }],
+            // }),
+        ]),
     )
     .pipe(gulp.dest('./build/img')),
 );
 
 gulp.task('fonts', () =>
-  gulp.src('./src/fonts/**/*.{woff,woff2}').pipe(gulp.dest('./build/fonts')),
+    gulp.src('./src/fonts/**/*.{woff,woff2}').pipe(gulp.dest('./build/fonts')),
 );
 
 gulp.task('watch', () => {
-  gulp.watch('src/**/*.html', ['html']).on('change', browserSync.reload);
-  gulp.watch('src/scss/**/*.scss', ['styles']);
-  gulp.watch('src/js/**/*.js', ['scripts']);
+    gulp.watch('src/**/*.html', ['html']).on('change', browserSync.reload);
+    gulp.watch('src/scss/**/*.scss', ['styles']).on('change', browserSync.reload);
+    gulp.watch('src/js/**/*.js', ['scripts']).on('change', browserSync.reload);
 });
 
 gulp.task('serve', ['styles'], () =>
-  browserSync.init({
-    server: './build',
-    notify: false,
-    open: true,
-    cors: true,
-    ui: false,
-    logPrefix: 'DevServer',
-    host: 'localhost',
-    port: 3000,
-  }),
+    browserSync.init({
+        server: './build',
+        notify: false,
+        open: true,
+        cors: true,
+        ui: false,
+        logPrefix: 'DevServer',
+        host: 'localhost',
+        port: 3000,
+    }),
 );
 
 gulp.task('del:build', () => del('./build'));
@@ -122,16 +122,16 @@ gulp.task('del:build', () => del('./build'));
 gulp.task('prepare', () => del(['**/.gitkeep', 'README.md', 'banner.png']));
 
 gulp.task('build', cb =>
-  sequence(
-    'del:build',
-    'svg-sprite',
-    'images',
-    'fonts',
-    'styles',
-    'html',
-    'scripts',
-    cb,
-  ),
+    sequence(
+        'del:build',
+        'svg-sprite',
+        'images',
+        'fonts',
+        'styles',
+        'html',
+        'scripts',
+        cb,
+    ),
 );
 
 gulp.task('start', cb => sequence('build', 'serve', 'watch'));

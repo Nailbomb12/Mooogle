@@ -2,27 +2,159 @@
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <meta name="description" content="">
-  <meta name="keywords" content="">
-  <meta name="theme-color" content="#000000">
-  <meta name="copyright" content="Author">
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="#000000">
-  <meta name="apple-mobile-web-app-title" content="Application Name">
-  <meta name="msapplication-TileImage" content="images/favicons/144x144.png">
-  <meta name="msapplication-TileColor" content="#000000">
-  <meta name="format-detection" content="telephone=no">
-
-  <title>Mooogle</title>
-  <link rel="stylesheet" href="css/styles.min.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="/css/styles.css">
+    <title>Moogle</title>
 </head>
 
 <body>
 
-  <script src="js/scripts.min.js"></script>
+    <div class="gallary">
+
+        <div class="header-bottom">
+            <nav class="top-nav">
+                <ul class="category-list ">
+                    <li class="category-item  " id="category-film ">фильмы</li>
+                    <li class="category-item " id="category-serial ">сериалы</li>
+                    <li class="category-item " id="category-favorite ">избранное</li>
+                </ul>
+            </nav>
+        </div>
+        <div class="content">
+            <div class="top-form">
+                <div class="category-form ">
+                    <p class="сategory">Категория</p>
+                    <p class="subset ">Фильмы</p>
+                </div>
+                <div class="find-form ">
+                    <div class="find-form__name ">
+                        <p class=" name-txt name-txt--small ">по назв.</p>
+                        <p class=" name-txt name-txt--big ">по названию</p>
+                        <div class="name-range ">
+                            <div class="range-button top-range name-top "></div>
+                            <div class="range-button bottom-range name-buttom "></div>
+                        </div>
+                    </div>
+                    <div class="find-form__date ">
+                        <p class="date-txt ">по дате</p>
+                        <div class="date-range ">
+                            <div class="range-button top-range date-top "></div>
+                            <div class="range-button bottom-range date-buttom "></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="videos ">
+                <ul class="videos__films videos-item videos-item--active " id="film ">
+                    <li class="videos__preview film-preview ">
+                        <div class="icons ">
+                            <svg class="icon star ">
+                        <use href="../img/star-jingle-sprite.svg#mark-as-favorite-star " ></use>      </div>
+                        <p class="videos__name ">Темные времена (2017)</p>
+                    </li>
+                    <li class="videos__preview film-preview ">
+                        <div class="icons ">
+                            <svg class="icon star ">
+                                                    <use href="../img/star-jingle-sprite.svg#mark-as-favorite-star " ></use>
+                                                                                                </svg>
+                        </div>
+                        <p class="videos__name ">Темные времена (2017)</p>
+                    </li>
+                    <li class="videos__preview film-preview ">
+                        <div class="icons ">
+                            <svg class="icon star ">
+                                                    <use href="../img/star-jingle-sprite.svg#mark-as-favorite-star " ></use>
+                                                                                                </svg>
+                        </div>
+                        <p class="videos__name ">Темные времена (2017)</p>
+                    </li>
+                    <li class="videos__preview film-preview ">
+                        <div class="icons ">
+                            <svg class="icon star ">
+                                                        <use href="../img/star-jingle-sprite.svg#mark-as-favorite-star " ></use>
+                                                                                                        </svg>
+                        </div>
+                        <p class="videos__name ">Темные времена (2017)</p>
+                    </li>
+                </ul>
+                <ul class="videos__serials videos-item " id="serial ">
+
+                    <div class="videos__preview serial-preview ">
+                        <div class="icons ">
+                            <svg class="icon star ">
+                                   <use href="../img/star-jingle-sprite.svg#mark-as-favorite-star " ></use>
+                                </svg>
+                        </div>
+                        <p class="videos__name ">Кухня (2015)</p>
+                    </div>
+                    <div class="videos__preview serial-preview ">
+                        <div class="icons ">
+                            <svg class="icon star ">
+                                       <use href="../img/star-jingle-sprite.svg#mark-as-favorite-star " ></use>
+                                    </svg>
+                        </div>
+                        <p class="videos__name ">Кухня (2015)</p>
+                    </div>
+                    <div class="videos__preview serial-preview ">
+                        <div class="icons ">
+                            <svg class="icon star ">
+                                           <use href="../img/star-jingle-sprite.svg#mark-as-favorite-star " ></use>
+                                        </svg>
+                        </div>
+                        <p class="videos__name ">Кухня (2015)</p>
+                    </div>
+                    <div class="videos__preview serial-preview ">
+                        <div class="icons ">
+                            <svg class="icon star ">
+                                               <use href="../img/star-jingle-sprite.svg#mark-as-favorite-star " ></use>
+                                            </svg>
+                        </div>
+                        <p class="videos__name ">Кухня (2015)</p>
+                    </div>
+                </ul>
+                <ul class="videos__favorite videos-item " id="favorite ">
+
+                    <div class="videos__preview favorite-preview ">
+                        <div class="icons ">
+                            <svg class="icon star ">
+                                           <use href="../img/star-jingle-sprite.svg#mark-as-favorite-star " ></use>
+                                        </svg>
+                        </div>
+                        <p class="videos__name ">Такси 2 (2010) </p>
+                    </div>
+                    <div class="videos__preview favorite-preview ">
+                        <div class="icons ">
+                            <svg class="icon star ">
+                                               <use href="../img/star-jingle-sprite.svg#mark-as-favorite-star " ></use>
+                                            </svg>
+                        </div>
+                        <p class="videos__name ">Такси 2 (2010)</p>
+                    </div>
+                    <div class="videos__preview favorite-preview ">
+                        <div class="icons ">
+                            <svg class="icon star ">
+                                                   <use href="../img/star-jingle-sprite.svg#mark-as-favorite-star " ></use>
+                                                </svg>
+                        </div>
+                        <p class="videos__name ">Такси 2 (2010)</p>
+                    </div>
+                    <div class="videos__preview favorite-preview ">
+                        <div class="icons ">
+                            <svg class="icon star ">
+                                                       <use href="../img/star-jingle-sprite.svg#mark-as-favorite-star " ></use>
+                                                    </svg>
+                        </div>
+                        <p class="videos__name ">Такси 2 (2010)</p>
+                    </div>
+                </ul>
+
+            </div>
+
+        </div>
+    </div>
+    <script src="js/scripts.js "></script>
 </body>
 
 </html>
