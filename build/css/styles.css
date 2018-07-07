@@ -1,0 +1,997 @@
+/*
+	HTML5 Reset :: style.css
+	----------------------------------------------------------
+	We have learned much from/been inspired by/taken code where offered from:
+
+	Eric Meyer					:: http://meyerweb.com
+	HTML5 Doctor				:: http://html5doctor.com
+	and the HTML5 Boilerplate	:: http://html5boilerplate.com
+
+-------------------------------------------------------------------------------*/
+
+/* Let's default this puppy out
+-------------------------------------------------------------------------------*/
+
+html,
+body,
+body div,
+span,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+abbr,
+address,
+cite,
+code,
+del,
+dfn,
+em,
+img,
+ins,
+kbd,
+q,
+samp,
+small,
+strong,
+sub,
+sup,
+var,
+b,
+i,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+legend,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td,
+article,
+aside,
+figure,
+footer,
+header,
+menu,
+nav,
+section,
+time,
+mark,
+audio,
+video,
+details,
+summary {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font-weight: normal;
+  vertical-align: baseline;
+  background: transparent;
+}
+
+article,
+aside,
+figure,
+footer,
+header,
+nav,
+section,
+details,
+summary {
+  display: block;
+}
+
+/* Handle box-sizing while better addressing child elements:
+   http://css-tricks.com/inheriting-box-sizing-probably-slightly-better-best-practice/ */
+
+html {
+  box-sizing: border-box;
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
+
+/* consider resetting the default cursor: https://gist.github.com/murtaugh/5247154 */
+
+/* Responsive images and other embedded objects
+*/
+
+img,
+object,
+embed {
+  max-width: 100%;
+}
+
+/*
+   Note: keeping IMG here will cause problems if you're using foreground images as sprites.
+	 In fact, it *will* cause problems with Google Maps' controls at small size.
+	If this is the case for you, try uncommenting the following:
+
+#map img {
+		max-width: none;
+}
+*/
+
+/* force a vertical scrollbar to prevent a jumpy page */
+
+html {
+  overflow-y: scroll;
+}
+
+/* we use a lot of ULs that aren't bulleted.
+	don't forget to restore the bullets within content. */
+
+ul {
+  list-style: none;
+}
+
+blockquote,
+q {
+  quotes: none;
+}
+
+blockquote:before,
+blockquote:after,
+q:before,
+q:after {
+  content: '';
+  content: none;
+}
+
+a {
+  margin: 0;
+  padding: 0;
+  font-size: 100%;
+  vertical-align: baseline;
+  background: transparent;
+}
+
+del {
+  text-decoration: line-through;
+}
+
+abbr[title],
+dfn[title] {
+  border-bottom: 1px dotted #000;
+  cursor: help;
+}
+
+/* tables still need cellspacing="0" in the markup */
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+th {
+  font-weight: bold;
+  vertical-align: bottom;
+}
+
+td {
+  font-weight: normal;
+  vertical-align: top;
+}
+
+hr {
+  display: block;
+  height: 1px;
+  border: 0;
+  border-top: 1px solid #ccc;
+  margin: 1em 0;
+  padding: 0;
+}
+
+input,
+select {
+  vertical-align: middle;
+}
+
+pre {
+  white-space: pre;
+  /* CSS2 */
+  white-space: pre-wrap;
+  /* CSS 2.1 */
+  white-space: pre-line;
+  /* CSS 3 (and 2.1 as well, actually) */
+  word-wrap: break-word;
+  /* IE */
+}
+
+input[type="radio"] {
+  vertical-align: text-bottom;
+}
+
+input[type="checkbox"] {
+  vertical-align: bottom;
+}
+
+.ie7 input[type="checkbox"] {
+  vertical-align: baseline;
+}
+
+.ie6 input {
+  vertical-align: text-bottom;
+}
+
+select,
+input,
+textarea {
+  font: 99% sans-serif;
+}
+
+table {
+  font-size: inherit;
+  font: 100%;
+}
+
+small {
+  font-size: 85%;
+}
+
+strong {
+  font-weight: bold;
+}
+
+td,
+td img {
+  vertical-align: top;
+}
+
+/* Make sure sup and sub don't mess with your line-heights http://gist.github.com/413930 */
+
+sub,
+sup {
+  font-size: 75%;
+  line-height: 0;
+  position: relative;
+}
+
+sup {
+  top: -0.5em;
+}
+
+sub {
+  bottom: -0.25em;
+}
+
+/* standardize any monospaced elements */
+
+pre,
+code,
+kbd,
+samp {
+  font-family: monospace, sans-serif;
+}
+
+/* hand cursor on clickable elements */
+
+.clickable,
+label,
+input[type=button],
+input[type=submit],
+input[type=file],
+button {
+  cursor: pointer;
+}
+
+/* Webkit browsers add a 2px margin outside the chrome of form elements */
+
+button,
+input,
+select,
+textarea {
+  margin: 0;
+}
+
+/* make buttons play nice in IE */
+
+button,
+input[type=button] {
+  width: auto;
+  overflow: visible;
+}
+
+/* scale images in IE7 more attractively */
+
+.ie7 img {
+  -ms-interpolation-mode: bicubic;
+}
+
+/* prevent BG image flicker upon hover
+   (commented out as usage is rare, and the filter syntax messes with some pre-processors)
+.ie6 html {filter: expression(document.execCommand("BackgroundImageCache", false, true));}
+*/
+
+/* let's clear some floats */
+
+.clearfix:before,
+.clearfix:after {
+  content: "\0020";
+  display: block;
+  height: 0;
+  overflow: hidden;
+}
+
+.clearfix:after {
+  clear: both;
+}
+
+.clearfix {
+  zoom: 1;
+}
+
+@font-face {
+  font-family: 'Roboto-Regular';
+  src: url("../fonts/Roboto-Regular.woff") format("truetype");
+  font-style: normal;
+  font-weight: normal;
+}
+
+@font-face {
+  font-family: 'Roboto-Medium';
+  src: url("../fonts/Roboto-Medium.woff") format("truetype");
+  font-style: normal;
+  font-weight: normal;
+}
+
+@font-face {
+  font-family: 'Roboto-Regular';
+  src: url("../fonts/Roboto-Regular.woff") format("truetype");
+  font-style: normal;
+  font-weight: normal;
+}
+
+@font-face {
+  font-family: 'Roboto-Medium';
+  src: url("../fonts/Roboto-Medium.woff") format("truetype");
+  font-style: normal;
+  font-weight: normal;
+}
+
+body {
+  min-width: 360px;
+}
+
+.main-card {
+  min-width: 340px;
+  max-width: 1040px;
+  padding: 10px;
+  margin: 0 auto;
+}
+
+.main-card-info {
+  padding: 0 7px;
+}
+
+.main-card .main-title {
+  position: absolute;
+  top: calc(75%);
+  left: calc(5%);
+  color: #fff;
+  font-family: "Roboto-Medium";
+  font-size: 1.25rem;
+}
+
+.main-title.desk {
+  display: none;
+}
+
+.main-card__img {
+  position: relative;
+  margin-bottom: 10px;
+}
+
+.main-card__img img {
+  width: 100%;
+}
+
+.icons-block {
+  margin-bottom: 18px;
+}
+
+.icon {
+  width: 17px;
+  height: 17px;
+  display: inline-block;
+  transition: .5s ease-in-out;
+}
+
+.icon.star {
+  margin-right: 10px;
+}
+
+.icon:hover {
+  -webkit-transform: scale(1.2);
+  transform: scale(1.2);
+  transition: .5s ease-in-out;
+  cursor: pointer;
+  fill: #FFD700;
+}
+
+.icons {
+  width: 15%;
+  display: inline-block;
+}
+
+.rel-date {
+  float: right;
+  color: #77c1bb;
+  font-family: "Roboto-Regular";
+  font-size: 0.875rem;
+}
+
+.main-description {
+  font-size: 1rem;
+  font-family: "Roboto-Regular";
+  margin-bottom: 30px;
+}
+
+.main-description .main-block-header {
+  display: none;
+}
+
+.main-description p {
+  font-size: 0.67875rem;
+}
+
+.main-block-header {
+  font-family: "Roboto-Regular";
+  font-size: 1rem;
+  color: #372c48;
+  margin-bottom: 14px;
+}
+
+.main-actors {
+  margin-bottom: 50px;
+  padding: 0 7px;
+}
+
+.main-actors-list {
+  display: flex;
+}
+
+.main-actors .actor-blk {
+  width: 24%;
+  text-align: center;
+  padding: 0 10px;
+  display: flex !important;
+  flex-direction: column;
+  align-items: center;
+}
+
+.main-actors .actor-blk img {
+  width: 60px;
+  height: 60px;
+}
+
+.main-actors .actor-blk h4 {
+  font-size: 0.875rem;
+  color: #77c1bb;
+  font-family: "Roboto-Regular";
+}
+
+.main-trailer {
+  padding: 0 7px;
+  margin-bottom: 35px;
+}
+
+.main-trailer-frame {
+  position: relative;
+  padding-bottom: 56.25%;
+  padding-top: 30px;
+  height: 0;
+  overflow: hidden;
+  border: 1px solid #ccc;
+}
+
+.main-trailer-frame iframe,
+.main-trailer-frame .myvideo object,
+.main-trailer-frame .myvideo embed {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.main-reviews {
+  padding: 0 7px;
+}
+
+.main-reviews__review {
+  display: flex;
+  margin-bottom: 15px;
+}
+
+.main-reviews__review:nth-last-child(1) {
+  margin-bottom: 0;
+}
+
+.main-reviews__review img {
+  width: 40px;
+  height: 40px;
+  margin-right: 15px;
+}
+
+.main-reviews__review h4,
+.main-reviews__review p,
+.main-reviews__review span {
+  font-size: 0.875rem;
+  color: #231f20;
+  font-family: "Roboto-Regular";
+}
+
+.main-reviews__review h4 {
+  display: inline-block;
+  margin-bottom: 6px;
+}
+
+.main-reviews__review p {
+  color: #757575;
+  width: 84%;
+}
+
+.main-reviews__review span {
+  color: #757575;
+  width: 16%;
+  text-align: right;
+  float: right;
+}
+
+.main-reviews__review .review-text {
+  width: 100%;
+}
+
+.main-fields {
+  display: none;
+  line-height: 2;
+  font-family: "Roboto-Regular";
+  font-size: 0.75rem;
+}
+
+.main-fields__field {
+  padding-left: 15px;
+}
+
+.main-fields__field:nth-child(2n-1) {
+  background-color: #77c1bb;
+}
+
+.main-slider {
+  position: relative;
+}
+
+.main-slider .arrow.forward,
+.main-slider .arrow.back {
+  bottom: 41%;
+}
+
+.arrow {
+  display: block;
+  padding: 0;
+  margin: 0;
+  border: none;
+  background: none;
+  fill: #77c1bb;
+  transition: .5s linear;
+  display: none;
+  outline: none;
+  position: absolute;
+  z-index: 10;
+}
+
+.arrow:hover {
+  fill: #FFD700;
+  -webkit-transform: scale(1.3);
+  transform: scale(1.3);
+  transition: .5s linear;
+}
+
+.arrow.back svg,
+.arrow.forward svg {
+  width: 15px;
+  height: 10px;
+}
+
+.arrow.forward {
+  right: 0;
+  bottom: 45%;
+}
+
+.arrow.back {
+  bottom: 45%;
+}
+
+.main-screenshots {
+  display: none;
+}
+
+.screenshots-slider {
+  display: flex;
+  position: relative;
+}
+
+@media (min-width: 480px) {
+  .main-title.mob {
+    font-size: 1.66625rem;
+  }
+
+  .icons-block {
+    margin-bottom: 30px;
+  }
+
+  .icon {
+    width: 22px;
+    height: 22px;
+  }
+
+  .rel-date {
+    font-size: 1.16562rem;
+  }
+
+  .main-description {
+    font-size: 1.33187rem;
+    margin-bottom: 45px;
+  }
+
+  .main-block-header {
+    font-size: 1.33187rem;
+    margin-bottom: 18px;
+  }
+
+  .main-actors {
+    margin-bottom: 65px;
+  }
+
+  .main-actors .actor-blk img {
+    width: 85px;
+    height: 85px;
+  }
+
+  .main-actors .actor-blk h4 {
+    font-size: 1.16562rem;
+  }
+
+  .main-trailer {
+    margin-bottom: 50px;
+  }
+
+  .main-reviews__review img {
+    width: 50px;
+    height: 50px;
+    margin-right: 20px;
+  }
+
+  .main-reviews__review h4,
+  .main-reviews__review p,
+  .main-reviews__review span {
+    font-size: 1.16562rem;
+  }
+}
+
+@media (min-width: 768px) {
+  .main-card {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+
+  .main-card-info {
+    padding: 0;
+    order: 2;
+    width: 60%;
+  }
+
+  .main-card {
+    padding: 35px 25px;
+  }
+
+  .main-title.mob {
+    display: none;
+  }
+
+  .main-title.desk {
+    display: block;
+    position: static;
+    color: #372c48;
+    font-size: 1rem;
+    margin-bottom: 5px;
+  }
+
+  .main-card__img {
+    width: 37%;
+    order: 1;
+    margin-bottom: 0;
+  }
+
+  .icons-block {
+    margin-bottom: 15px;
+  }
+
+  .icon {
+    fill: #77c1bb;
+    width: 12px;
+    height: 12px;
+  }
+
+  .icon.star {
+    margin-right: 7px;
+  }
+
+  .rel-date {
+    display: none;
+  }
+
+  .main-description .main-block-header {
+    display: block;
+    font-family: "Roboto-Medium";
+    font-size: 1rem;
+    margin-bottom: 10px;
+  }
+
+  .main-description {
+    margin-bottom: 0;
+  }
+
+  .main-actors {
+    width: 45%;
+    padding: 0;
+    order: 4;
+    margin-bottom: 0;
+  }
+
+  .main-actors .main-block-header {
+    font-size: 1rem;
+    font-family: "Roboto-Medium";
+    margin-bottom: 15px;
+  }
+
+  .main-actors-list {
+    position: relative;
+    align-items: center;
+    padding: 0 10px;
+  }
+
+  .main-actors .actor-blk img {
+    width: 55px;
+    height: 55px;
+  }
+
+  .main-actors .actor-blk h4 {
+    font-size: 0.5rem;
+  }
+
+  .main-trailer {
+    width: 100%;
+    order: 3;
+    margin-top: 30px;
+    margin-bottom: 30px;
+    padding: 0;
+  }
+
+  .main-trailer-container {
+    padding: 0 175px;
+  }
+
+  .main-trailer .main-block-header {
+    font-size: 1rem;
+    font-family: "Roboto-Medium";
+    margin-bottom: 10px;
+  }
+
+  .main-reviews {
+    order: 6;
+    margin-top: 35px;
+    padding: 0;
+  }
+
+  .main-reviews__review img {
+    width: 55px;
+    height: 55px;
+  }
+
+  .main-reviews__review h4,
+  .main-reviews__review p,
+  .main-reviews__review span {
+    font-size: 0.625rem;
+  }
+
+  .main-reviews__review p {
+    width: 100%;
+    font-size: 0.5625rem;
+  }
+
+  .main-reviews__review span {
+    width: 7%;
+  }
+
+  .main-reviews .main-block-header {
+    font-size: 1rem;
+    font-family: "Roboto-Medium";
+  }
+
+  .main-fields {
+    display: block;
+    margin-bottom: 15px;
+  }
+
+  .main-fields h5 {
+    display: inline-block;
+    width: 30%;
+  }
+
+  .main-fields span {
+    display: inline-block;
+    width: 60%;
+  }
+
+  .arrow {
+    display: block;
+  }
+
+  .main-screenshots {
+    display: block;
+    order: 5;
+    width: 52%;
+  }
+
+  .main-screenshots .main-block-header {
+    font-size: 1rem;
+    font-family: "Roboto-Medium";
+    margin-bottom: 15px;
+  }
+}
+
+@media (min-width: 960px) {
+  .main-card {
+    width: 720px;
+  }
+
+  .main-card {
+    padding: 30px 0 35px 0;
+  }
+
+  .main-trailer {
+    margin-top: 60px;
+    margin-bottom: 35px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .main-card {
+    width: 975px;
+  }
+
+  .main-title.desk {
+    font-size: 1.25rem;
+    margin-bottom: 15px;
+  }
+
+  .icon {
+    width: 15px;
+    height: 15px;
+  }
+
+  .main-description .main-block-header {
+    font-size: 1.25rem;
+    margin-bottom: 22px;
+  }
+
+  .main-description p {
+    font-size: 1rem;
+  }
+
+  .main-actors {
+    width: 42%;
+  }
+
+  .main-actors .main-block-header {
+    font-size: 1.25rem;
+    margin-bottom: 30px;
+  }
+
+  .main-actors .actor-blk {
+    padding: 0 20px;
+  }
+
+  .main-actors .actor-blk img {
+    width: 80px;
+    height: 80px;
+  }
+
+  .main-actors .actor-blk h4 {
+    font-size: 0.68188rem;
+  }
+
+  .main-trailer {
+    margin-top: 40px;
+    margin-bottom: 70px;
+  }
+
+  .main-trailer .main-block-header {
+    font-size: 1.25rem;
+    margin-bottom: 25px;
+  }
+
+  .main-reviews {
+    margin-top: 70px;
+  }
+
+  .main-reviews__review img {
+    width: 80px;
+    height: 80px;
+    margin-right: 15px;
+  }
+
+  .main-reviews__review h4,
+  .main-reviews__review p,
+  .main-reviews__review span {
+    font-size: 0.875rem;
+  }
+
+  .main-reviews__review h4 {
+    margin-bottom: 20px;
+  }
+
+  .main-reviews__review p {
+    font-size: 0.875rem;
+  }
+
+  .main-reviews .main-block-header {
+    font-size: 1.25rem;
+    margin-bottom: 30px;
+  }
+
+  .main-fields {
+    font-size: 1rem;
+  }
+
+  .main-screenshots {
+    width: 55%;
+  }
+
+  .main-screenshots .main-block-header {
+    font-size: 1.25rem;
+    margin-bottom: 30px;
+  }
+}
+
+@media (min-width: 1440px) {
+  .main-card {
+    width: 1040px;
+  }
+
+  .main-card {
+    padding: 65px 0;
+  }
+
+  .main-actors {
+    width: 45%;
+  }
+
+  .main-screenshots {
+    width: 52%;
+  }
+}

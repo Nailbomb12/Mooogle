@@ -1,0 +1,9 @@
+@function rem($pxsize) {
+  @return ($pxsize/16)+rem;
+}
+
+      // Инструкция
+// подключаем в основной scss  @import 'px_to_rem_func.scss';
+// Вызываем везде, где font-size:
+// For example -->  font-size: rem(32);   Получаем:  font-size: 2rem
+// 32 - это размер в пикселях
