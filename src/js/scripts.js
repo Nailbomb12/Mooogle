@@ -6,9 +6,6 @@ const asideItem = document.querySelectorAll('.aside__item')
 const category = document.querySelectorAll('.category__list');
 const searchBtn = document.querySelector('.hidden-search');
 const hiddenBlock = document.querySelector('.hidden');
-const qwe = document.querySelector('.qwe');
-
-
 
 
 const toggleAside = () => {

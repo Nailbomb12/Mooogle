@@ -8,7 +8,6 @@ var asideItem = document.querySelectorAll('.aside__item');
 var category = document.querySelectorAll('.category__list');
 var searchBtn = document.querySelector('.hidden-search');
 var hiddenBlock = document.querySelector('.hidden');
-var qwe = document.querySelector('.qwe');
 
 var toggleAside = function toggleAside() {
   aside.classList.toggle('js-show-aside');
