@@ -16,9 +16,9 @@
         <div class="header-bottom">
             <nav class="top-nav">
                 <ul class="category-list ">
-                    <li class="category-item  " id="category-film ">фильмы</li>
-                    <li class="category-item " id="category-serial ">сериалы</li>
-                    <li class="category-item " id="category-favorite ">избранное</li>
+                    <li class="category-item" id="category-film ">Фильмы</li>
+                    <li class="category-item" id="category-serial ">Сериалы</li>
+                    <li class="category-item" id="category-favorite ">Избранное</li>
                 </ul>
             </nav>
         </div>
@@ -46,114 +46,33 @@
                     </div>
                 </div>
             </div>
-            <div class="videos ">
-                <ul class="videos__films videos-item videos-item--active " id="film ">
-                    <li class="videos__preview film-preview ">
-                        <div class="icons ">
-                            <svg class="icon star ">
-                        <use href="../img/star-jingle-sprite.svg#mark-as-favorite-star " ></use>      </div>
-                        <p class="videos__name ">Темные времена (2017)</p>
-                    </li>
-                    <li class="videos__preview film-preview ">
-                        <div class="icons ">
-                            <svg class="icon star ">
-                                                    <use href="../img/star-jingle-sprite.svg#mark-as-favorite-star " ></use>
-                                                                                                </svg>
-                        </div>
-                        <p class="videos__name ">Темные времена (2017)</p>
-                    </li>
-                    <li class="videos__preview film-preview ">
-                        <div class="icons ">
-                            <svg class="icon star ">
-                                                    <use href="../img/star-jingle-sprite.svg#mark-as-favorite-star " ></use>
-                                                                                                </svg>
-                        </div>
-                        <p class="videos__name ">Темные времена (2017)</p>
-                    </li>
-                    <li class="videos__preview film-preview ">
-                        <div class="icons ">
-                            <svg class="icon star ">
-                                                        <use href="../img/star-jingle-sprite.svg#mark-as-favorite-star " ></use>
-                                                                                                        </svg>
-                        </div>
-                        <p class="videos__name ">Темные времена (2017)</p>
-                    </li>
-                </ul>
-                <ul class="videos__serials videos-item " id="serial ">
 
-                    <div class="videos__preview serial-preview ">
-                        <div class="icons ">
-                            <svg class="icon star ">
-                                   <use href="../img/star-jingle-sprite.svg#mark-as-favorite-star " ></use>
+            <div class="videos">
+                <script type="text/template" id="card">
+                    <div class="render-card videos__preview film-preview " style="background-image: url('https://image.tmdb.org/t/p/w400/<%- poster_path%>')">
+                        <svg class="icon  ">
+                                    <use href="../img/star-jingle-sprite.svg#mark-as-favorite-star " ></use>
                                 </svg>
-                        </div>
-                        <p class="videos__name ">Кухня (2015)</p>
-                    </div>
-                    <div class="videos__preview serial-preview ">
-                        <div class="icons ">
-                            <svg class="icon star ">
-                                       <use href="../img/star-jingle-sprite.svg#mark-as-favorite-star " ></use>
-                                    </svg>
-                        </div>
-                        <p class="videos__name ">Кухня (2015)</p>
-                    </div>
-                    <div class="videos__preview serial-preview ">
-                        <div class="icons ">
-                            <svg class="icon star ">
-                                           <use href="../img/star-jingle-sprite.svg#mark-as-favorite-star " ></use>
-                                        </svg>
-                        </div>
-                        <p class="videos__name ">Кухня (2015)</p>
-                    </div>
-                    <div class="videos__preview serial-preview ">
-                        <div class="icons ">
-                            <svg class="icon star ">
-                                               <use href="../img/star-jingle-sprite.svg#mark-as-favorite-star " ></use>
-                                            </svg>
-                        </div>
-                        <p class="videos__name ">Кухня (2015)</p>
-                    </div>
-                </ul>
-                <ul class="videos__favorite videos-item " id="favorite ">
 
-                    <div class="videos__preview favorite-preview ">
-                        <div class="icons ">
-                            <svg class="icon star ">
-                                           <use href="../img/star-jingle-sprite.svg#mark-as-favorite-star " ></use>
-                                        </svg>
-                        </div>
-                        <p class="videos__name ">Такси 2 (2010) </p>
+                        <h1 class="videos__name">
+                            <%- title%> (
+                                <%- release_date.slice(0, -6)%>)
+                        </h1>
                     </div>
-                    <div class="videos__preview favorite-preview ">
-                        <div class="icons ">
-                            <svg class="icon star ">
-                                               <use href="../img/star-jingle-sprite.svg#mark-as-favorite-star " ></use>
-                                            </svg>
-                        </div>
-                        <p class="videos__name ">Такси 2 (2010)</p>
-                    </div>
-                    <div class="videos__preview favorite-preview ">
-                        <div class="icons ">
-                            <svg class="icon star ">
-                                                   <use href="../img/star-jingle-sprite.svg#mark-as-favorite-star " ></use>
-                                                </svg>
-                        </div>
-                        <p class="videos__name ">Такси 2 (2010)</p>
-                    </div>
-                    <div class="videos__preview favorite-preview ">
-                        <div class="icons ">
-                            <svg class="icon star ">
-                                                       <use href="../img/star-jingle-sprite.svg#mark-as-favorite-star " ></use>
-                                                    </svg>
-                        </div>
-                        <p class="videos__name ">Такси 2 (2010)</p>
-                    </div>
-                </ul>
+                </script>
 
             </div>
 
+
+
+
+
+
         </div>
     </div>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/lodash@4.17.4/lodash.min.js"></script>
     <script src="js/scripts.js "></script>
 </body>
 
