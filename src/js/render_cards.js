@@ -8,7 +8,10 @@ const successCB = (res) => {
     updateView(obj.results);
 
 
+
 };
+
+
 
 const getPopular = () => {
     theMovieDb.movies.getPopular({}, successCB, errorCB);
@@ -43,6 +46,7 @@ const searchByName = (name, cb) => {
     xhr.addEventListener("readystatechange", function() {
         if (this.readyState === this.DONE) {
             cb(this.response);
+
         }
     });
     xhr.open("GET", `https://api.themoviedb.org/3/search/movie?include_adult=false&page=1&query=${name}&language=ru-RU&api_key=532f680f186ee3009db06b2e2efe9aab`);
@@ -53,6 +57,8 @@ const searchByName = (name, cb) => {
 getPopular();
 
 const onClickHandler = (event) => {
+    event.preventDefault(0);
+    if (event.target.value = '') return;
     if (event.target.classList.contains('idBtn')) {
         searchByName(idInput.value, renderSearchResult);
     }

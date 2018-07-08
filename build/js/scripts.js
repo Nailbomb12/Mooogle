@@ -1885,6 +1885,8 @@ var searchByName = function searchByName(name, cb) {
 getPopular();
 
 var onClickHandler = function onClickHandler(event) {
+    event.preventDefault(0);
+    if (event.target.value = '') return;
     if (event.target.classList.contains('idBtn')) {
         searchByName(idInput.value, renderSearchResult);
     }

@@ -259,11 +259,11 @@
         .videos-item {
             display: none;
         }
-        .videos-item--active {
-            // display: flex;
-            // flex-wrap: wrap;
-            // justify-content: space-between;
-        }
+        // .videos-item--active {
+        //     // display: flex;
+        //     // flex-wrap: wrap;
+        //     // justify-content: space-between;
+        // }
         &__preview {
             
             padding: 15px 15px 10px 15px;
@@ -334,9 +334,9 @@
     .content {
         padding: 25px 200px
     }
-    .videos {
-        &__preview {
-            // height: 255px;
-        }
-    }
+    // .videos {
+    //     &__preview {
+    //         // height: 255px;
+    //     }
+    // }
 }
