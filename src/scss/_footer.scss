@@ -2,7 +2,7 @@
   padding: 15px;
   background-color: $main-color;
   color: $header_text_color;
-  border-top: 1px solid #333;
+  // border-top: 1px solid #333;
 }
 .social__menu {
   list-style: none;
@@ -13,7 +13,14 @@
 .social__item {
   width: 20px;
   height: 20px;
-  margin-right: 7px;
+  margin-right: 10px;
+  @media (min-width: 768px){
+    width: 25px;
+    height: 25px;
+  }
+}
+.social__item:last-child {
+  margin-right: 0;
 }
 .social__link {
   display: inline-block;
@@ -26,6 +33,10 @@
   height: 20px;
   fill: $header_text_color;
   transition: .5s all;
+  @media (min-width: 768px){
+    width: 25px;
+    height: 25px;
+  }
 }
 .social__icon--mod:hover {
   fill: #fff;
@@ -38,11 +49,17 @@
 .info__item {
   margin-right: 15px;
 }
+.info__item:last-child {
+  margin-right: 0;
+}
 .info__link {
   font-size: rem(11);
   text-decoration: none;
   color: $header_text_color;
   transition: .5s all;
+  @media (min-width: 768px){
+    font-size: rem(14);
+  }
   @media (min-width: 1024px){
     font-size: rem(16);
   }
