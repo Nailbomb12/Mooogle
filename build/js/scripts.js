@@ -1895,6 +1895,58 @@ var onClickHandler = function onClickHandler(event) {
 document.addEventListener('click', onClickHandler);
 'use strict';
 
+// const result = document.querySelector('.result');
+var htmlTempl = document.querySelector('#Extendcard').textContent.trim();
+var compile = _.template(htmlTempl);
+
+//Добавить onclick="showMovie(<%- id%>)" в шаблон маленькой карточки на класс "render-card"
+
+function showMovie(id) {
+  renderFullCard(id);
+}
+
+var updateViewMoview = function updateViewMoview(data) {
+  var htmlString = compile(data);
+  result.innerHTML = htmlString;
+};
+
+var renderFullCard = function renderFullCard(id) {
+
+  axios.get('https://api.themoviedb.org/3/movie/' + id + '?language=ru-RU&api_key=532f680f186ee3009db06b2e2efe9aab').then(function (response) {
+    var _response$data = response.data,
+        genres = _response$data.genres,
+        overview = _response$data.overview,
+        poster = _response$data.poster_path,
+        countries = _response$data.production_countries,
+        date = _response$data.release_date,
+        runtime = _response$data.runtime,
+        tagline = _response$data.tagline,
+        title = _response$data.title;
+
+    axios.get('https://api.themoviedb.org/3/movie/' + id + '/images?api_key=532f680f186ee3009db06b2e2efe9aab').then(function (resp) {
+      var backdrops = resp.data.backdrops;
+
+      axios.get('https://api.themoviedb.org/3/movie/' + id + '/credits?language=ru-RU&api_key=532f680f186ee3009db06b2e2efe9aab').then(function (rsp) {
+        var _rsp$data = rsp.data,
+            cast = _rsp$data.cast,
+            crew = _rsp$data.crew;
+
+        axios.get('https://api.themoviedb.org/3/movie/' + id + '/videos?api_key=532f680f186ee3009db06b2e2efe9aab').then(function (respo) {
+          var key = respo.data.results[0].key;
+          updateViewMoview({ title: title, genres: genres, overview: overview, poster: poster, countries: countries, date: date, runtime: runtime, tagline: tagline, backdrops: backdrops, cast: cast, crew: crew, key: key });
+        });
+      }).catch(function (e) {
+        console.log(e);
+      });
+    }).catch(function (err) {
+      console.log(error);
+    });
+  }).catch(function (error) {
+    console.log(error);
+  });
+};
+'use strict';
+
 var menu = document.querySelector('.header__menu');
 var stub = document.querySelector('.stub');
 var aside = document.querySelector('.aside');
@@ -1935,7 +1987,8 @@ var hideBlocks = function hideBlocks(evt) {
   }
   // if (evt.target.clssList.contains9('hidden__logo-block'))
 };
-
+// const logo = document.querySelector('.header__logo-link');
+// logo.addEventListener('click', getPopular());
 stub.addEventListener('click', hideBlocks);
 function categorySwitcher() {
   var categories = document.querySelector('.category-list'); //
@@ -1951,41 +2004,9 @@ function categorySwitcher() {
     categoryItems.forEach(function (elem) {
       elem.classList.remove('category-item--active');
     });
-    // videoItem.forEach(function(elem) {
-    //     elem.classList.remove('videos-item--active')
-    // })
-
     event.target.classList.add('category-item--active');
     currentCategory.textContent = event.target.textContent;
-
-    // let categoryName = categoryId.slice(9);
-
-    // let videoContent = document.getElementById(categoryName);
-    // videoContent.classList.toggle('videos-item--active');
-    ///
-    // let categorybyId = document.getElementById(categoryId);
-
-    // let categoryContent = categorybyId.textContent;
-    // let categoryStr = categoryContent[0].toUpperCase() + categoryContent.slice(1);
-    // currentCategory.textContent = categoryStr;
-
   }
 }
 
 categorySwitcher();
-
-// const exzmplObj = {
-//     name: 'Dark times',
-//     year: '2017',
-//     bcgImg: " ../img/-clip-group-.jpg"
-// }
-
-// let filmTmp = ` <li>
-// <div class="videos__preview film-preview " style = "backgroung-image: url(${exzmplObj.bcgImg})">
-//     <div class="icons ">
-//         <svg class="icon star ">
-// <use href="../img/star-jingle-sprite.svg#mark-as-favorite-star " ></use>      </div>
-// <p class="videos__name ">${exzmplObj.name} ${(exzmplObj.year)}</p>
-// </div>
-
-// </li>`

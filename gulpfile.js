@@ -41,7 +41,11 @@ gulp.task('styles', () =>
             reporters: [{ formatter: 'string', console: true }],
         }),
     )
-    .pipe(sass())
+    .pipe(sass({
+      style: 'expanded',
+      quiet: true,
+      trace: true
+    }))
     .pipe(postcss([autoprefixer()]))
     .pipe(gcmq())
     .pipe(gulp.dest('./build/css'))

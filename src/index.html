@@ -1,25 +1,13 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html lang="ru">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <meta name="description" content="">
-  <meta name="keywords" content="">
-  <meta name="theme-color" content="#000000">
-  <meta name="copyright" content="Author">
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="#000000">
-  <meta name="apple-mobile-web-app-title" content="Application Name">
-  <meta name="msapplication-TileImage" content="images/favicons/144x144.png">
-  <meta name="msapplication-TileColor" content="#000000">
-  <meta name="format-detection" content="telephone=no">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="css/styles.css">
 
-  <title>Mooogle</title>
-  <link rel="stylesheet" href="css/styles.min.css">
+    <title>Card Template</title>
 </head>
-
 <body>
   //= header.html
   <div class="wrapper">
@@ -51,7 +39,7 @@
 
         <div class="videos">
           <script type="text/template" id="card">
-            <div class="render-card videos__preview film-preview " style="background-image: url('https://image.tmdb.org/t/p/w400/<%- poster_path%>')">
+            <div class="render-card videos__preview film-preview " style="background-image: url('https://image.tmdb.org/t/p/w400/<%- poster_path%>')" onclick="showMovie(<%- id%>)">
               <svg class="icon  ">
                 <use href="../img/star-jingle-sprite.svg#mark-as-favorite-star " ></use>
               </svg>
@@ -64,10 +52,12 @@
       </div>
     </div>
   </div> 
+ 
+  //= card-template.html
   //= footer.html
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/lodash@4.17.4/lodash.min.js"></script>
-  <!-- <script src="header.js"></script> -->
-  <script src="js/scripts.min.js"></script>
-</body>
+  <script src="js/scripts.js"></script>
 
+</body>
 </html>

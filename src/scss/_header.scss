@@ -76,7 +76,7 @@ body {
   background-color: inherit;
 }
 input[type="search"]:-webkit-autofill {
-  -webkit-box-shadow: inset 0 0 0 50px $main-color;
+  box-shadow: inset 0 0 0 50px $main-color;
   -webkit-text-fill-color: #000; 
 }
 
