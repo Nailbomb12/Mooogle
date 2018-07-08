@@ -13,7 +13,7 @@ theMovieDb.common = {
   api_key: "532f680f186ee3009db06b2e2efe9aab",
   base_uri: "http://api.themoviedb.org/3/",
   images_uri: "http://image.tmdb.org/t/p/",
-  timeout: 2000,
+  timeout: 1000,
   language: "ru-RU",
   generateQuery: function(options) {
     'use strict';

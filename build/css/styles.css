@@ -647,6 +647,31 @@ body {
   left: 0;
 }
 
+.result {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  padding: 20px;
+}
+
+.render-card {
+  width: 30%;
+  border: 2px solid black;
+  margin-bottom: 15px;
+}
+
+.render-card img {
+  width: 100%;
+}
+
+.render-card h1 {
+  font-family: "Roboto-Medium";
+  font-size: 15px;
+  text-align: center;
+  text-transform: uppercase;
+  color: blueviolet;
+}
+
 @media (min-width: 480px) {
   .main-title.mob {
     font-size: 1.66625rem;

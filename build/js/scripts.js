@@ -15,7 +15,7 @@ theMovieDb.common = {
   api_key: "532f680f186ee3009db06b2e2efe9aab",
   base_uri: "http://api.themoviedb.org/3/",
   images_uri: "http://image.tmdb.org/t/p/",
-  timeout: 2000,
+  timeout: 1000,
   language: "ru-RU",
   generateQuery: function generateQuery(options) {
     'use strict';
@@ -1833,6 +1833,64 @@ theMovieDb.tvEpisodes = {
     }, success, error);
   }
 };
+// const errorCB = (res) => {
+//   const obj = JSON.parse(res);
+//   console.log(obj);
+// };
+
+// const successCB = (res) => {
+//   const obj = JSON.parse(res);
+//   updateView(obj.results);
+// };
+
+// const getPopular = () => {
+//   theMovieDb.movies.getPopular({}, successCB, errorCB);
+// };
+
+
+// const result = document.querySelector('.result');
+// const idInput = document.querySelector('#idInput');
+
+// const htmlTpl = document.querySelector('#card').textContent.trim();
+// const compiled = _.template(htmlTpl);
+
+// const updateView = (users) => {
+//   let htmlString = '';
+//   users.forEach((user) => {
+//     htmlString += compiled(user);
+//   });
+//   result.innerHTML = htmlString;
+// };
+
+// const renderSearchResult = (data) => {
+//   const parsedData = JSON.parse(data);
+//   updateView(parsedData.results);
+// };
+
+
+// const searchByName = (name, cb) => {
+//   let data = {};
+//   let xhr = new XMLHttpRequest();
+//   xhr.addEventListener("readystatechange", function () {
+//     if (this.readyState === this.DONE) {
+//       cb(this.response);
+//     }
+//   });
+//     xhr.open("GET", `https://api.themoviedb.org/3/search/movie?include_adult=false&page=1&query=${name}&language=ru-RU&api_key=532f680f186ee3009db06b2e2efe9aab`);
+//     xhr.send(data);
+// };
+
+
+// getPopular();
+
+// const onClickHandler = (event) => {
+//   if (event.target.classList.contains('idBtn')) {
+//     searchByName(idInput.value, renderSearchResult);
+//   }
+// };
+
+// document.addEventListener('click', onClickHandler);
+"use strict";
 "use strict";
 
 var errorCB = function errorCB(res) {
@@ -1841,7 +1899,7 @@ var errorCB = function errorCB(res) {
 };
 var successCB = function successCB(res) {
   var obj = JSON.parse(res);
-  return console.log(obj.results);
+  updateView(obj.results);
 };
 
 var getById = function getById(id) {
@@ -1886,9 +1944,23 @@ var getImages = function getImages(id, cb) {
   xhr.send(data);
 };
 
-var renderSearchresult = function renderSearchresult(data) {
+var result = document.querySelector('.result');
+var idInput = document.querySelector('#idInput');
+
+var htmlTpl = document.querySelector('#card').textContent.trim();
+var compiled = _.template(htmlTpl);
+
+var updateView = function updateView(users) {
+  var htmlString = '';
+  users.forEach(function (user) {
+    htmlString += compiled(user);
+  });
+  result.innerHTML = htmlString;
+};
+
+var renderSearchResult = function renderSearchResult(data) {
   var parsedData = JSON.parse(data);
-  console.log(parsedData.results);
+  updateView(parsedData.results);
 };
 
 var searchByName = function searchByName(name, cb) {
@@ -1903,10 +1975,17 @@ var searchByName = function searchByName(name, cb) {
   xhr.send(data);
 };
 
-//getById(76203);
+//getById(351286);
 // getCredits(76203);
 //getReviews(351286);
 getPopular();
-getTrailer(351286);
-getImages(351286, renderImages);
-searchByName('Темные времена', renderSearchresult);
+// getTrailer(351286);
+// getImages(351286, renderImages);
+
+var onClickHandler = function onClickHandler(event) {
+  if (event.target.classList.contains('idBtn')) {
+    searchByName(idInput.value, renderSearchResult);
+  }
+};
+
+document.addEventListener('click', onClickHandler);

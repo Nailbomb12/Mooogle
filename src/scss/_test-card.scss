@@ -1,0 +1,24 @@
+.result {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  padding: 20px;
+}
+
+.render-card {
+  width: 30%;
+  border: 2px solid black;
+  margin-bottom: 15px;
+
+  img {
+    width: 100%;
+  }
+
+  h1 {
+    font-family: $med-font;
+    font-size: 15px;
+    text-align: center;
+    text-transform: uppercase;
+    color: blueviolet;
+  }
+}

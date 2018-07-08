@@ -4,7 +4,7 @@ const errorCB = (res) => {
 };
 const successCB = (res) => {
   const obj = JSON.parse(res);
-  return console.log(obj.results);
+  updateView(obj.results);
 };
 
 const getById = (id) => {
@@ -13,6 +13,7 @@ const getById = (id) => {
 
 const getCredits = (id) => {
   theMovieDb.movies.getCredits({"id": id}, successCB, errorCB);
+
 };
 
 const getReviews = (id) => {
@@ -51,10 +52,27 @@ const getImages = (id, cb) => {
   xhr.send(data);
 };
 
-const renderSearchresult = (data) => {
-  const parsedData = JSON.parse(data)
-    console.log(parsedData.results)  
-}
+
+
+const result = document.querySelector('.result');
+const idInput = document.querySelector('#idInput');
+
+const htmlTpl = document.querySelector('#card').textContent.trim();
+const compiled = _.template(htmlTpl);
+
+const updateView = (users) => {
+  let htmlString = '';
+  users.forEach((user) => {
+    htmlString += compiled(user);
+  });
+  result.innerHTML = htmlString;
+};
+
+const renderSearchResult = (data) => {
+  const parsedData = JSON.parse(data);
+  updateView(parsedData.results);
+};
+
 
 const searchByName = (name, cb) => {
   let data = {};
@@ -68,12 +86,19 @@ const searchByName = (name, cb) => {
     xhr.send(data);
 };
 
-//getById(76203);
+
+
+//getById(351286);
 // getCredits(76203);
 //getReviews(351286);
 getPopular();
-getTrailer(351286);
-getImages(351286, renderImages);
-searchByName('Темные времена', renderSearchresult);
+// getTrailer(351286);
+// getImages(351286, renderImages);
 
+const onClickHandler = (event) => {
+  if (event.target.classList.contains('idBtn')) {
+    searchByName(idInput.value, renderSearchResult);
+  }
+};
 
+document.addEventListener('click', onClickHandler);
