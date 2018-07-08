@@ -2,8 +2,3 @@ $main-color: #77c1bb;
 $reg-font: 'Roboto-Regular';
 $med-font: 'Roboto-Medium';
 $header_text_color: #372c48;
-
-
-@function rem($pxsize) {
-  @return ($pxsize/16)+rem;
-}
