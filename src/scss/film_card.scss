@@ -204,13 +204,13 @@ body {
     margin-bottom: 65px;
   }
   @media (min-width: 768px) {
-    width: 45%;
+    width: 47%;
     padding: 0;
     order: 4;
     margin-bottom: 0;
   }
   @media (min-width: 1024px){
-    width: 42%;
+    width: 45%;
   }
   @media (min-width: 1440px){
     width: 45%;
@@ -229,6 +229,7 @@ body {
 
   &-list {
     display: flex;
+    justify-content: space-around;
     @media (min-width: 768px) {
       position: relative;
       align-items: center;
@@ -238,31 +239,31 @@ body {
 
 
   .actor-blk {
-    width: 24%;
+    width: 20%;
     //display: inline-block;
     text-align: center;
     //padding: 0 10px;
     display: flex;
     flex-direction: column;
     align-items: center;
+
     // @media (min-width: 1024px){
     //   padding: 0 20px;
     // }
     img {
-      width: 60px;
-      height: 60px;
+      //width: 24%;
       @media (min-width: 480px) {
-        width: 85px;
-        height: 85px;
+        // width: 85px;
+        // height: 85px;
       }
-      @media (min-width: 768px) {
-        width: 55px;
-        height: 55px;
-      }
-      @media (min-width: 1024px){
-        width: 80px;
-        height: 80px;
-      }
+      // @media (min-width: 768px) {
+      //   width: 55px;
+      //   height: 55px;
+      // }
+      // @media (min-width: 1024px){
+      //   width: 80px;
+      //   height: 80px;
+      // }
     }
     h4 {
       font-size: rem(14);

@@ -1833,18 +1833,106 @@ theMovieDb.tvEpisodes = {
     }, success, error);
   }
 };
+'use strict';
+
+var result = document.querySelector('.result');
+var htmlTpl = document.querySelector('#Extendcard').textContent.trim();
+var compiled = _.template(htmlTpl);
+
+function showMovie(id) {
+  renderFullCard(id);
+}
+
+var updateViewMoview = function updateViewMoview(data) {
+  var htmlString = compiled(data);
+  result.innerHTML = htmlString;
+};
+
+var renderFullCard = function renderFullCard(id) {
+
+  axios.get('https://api.themoviedb.org/3/movie/' + id + '?language=ru-RU&api_key=532f680f186ee3009db06b2e2efe9aab').then(function (response) {
+    var _response$data = response.data,
+        genres = _response$data.genres,
+        overview = _response$data.overview,
+        poster = _response$data.poster_path,
+        countries = _response$data.production_countries,
+        date = _response$data.release_date,
+        runtime = _response$data.runtime,
+        tagline = _response$data.tagline,
+        title = _response$data.title;
+
+    axios.get('https://api.themoviedb.org/3/movie/' + id + '/images?api_key=532f680f186ee3009db06b2e2efe9aab').then(function (resp) {
+      var backdrops = resp.data.backdrops;
+
+      axios.get('https://api.themoviedb.org/3/movie/' + id + '/credits?language=ru-RU&api_key=532f680f186ee3009db06b2e2efe9aab').then(function (rsp) {
+        var _rsp$data = rsp.data,
+            cast = _rsp$data.cast,
+            crew = _rsp$data.crew;
+
+        axios.get('https://api.themoviedb.org/3/movie/' + id + '/videos?api_key=532f680f186ee3009db06b2e2efe9aab').then(function (respo) {
+          var key = respo.data.results[0].key;
+          updateViewMoview({ title: title, genres: genres, overview: overview, poster: poster, countries: countries, date: date, runtime: runtime, tagline: tagline, backdrops: backdrops, cast: cast, crew: crew, key: key });
+        });
+      }).catch(function (e) {
+        console.log(e);
+      });
+    }).catch(function (err) {
+      console.log(error);
+    });
+  }).catch(function (error) {
+    console.log(error);
+  });
+};
 // const errorCB = (res) => {
 //   const obj = JSON.parse(res);
 //   console.log(obj);
 // };
-
 // const successCB = (res) => {
 //   const obj = JSON.parse(res);
 //   updateView(obj.results);
 // };
 
+// const getById = (id) => {
+//   theMovieDb.movies.getById({"id": id}, successCB, errorCB);
+// };
+
+// const getCredits = (id) => {
+//   theMovieDb.movies.getCredits({"id": id}, successCB, errorCB);
+
+// };
+
+// const getReviews = (id) => {
+//   theMovieDb.movies.getReviews({"id": id}, successCB, errorCB);
+// };
+
 // const getPopular = () => {
 //   theMovieDb.movies.getPopular({}, successCB, errorCB);
+// };
+
+// const getTrailer = (id) => {
+//   theMovieDb.movies.getVideos({"id": id}, successCB, errorCB);
+// };
+
+
+// const renderImages = (data) => {
+//   const myObj = getParseData(data)
+//   console.log(myObj.backdrops)
+
+// }
+// const getParseData = (data) => JSON.parse(data);
+
+// const getImages = (id, cb) => {
+//   let data = {};
+//   let xhr = new XMLHttpRequest();
+
+//   xhr.addEventListener("readystatechange", function () {
+//     if (this.readyState === this.DONE) {
+//       cb(this.response);
+//     }
+//   });
+
+//   xhr.open("GET", `https://api.themoviedb.org/3/movie/${id}/images?api_key=532f680f186ee3009db06b2e2efe9aab`);
+//   xhr.send(data);
 // };
 
 
@@ -1881,7 +1969,17 @@ theMovieDb.tvEpisodes = {
 // };
 
 
+// function showMovie(id) {
+// console.log(id)
+// }
+
+
+// //getById(351286);
+// // getCredits(76203);
+// //getReviews(351286);
 // getPopular();
+// // getTrailer(351286);
+// // getImages(351286, renderImages);
 
 // const onClickHandler = (event) => {
 //   if (event.target.classList.contains('idBtn')) {
@@ -1891,101 +1989,3 @@ theMovieDb.tvEpisodes = {
 
 // document.addEventListener('click', onClickHandler);
 "use strict";
-"use strict";
-
-var errorCB = function errorCB(res) {
-  var obj = JSON.parse(res);
-  console.log(obj);
-};
-var successCB = function successCB(res) {
-  var obj = JSON.parse(res);
-  updateView(obj.results);
-};
-
-var getById = function getById(id) {
-  theMovieDb.movies.getById({ "id": id }, successCB, errorCB);
-};
-
-var getCredits = function getCredits(id) {
-  theMovieDb.movies.getCredits({ "id": id }, successCB, errorCB);
-};
-
-var getReviews = function getReviews(id) {
-  theMovieDb.movies.getReviews({ "id": id }, successCB, errorCB);
-};
-
-var getPopular = function getPopular() {
-  theMovieDb.movies.getPopular({}, successCB, errorCB);
-};
-
-var getTrailer = function getTrailer(id) {
-  theMovieDb.movies.getVideos({ "id": id }, successCB, errorCB);
-};
-
-var renderImages = function renderImages(data) {
-  var myObj = getParseData(data);
-  console.log(myObj.backdrops);
-};
-var getParseData = function getParseData(data) {
-  return JSON.parse(data);
-};
-
-var getImages = function getImages(id, cb) {
-  var data = {};
-  var xhr = new XMLHttpRequest();
-
-  xhr.addEventListener("readystatechange", function () {
-    if (this.readyState === this.DONE) {
-      cb(this.response);
-    }
-  });
-
-  xhr.open("GET", "https://api.themoviedb.org/3/movie/" + id + "/images?api_key=532f680f186ee3009db06b2e2efe9aab");
-  xhr.send(data);
-};
-
-var result = document.querySelector('.result');
-var idInput = document.querySelector('#idInput');
-
-var htmlTpl = document.querySelector('#card').textContent.trim();
-var compiled = _.template(htmlTpl);
-
-var updateView = function updateView(users) {
-  var htmlString = '';
-  users.forEach(function (user) {
-    htmlString += compiled(user);
-  });
-  result.innerHTML = htmlString;
-};
-
-var renderSearchResult = function renderSearchResult(data) {
-  var parsedData = JSON.parse(data);
-  updateView(parsedData.results);
-};
-
-var searchByName = function searchByName(name, cb) {
-  var data = {};
-  var xhr = new XMLHttpRequest();
-  xhr.addEventListener("readystatechange", function () {
-    if (this.readyState === this.DONE) {
-      cb(this.response);
-    }
-  });
-  xhr.open("GET", "https://api.themoviedb.org/3/search/movie?include_adult=false&page=1&query=" + name + "&language=ru-RU&api_key=532f680f186ee3009db06b2e2efe9aab");
-  xhr.send(data);
-};
-
-//getById(351286);
-// getCredits(76203);
-//getReviews(351286);
-getPopular();
-// getTrailer(351286);
-// getImages(351286, renderImages);
-
-var onClickHandler = function onClickHandler(event) {
-  if (event.target.classList.contains('idBtn')) {
-    searchByName(idInput.value, renderSearchResult);
-  }
-};
-
-document.addEventListener('click', onClickHandler);

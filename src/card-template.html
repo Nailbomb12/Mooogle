@@ -1,51 +1,52 @@
+<script type="text/template" id="Extendcard">
 <div class="main-card">
   <div class="main-card__img">
-    <h2 class="main-title mob">Темные времена <span>(2017)</span></h2>
+    <h2 class="main-title mob"><%- title%><span>(<%- date.slice(0, -6)%>)</span></h2>
     <picture>
-        <source srcset="img/cover1.jpg" media="(min-width: 768px)">
-        <source srcset="img/cover1_360.jpg">
-        <img srcset="img/cover1_360.jpg" alt="My default image">
+        <source srcset="https://image.tmdb.org/t/p/w400/<%- poster%>" media="(min-width: 768px)">
+        <source srcset="https://image.tmdb.org/t/p/w400/<%- backdrops[2].file_path%>">
+        <img srcset="https://image.tmdb.org/t/p/w400/<%- poster%>" alt="My default image">
     </picture>
   </div>
   <div class="main-card-info">
-      <h2 class="main-title desk">Темные времена <span>(2017)</span></h2>
+      <h2 class="main-title desk"><%- title%> <span>(<%- date.slice(0, -6)%>)</span></h2>
     <div class="icons-block">
       <div class="icons">
           <svg class="icon star">
               <use href="img/star-jingle-sprite.svg#mark-as-favorite-star"></use>
           </svg>
       </div>
-      <span class="rel-date">12.12.12</span>
+      <span class="rel-date"><%- date%></span>
     </div>
     <div class="main-fields">
       <div class="main-fields__field">
         <h5>страна</h5>
-        <span>США, Великобритания</span>
+        <span><%- countries[0].name%></span>
       </div>
       <div class="main-fields__field">
         <h5>слоган</h5>
-        <span>"Никогда не сдавайся"</span>
+        <span><%- tagline%></span>
       </div>
       <div class="main-fields__field">
         <h5>режиссер</h5>
-        <span>Джо Райт</span>
+        <span><%- crew[2].name%></span>
       </div>
       <div class="main-fields__field">
         <h5>сценарий</h5>
-        <span>Энтони МакКартен</span>
+        <span><%- crew[0].name%></span>
       </div>
       <div class="main-fields__field">
         <h5>жанр</h5>
-        <span>драма, военный, биография, история</span>
+        <span><%- genres[0].name%>, <%- genres[1].name%></span>
       </div>
       <div class="main-fields__field">
         <h5>время</h5>
-        <span>125 мин. / 02:05</span>
+        <span><%- runtime %> мин.</span>
       </div>
     </div>
     <div class="main-description">
       <h2 class="main-block-header">Про фильм</h2>
-      <p>История о первом и решающем шаге Уинстона Черчилля на посту премьер-министра Великобритании, получившего власть при чрезвычайных обстоятельствах. Успехи нацистской армии взбудоражили британское сообщество, но вопреки давлению и страху других политиков Черчилль отказывается идти на соглашение с Гитлером.</p>
+      <p><%- overview%></p>
     </div>
  </div>
   <div class="main-actors">
@@ -58,20 +59,20 @@
       </button>
       <div class="main-actors-list">
         <div class="actor-blk">
-          <img src="img/actors/actor1.png" alt="actor foto">
-          <h4>Гэри Олдмен</h4>
+          <img src="https://image.tmdb.org/t/p/w300/<%- cast[0].profile_path%>" alt="actor foto">
+          <h4><%- cast[0].name%></h4>
         </div>
         <div class="actor-blk">
-          <img src="img/actors/actor2.png" alt="actor foto">
-          <h4>Лили Джеймс</h4>
+          <img src="https://image.tmdb.org/t/p/w300/<%- cast[1].profile_path%>" alt="actor foto">
+          <h4><%- cast[1].name%></h4>
         </div>
         <div class="actor-blk">
-          <img src="img/actors/actor3.png" alt="actor foto">
-          <h4>Кристин Скотт</h4>
+          <img src="https://image.tmdb.org/t/p/w300/<%- cast[2].profile_path%>" alt="actor foto">
+          <h4><%- cast[2].name%></h4>
         </div>
         <div class="actor-blk">
-          <img src="img/actors/actor4.png" alt="actor foto">
-          <h4>Стивен Диллэйн</h4>
+          <img src="https://image.tmdb.org/t/p/w300/<%- cast[3].profile_path%>" alt="actor foto">
+          <h4><%- cast[3].name%></h4>
         </div>
       </div>
       <button class="arrow forward">
@@ -86,16 +87,16 @@
         <svg><use href="img/arrows-sprite.svg#back"></use></svg>
       </button>
         <div>
-          <img src="img/scr/4X4bzx.jpg" alt="film screenshot">
+          <img src="https://image.tmdb.org/t/p/w300/<%- backdrops[0].file_path%>" alt="film screenshot">
         </div>
         <div>
-          <img src="img/scr/cfJbIH.jpg" alt="film screenshot">
+          <img src="https://image.tmdb.org/t/p/w300/<%- backdrops[1].file_path%>" alt="film screenshot">
         </div>
         <div>
-          <img src="img/scr/fYOfwu.jpg" alt="film screenshot">
+          <img src="https://image.tmdb.org/t/p/w300/<%- backdrops[2].file_path%>" alt="film screenshot">
         </div>
         <div>
-          <img src="img/scr/w6ozMi.jpg" alt="film screenshot">
+          <img src="https://image.tmdb.org/t/p/w300/<%- backdrops[3].file_path%>" alt="film screenshot">
         </div>
         <button class="arrow forward">
             <svg><use href="img/arrows-sprite.svg#forward"></use></svg>
@@ -107,7 +108,7 @@
     <h2 class="main-block-header">Трейлер</h2>
     <div class="main-trailer-container">
       <div class="main-trailer-frame">
-        <!-- <iframe src="https://www.youtube.com/embed/_XI_ZsnupFQ" frameborder="0" allowfullscreen></iframe> -->
+        <iframe src="https://www.youtube.com/embed/<%- key%>" frameborder="0" allowfullscreen></iframe>
       </div>
     </div>
   </div>
@@ -131,3 +132,4 @@
       </div>
   </div>
 </div>
+</script>
