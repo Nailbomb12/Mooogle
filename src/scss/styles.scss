@@ -1,0 +1,14 @@
+@import 'reset';
+@import '_fonts.scss';
+@import '_variables.scss';
+@import '_mixins.scss';
+@import '_header.scss';
+@import 'film_card.scss';
+@import 'gallary.scss';
+@import '_footer.scss';
+body {
+  min-width: 320px;
+  font-family: $reg-font;
+}
+
+
