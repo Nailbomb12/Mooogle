@@ -1,0 +1,139 @@
+<!DOCTYPE html><html lang="ru"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta http-equiv="X-UA-Compatible" content="ie=edge"><link rel="stylesheet" href="css/styles.css"><title>Card Template</title></head><body><header class="header"><nav class="header__nav"><div class="header-left"><div class="header__menu"><svg class="header__menu-icon"><use href="img/symbol-defs.svg#menu"></use></svg></div><a class="header__logo-link" href="/"><img src="img/logo.png" alt="this is main logo" class="header__logo"> <span>Mooogle</span></a></div><div class="header-right"><svg class="hidden-search"><use href="img/symbol-defs.svg#magnifier"></use></svg><form action="#" class="header__form"><input type="image" src="img/magnifier.svg" alt="" class="search-icon idBtn"> <input type="search" class="header-search" id="idInput" placeholder="Search"></form></div></nav><div class="header-bottom"><nav class="top-nav"><ul class="category-list"><li class="category-item" id="category-film ">Фильмы</li><li class="category-item" id="category-serial ">Сериалы</li><li class="category-item" id="category-favorite ">Избранное</li></ul></nav></div><div class="hidden"><div class="hidden__logo-block" href="#"><img src="img/logo.png" alt="this is main logo" class="hidden__logo-img"> <span>Mooogle</span></div><div class="hidden__form-block"><svg class="hidden__search-icon"><use href="img/symbol-defs.svg#magnifier"></use></svg><form action="" class="hidden__form"><input type="search" placeholder="Search" id="idInput"> <input type="image" src="img/iconmonstr-arrow-20.svg" alt="" class="hidden__form-send idBtn"></form></div></div></header><div class="stub"></div><aside class="aside"><div class="aside-logo"><img src="img/logo.png" alt="this is main logo" class="aside-logo__img"> <span>Mooogle</span></div><ul class="aside__list"><li class="aside__item">Фильмы<ul class="category__list"><li class="category__list-item"><a href="#" class="category__list-link">Категория 1</a></li><li class="category__list-item"><a href="#" class="category__list-link">Категория 2</a></li><li class="category__list-item"><a href="#" class="category__list-link">Категория 3</a></li><li class="category__list-item"><a href="#" class="category__list-link">Категория 4</a></li></ul></li><li class="aside__item">Сериалы<ul class="category__list"><li class="category__list-item"><a href="#" class="category__list-link">Категория 1</a></li><li class="category__list-item"><a href="#" class="category__list-link">Категория 2</a></li><li class="category__list-item"><a href="#" class="category__list-link">Категория 3</a></li><li class="category__list-item"><a href="#" class="category__list-link">Категория 4</a></li></ul></li><li class="aside__item favorites">Избранное</li></ul></aside><div class="wrapper"><div class="gallary"><div class="content"><div class="top-form"><div class="category-form"><p class="сategory">Категория</p><p class="subset">Фильмы</p></div><div class="find-form"><div class="find-form__name"><p class="name-txt name-txt--small">по назв.</p><p class="name-txt name-txt--big">по названию</p><div class="name-range"><div class="range-button top-range name-top"></div><div class="range-button bottom-range name-buttom"></div></div></div><div class="find-form__date"><p class="date-txt">по дате</p><div class="date-range"><div class="range-button top-range date-top"></div><div class="range-button bottom-range date-buttom"></div></div></div></div></div><div class="videos"><script type="text/template" id="card"><div class="render-card videos__preview film-preview " style="background-image: url('https://image.tmdb.org/t/p/w400/<%- poster_path%>')" onclick="showMovie(<%- id%>)">
+              <svg class="icon  ">
+                <use href="../img/star-jingle-sprite.svg#mark-as-favorite-star " ></use>
+              </svg>
+              <h1 class="videos__name"> <%- title%> (<%- release_date.slice(0, -6)%>)
+              </h1>
+            </div></script></div></div></div></div><script type="text/template" id="Extendcard"><div class="main-card">
+    <div class="main-card__img">
+      <h2 class="main-title mob"><%- title%><span>(<%- date.slice(0, -6)%>)</span></h2>
+      <picture>
+          <source srcset="https://image.tmdb.org/t/p/w400/<%- poster%>" media="(min-width: 768px)">
+          <source srcset="https://image.tmdb.org/t/p/w400/<%- backdrops[2].file_path%>">
+          <img srcset="https://image.tmdb.org/t/p/w400/<%- poster%>" alt="My default image">
+      </picture>
+    </div>
+    <div class="main-card-info">
+        <h2 class="main-title desk"><%- title%> <span>(<%- date.slice(0, -6)%>)</span></h2>
+      <div class="icons-block">
+        <div class="icons">
+            <svg class="icon star">
+                <use href="img/star-jingle-sprite.svg#mark-as-favorite-star"></use>
+            </svg>
+        </div>
+        <span class="rel-date"><%- date%></span>
+      </div>
+      <div class="main-fields">
+        <div class="main-fields__field">
+          <h5>страна</h5>
+          <span><%- countries[0].name%></span>
+        </div>
+        <div class="main-fields__field">
+          <h5>слоган</h5>
+          <span><%- tagline%></span>
+        </div>
+        <div class="main-fields__field">
+          <h5>режиссер</h5>
+          <span><%- crew[2].name%></span>
+        </div>
+        <div class="main-fields__field">
+          <h5>сценарий</h5>
+          <span><%- crew[0].name%></span>
+        </div>
+        <div class="main-fields__field">
+          <h5>жанр</h5>
+          <span><%- genres[0].name%>, <%- genres[1].name%></span>
+        </div>
+        <div class="main-fields__field">
+          <h5>время</h5>
+          <span><%- runtime %> мин.</span>
+        </div>
+      </div>
+      <div class="main-description">
+        <h2 class="main-block-header">Про фильм</h2>
+        <p><%- overview%></p>
+      </div>
+   </div>
+    <div class="main-actors">
+      <h2 class="main-block-header">Актеры</h2>
+      <div class="main-slider">
+        <button class="arrow back">
+          <svg>
+            <use href="img/arrows-sprite.svg#back"></use>
+          </svg>
+        </button>
+        <div class="main-actors-list">
+          <div class="actor-blk">
+            <img src="https://image.tmdb.org/t/p/w300/<%- cast[0].profile_path%>" alt="actor foto">
+            <h4><%- cast[0].name%></h4>
+          </div>
+          <div class="actor-blk">
+            <img src="https://image.tmdb.org/t/p/w300/<%- cast[1].profile_path%>" alt="actor foto">
+            <h4><%- cast[1].name%></h4>
+          </div>
+          <div class="actor-blk">
+            <img src="https://image.tmdb.org/t/p/w300/<%- cast[2].profile_path%>" alt="actor foto">
+            <h4><%- cast[2].name%></h4>
+          </div>
+          <div class="actor-blk">
+            <img src="https://image.tmdb.org/t/p/w300/<%- cast[3].profile_path%>" alt="actor foto">
+            <h4><%- cast[3].name%></h4>
+          </div>
+        </div>
+        <button class="arrow forward">
+          <svg><use href="img/arrows-sprite.svg#forward"></use></svg>
+        </button>
+        </div>
+    </div>
+    <div class="main-screenshots">
+      <h2 class="main-block-header">Кадры из фильма</h2>
+      <section class="screenshots-slider">
+        <button class="arrow back">
+          <svg><use href="img/arrows-sprite.svg#back"></use></svg>
+        </button>
+          <div>
+            <img src="https://image.tmdb.org/t/p/w300/<%- backdrops[0].file_path%>" alt="film screenshot">
+          </div>
+          <div>
+            <img src="https://image.tmdb.org/t/p/w300/<%- backdrops[1].file_path%>" alt="film screenshot">
+          </div>
+          <div>
+            <img src="https://image.tmdb.org/t/p/w300/<%- backdrops[2].file_path%>" alt="film screenshot">
+          </div>
+          <div>
+            <img src="https://image.tmdb.org/t/p/w300/<%- backdrops[3].file_path%>" alt="film screenshot">
+          </div>
+          <button class="arrow forward">
+              <svg><use href="img/arrows-sprite.svg#forward"></use></svg>
+          </button>
+        </section>
+      </div>
+  
+    <div class="main-trailer">
+      <h2 class="main-block-header">Трейлер</h2>
+      <div class="main-trailer-container">
+        <div class="main-trailer-frame">
+          <iframe src="https://www.youtube.com/embed/<%- key%>" frameborder="0" allowfullscreen></iframe>
+        </div>
+      </div>
+    </div>
+    <div class="main-reviews">
+      <h2 class="main-block-header">Отзывы</h2>
+      <div class="main-reviews__review">
+        <img src="img/reviews/review1.png" alt="review image">
+        <div class="review-text">
+            <h4>Виктория Гуменюк</h4><span>28 дек</span>
+            <p>Молодцы, хороший фильм.</p>
+        </div>
+      </div>
+      <div class="main-reviews__review">
+        <img src="img/reviews/review2.png" alt="review image">
+        <div class="review-text">
+            <h4>Андрей Чад</h4><span>вчера</span>
+            <p class="article">Гари Олдману большая пятерка. Фильму – ноль. Врятли кого из здравомыслящих людей интересует жизнь полу-диктатора уровня Муссолини в повествовательном ключе. Вот как поймали и расстреляли второго – я бы посмотрел. А это лишь унылая попытка Великобритании обелить одного из кучи масонских кукловодов. Люди голодали, умирали, а он, оказывается думает, что сам может яйцо сварить и никогда не ездил на общественном транспорте.. Плевать я хотел на пару хороших дел. Если твой народ страдает, а ты в комфорте – ты не лучше фашистов.
+              <span>...еще</span>
+            </p>
+        </div>
+        </div>
+    </div>
+  </div></script><footer class="footer"><div class="social"><ul class="social__menu"><li class="social__item"><a href="#" class="social__link"><svg class="social__icon social__icon--mod"><use href="img/social.svg#facebook"></use></svg></a></li><li class="social__item"><a href="#" class="social__link"><svg class="social__icon social__icon--mod"><use href="img/social.svg#youtube"></use></svg></a></li><li class="social__item"><a href="#" class="social__link"><svg class="social__icon social__icon--mod"><use href="img/social.svg#google"></use></svg></a></li><li class="social__item"><a href="#" class="social__link"><svg class="social__icon social__icon--mod"><use href="img/social.svg#instagram"></use></svg></a></li></ul></div><div class="info"><ul class="info__list"><li class="info__item"><a href="#" class="info__link">Главная</a></li><li class="info__item"><a href="#" class="info__link">Контакты</a></li><li class="info__item"><a href="#" class="info__link">Правообладателям</a></li></ul></div></footer><script src="https://unpkg.com/axios/dist/axios.min.js"></script><script src="https://cdn.jsdelivr.net/npm/lodash@4.17.4/lodash.min.js"></script><script src="js/scripts.js"></script></body></html>
