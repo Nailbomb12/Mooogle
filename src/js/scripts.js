@@ -18,7 +18,7 @@ menu.addEventListener('click', toggleAside);
 const toggleCategorys = (evt) => {
   if (evt.target.classList.contains('aside__item')){
     evt.target.classList.toggle('aside__item-active');
-    evt.target.firstElementChild.classList.toggle('js-show-category-list');
+    // evt.target.firstElementChild.classList.toggle('js-show-category-list');
   }
 }
 
@@ -37,10 +37,8 @@ const hideBlocks = (evt) => {
     aside.classList.remove('js-show-aside');
     stub.classList.remove('js-show-stub');
   }
-  // if (evt.target.clssList.contains9('hidden__logo-block'))
 }
-// const logo = document.querySelector('.header__logo-link');
-// logo.addEventListener('click', getPopular());
+
 stub.addEventListener('click', hideBlocks);
 function categorySwitcher() {
   const categories = document.querySelector('.category-list'); //
@@ -52,13 +50,23 @@ function categorySwitcher() {
   categories.addEventListener('click', onCetegoryClick);
 
   function onCetegoryClick(event) {
-    topForm.classList.add('top-form--active');
+    // topForm.classList.add('top-form--active');
     categoryItems.forEach(function(elem) {
       elem.classList.remove('category-item--active');
     })
     event.target.classList.add('category-item--active');
-    currentCategory.textContent = event.target.textContent;
+    // currentCategory.textContent = event.target.textContent;
   }
 }
+
+const onClickHandler = (event) => {
+  event.preventDefault(0);
+  if (event.target.value = '') return;
+  if (event.target.classList.contains('idBtn')) {
+      searchByName(idInput.value);
+  }
+};
+
+document.addEventListener('click', onClickHandler);
 
 categorySwitcher();

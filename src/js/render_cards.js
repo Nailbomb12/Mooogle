@@ -1,59 +1,89 @@
-const errorCB = (res) => {
-    const obj = JSON.parse(res);
-    console.log(obj);
-};
-
-const successCB = (res) => {
-    const obj = JSON.parse(res);
-    updateView(obj.results);
-};
-
-const getPopular = () => {
-    theMovieDb.movies.getPopular({}, successCB, errorCB);
-};
 
 const result = document.querySelector('.videos');
 const idInput = document.querySelector('#idInput');
+const htmlTempl = document.querySelector('#Extendcard').textContent.trim();
+const compile = _.template(htmlTempl);
 const htmlTpl = document.querySelector('#card').textContent.trim();
 const compiled = _.template(htmlTpl);
+const apiKey = '532f680f186ee3009db06b2e2efe9aab';
 
-const updateView = (users) => {
+const updateView = (cards) => {
     let htmlString = '';
-    users.forEach((user) => {
-        htmlString += compiled(user);
+    cards.forEach((card) => {
+        htmlString += compiled(card);
     });
     result.innerHTML = htmlString;
 };
 
-const renderSearchResult = (data) => {
-
-    const parsedData = JSON.parse(data);
-
-    updateView(parsedData.results);
+const getPopular = () => {
+    axios.get(`https://api.themoviedb.org/3/movie/popular?api_key=${apiKey}&language=ru-RU&page=1`)
+    .then(response => {
+        updateView(response.data.results);
+    })
+    .catch(err => {
+        console.log(err);
+    })
 };
 
 
-const searchByName = (name, cb) => {
-    let data = {};
-    let xhr = new XMLHttpRequest();
-    xhr.addEventListener("readystatechange", function() {
-        if (this.readyState === this.DONE) {
-            cb(this.response);
-        }
-    });
-    xhr.open("GET", `https://api.themoviedb.org/3/search/movie?include_adult=false&page=1&query=${name}&language=ru-RU&api_key=532f680f186ee3009db06b2e2efe9aab`);
-    xhr.send(data);
+const searchByName = (name) => {
+    axios.get(`https://api.themoviedb.org/3/search/movie?include_adult=false&page=1&query=${name}&language=ru-RU&api_key=${apiKey}`)
+    .then(response => {
+        updateView(response.data.results);
+    })
+    .catch(err => {
+        console.log(err);
+    })
 };
 
+//Добавить onclick="showMovie(<%- id%>)" в шаблон маленькой карточки на класс "render-card"
+
+const showMovie = (id) => renderFullCard(id);
+
+const updateViewMoview = (data) => {
+  let htmlString = compile(data);
+  result.innerHTML = htmlString;
+}
+
+const renderFullCard = (id) => {
+
+axios.get(`https://api.themoviedb.org/3/movie/${id}?language=ru-RU&api_key=${apiKey}`)
+  .then(response => {
+    const { 
+      genres, 
+      overview, 
+      poster_path: poster, 
+      production_countries: countries,
+      release_date: date,
+      runtime,
+      tagline,
+      title
+    } = response.data;
+    axios.get(`https://api.themoviedb.org/3/movie/${id}/images?api_key=${apiKey}`)
+  			.then(resp => {
+          const { backdrops } = resp.data;
+          axios.get(`https://api.themoviedb.org/3/movie/${id}/credits?language=ru-RU&api_key=${apiKey}`)
+  				.then(rsp => {
+            const { cast, crew } = rsp.data;
+            axios.get(`https://api.themoviedb.org/3/movie/${id}/videos?api_key=${apiKey}`)
+            .then(respo => {
+              const key = respo.data.results[0].key;
+              updateViewMoview({ title, genres, overview, poster, countries, date, runtime, tagline, backdrops, cast, crew, key });
+            })
+  				})
+  			.catch(e => {
+   				console.log(e);
+  				})
+  		})
+  		.catch(err => {
+    		console.log(error);
+  		})
+  })
+
+  .catch(error => {
+    console.log(error);
+  })
+};
 
 getPopular();
 
-const onClickHandler = (event) => {
-    event.preventDefault(0);
-    if (event.target.value = '') return;
-    if (event.target.classList.contains('idBtn')) {
-        searchByName(idInput.value, renderSearchResult);
-    }
-};
-
-document.addEventListener('click', onClickHandler);

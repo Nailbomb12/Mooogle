@@ -36,7 +36,6 @@ body {
   }
 }
 .header__logo-link {
-  // font-size: rem(20);
   font-size: rem(20);
   font-family: $med-font;
   color: $header_text_color;
@@ -338,26 +337,4 @@ input:focus {
     width: 30px;
     height: 25px;
   }
-}
-.category__list {
-  padding-left: 10px;
-  transition: 1s max-height;
-  display: none;
-}
-.js-show-category-list{
-  display: block;
-}
-
-
-.category__list-link {
-  text-decoration: none;
-  color: $header_text_color;
-  font-size: rem(12);
-  font-family: $med-font;
-  @media (min-width: 480px){
-    font-size: rem(15);
-  }
-}
-.category__list-link:hover {
-  color: $main-color;
 }
