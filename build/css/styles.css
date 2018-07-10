@@ -635,27 +635,6 @@ input[type="search"]::-webkit-search-cancel-button {
   fill: red;
 }
 
-.category__list {
-  padding-left: 10px;
-  transition: 1s max-height;
-  display: none;
-}
-
-.js-show-category-list {
-  display: block;
-}
-
-.category__list-link {
-  text-decoration: none;
-  color: #372c48;
-  font-size: 0.75rem;
-  font-family: "Roboto-Medium";
-}
-
-.category__list-link:hover {
-  color: #77c1bb;
-}
-
 @font-face {
   font-family: 'Roboto-Regular';
   src: url("../fonts/Roboto-Regular.woff") format("truetype");
@@ -1244,10 +1223,6 @@ body {
     height: 25px;
   }
 
-  .category__list-link {
-    font-size: 0.9375rem;
-  }
-
   .main-title.mob {
     font-size: 1.66625rem;
   }
@@ -1834,6 +1809,10 @@ body {
   }
 
   .content {
-    padding: 25px 200px;
+    padding: 25px 25px;
+  }
+
+  .wrapper {
+    max-width: 65%;
   }
 }

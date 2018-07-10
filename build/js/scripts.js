@@ -101,7 +101,7 @@ menu.addEventListener('click', toggleAside);
 var toggleCategorys = function toggleCategorys(evt) {
   if (evt.target.classList.contains('aside__item')) {
     evt.target.classList.toggle('aside__item-active');
-    evt.target.firstElementChild.classList.toggle('js-show-category-list');
+    // evt.target.firstElementChild.classList.toggle('js-show-category-list');
   }
 };
 
@@ -120,10 +120,8 @@ var hideBlocks = function hideBlocks(evt) {
     aside.classList.remove('js-show-aside');
     stub.classList.remove('js-show-stub');
   }
-  // if (evt.target.clssList.contains9('hidden__logo-block'))
 };
-// const logo = document.querySelector('.header__logo-link');
-// logo.addEventListener('click', getPopular());
+
 stub.addEventListener('click', hideBlocks);
 function categorySwitcher() {
   var categories = document.querySelector('.category-list'); //
@@ -135,12 +133,12 @@ function categorySwitcher() {
   categories.addEventListener('click', onCetegoryClick);
 
   function onCetegoryClick(event) {
-    topForm.classList.add('top-form--active');
+    // topForm.classList.add('top-form--active');
     categoryItems.forEach(function (elem) {
       elem.classList.remove('category-item--active');
     });
     event.target.classList.add('category-item--active');
-    currentCategory.textContent = event.target.textContent;
+    // currentCategory.textContent = event.target.textContent;
   }
 }
 

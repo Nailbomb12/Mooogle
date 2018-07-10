@@ -5,10 +5,6 @@
     max-width: 1020px;
     margin: auto;
 }
-// .gallary {
-//     min-width: 360px;
-//     max-width: 1440px;
-// }
 
 .header-bottom {
     display: none;
@@ -332,7 +328,10 @@
 
 @media(min-width:1440px) {
     .content {
-        padding: 25px 200px
+        padding: 25px 25px
+    }
+    .wrapper {
+        max-width: 65%;
     }
     // .videos {
     //     &__preview {
