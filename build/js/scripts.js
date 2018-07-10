@@ -88,7 +88,7 @@ var aside = document.querySelector('.aside');
 var asideList = document.querySelector('.aside__list');
 var asideItem = document.querySelectorAll('.aside__item');
 var category = document.querySelectorAll('.category__list');
-var searchBtn = document.querySelector('.hidden-search');
+var hiddenBlockIcon = document.querySelector('.hidden-search');
 var hiddenBlock = document.querySelector('.hidden');
 
 var toggleAside = function toggleAside() {
@@ -101,7 +101,6 @@ menu.addEventListener('click', toggleAside);
 var toggleCategorys = function toggleCategorys(evt) {
   if (evt.target.classList.contains('aside__item')) {
     evt.target.classList.toggle('aside__item-active');
-    // evt.target.firstElementChild.classList.toggle('js-show-category-list');
   }
 };
 
@@ -112,7 +111,7 @@ var toggleHiddenBlock = function toggleHiddenBlock() {
   stub.classList.add('js-show-stub');
 };
 
-searchBtn.addEventListener('click', toggleHiddenBlock);
+hiddenBlockIcon.addEventListener('click', toggleHiddenBlock);
 
 var hideBlocks = function hideBlocks(evt) {
   if (stub.classList.contains('js-show-stub')) {
@@ -124,8 +123,8 @@ var hideBlocks = function hideBlocks(evt) {
 
 stub.addEventListener('click', hideBlocks);
 function categorySwitcher() {
-  var categories = document.querySelector('.category-list'); //
-  var categoryItems = document.querySelectorAll('.category-item'); //
+  var categories = document.querySelector('.category-list');
+  var categoryItems = document.querySelectorAll('.category-item');
   var videoItem = document.querySelectorAll('.videos-item');
   var currentCategory = document.querySelector('.сategory');
   var topForm = document.querySelector('.top-form');
@@ -142,14 +141,14 @@ function categorySwitcher() {
   }
 }
 
+var searchBtn = document.querySelector('.idBtn');
 var onClickHandler = function onClickHandler(event) {
   event.preventDefault(0);
-  if (event.target.value = '') return;
   if (event.target.classList.contains('idBtn')) {
     searchByName(idInput.value);
   }
+  if (idInput.value == '') return;
 };
 
-document.addEventListener('click', onClickHandler);
-
+searchBtn.addEventListener('click', onClickHandler);
 categorySwitcher();

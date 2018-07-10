@@ -551,7 +551,7 @@ input[type="search"]::-webkit-search-cancel-button {
 
 .aside {
   width: 250px;
-  min-height: 100vh;
+  min-height: 100%;
   background-color: #fff;
   position: absolute;
   top: 0;
@@ -1668,6 +1668,10 @@ body {
     font-size: 1rem;
   }
 
+  .aside {
+    width: 430px;
+  }
+
   .main-card {
     width: 975px;
   }
@@ -1788,6 +1792,43 @@ body {
 
   .info__link {
     font-size: 1rem;
+  }
+}
+
+@media (min-width: 1200px) {
+  .header__nav {
+    padding: 40px;
+  }
+
+  .header__menu {
+    margin-right: 20px;
+  }
+
+  .header__menu-icon {
+    width: 33px;
+    height: 25px;
+  }
+
+  .header__logo {
+    width: 41px;
+    height: 38px;
+  }
+
+  .header__logo-link {
+    font-size: 1.9375rem;
+  }
+
+  .header__form input[type="search"] {
+    font-size: 1.375rem;
+  }
+
+  .header__form input[type="search"]::-webkit-input-placeholder {
+    font-size: 1.375rem;
+  }
+
+  .search-icon {
+    width: 26px;
+    height: 26px;
   }
 }
 

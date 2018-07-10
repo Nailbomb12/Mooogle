@@ -4,7 +4,7 @@ const aside = document.querySelector('.aside');
 const asideList = document.querySelector('.aside__list');
 const asideItem = document.querySelectorAll('.aside__item')
 const category = document.querySelectorAll('.category__list');
-const searchBtn = document.querySelector('.hidden-search');
+const hiddenBlockIcon = document.querySelector('.hidden-search');
 const hiddenBlock = document.querySelector('.hidden');
 
 
@@ -18,7 +18,6 @@ menu.addEventListener('click', toggleAside);
 const toggleCategorys = (evt) => {
   if (evt.target.classList.contains('aside__item')){
     evt.target.classList.toggle('aside__item-active');
-    // evt.target.firstElementChild.classList.toggle('js-show-category-list');
   }
 }
 
@@ -29,7 +28,7 @@ const toggleHiddenBlock = () => {
   stub.classList.add('js-show-stub')
 }
 
-searchBtn.addEventListener('click', toggleHiddenBlock);
+hiddenBlockIcon.addEventListener('click', toggleHiddenBlock);
 
 const hideBlocks = (evt) => {
   if (stub.classList.contains('js-show-stub')){
@@ -41,8 +40,8 @@ const hideBlocks = (evt) => {
 
 stub.addEventListener('click', hideBlocks);
 function categorySwitcher() {
-  const categories = document.querySelector('.category-list'); //
-  const categoryItems = document.querySelectorAll('.category-item'); //
+  const categories = document.querySelector('.category-list');
+  const categoryItems = document.querySelectorAll('.category-item'); 
   const videoItem = document.querySelectorAll('.videos-item');
   const currentCategory = document.querySelector('.сategory');
   const topForm = document.querySelector('.top-form');
@@ -59,14 +58,14 @@ function categorySwitcher() {
   }
 }
 
+const searchBtn = document.querySelector('.idBtn')
 const onClickHandler = (event) => {
   event.preventDefault(0);
-  if (event.target.value = '') return;
   if (event.target.classList.contains('idBtn')) {
       searchByName(idInput.value);
   }
+  if (idInput.value == '') return;
 };
 
-document.addEventListener('click', onClickHandler);
-
+searchBtn.addEventListener('click', onClickHandler);
 categorySwitcher();
