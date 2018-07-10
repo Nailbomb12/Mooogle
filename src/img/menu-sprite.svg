@@ -1,0 +1,13 @@
+<svg aria-hidden="true" style="position: absolute; width: 0; height: 0; overflow: hidden;" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<defs>
+<symbol id="star" viewBox="0 0 32 32">
+<path d="M16 0.384l3.777 11.624h12.223l-9.889 7.185 3.777 11.624-9.888-7.184-9.889 7.184 3.777-11.624-9.888-7.185h12.223z"></path>
+</symbol>
+<symbol id="folder-open" viewBox="0 0 32 32">
+<path d="M10.629 2.667h-9.296l0.952 6.667h2.695l-0.572-4h4.925c1.483 1.851 2.603 2.667 5.703 2.667h12.377l-0.267 1.333h2.72l0.8-4h-15.631c-2.637 0-2.721-0.556-4.407-2.667zM32 12h-32l2.667 17.333h26.667l2.667-17.333z"></path>
+</symbol>
+<symbol id="folder-close" viewBox="0 0 32 32">
+<path d="M2.667 12l-1.333-9.333h7.592c1.687 2.111 1.769 2.667 4.408 2.667h17.333l-1.333 6.667h-5.591l-5.2-4-1.952 2.537 1.904 1.463h-2.628l-5.2-4-3.076 4h-4.924zM0 14.667l2.667 14.667h26.667l2.667-14.667h-32z"></path>
+</symbol>
+</defs>
+</svg>
