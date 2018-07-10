@@ -1851,7 +1851,6 @@ var getPopular = function getPopular() {
 
 var result = document.querySelector('.videos');
 var idInput = document.querySelector('#idInput');
-
 var htmlTpl = document.querySelector('#card').textContent.trim();
 var compiled = _.template(htmlTpl);
 

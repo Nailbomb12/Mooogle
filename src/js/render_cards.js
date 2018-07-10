@@ -6,21 +6,14 @@ const errorCB = (res) => {
 const successCB = (res) => {
     const obj = JSON.parse(res);
     updateView(obj.results);
-
-
-
 };
-
-
 
 const getPopular = () => {
     theMovieDb.movies.getPopular({}, successCB, errorCB);
 };
 
-
 const result = document.querySelector('.videos');
 const idInput = document.querySelector('#idInput');
-
 const htmlTpl = document.querySelector('#card').textContent.trim();
 const compiled = _.template(htmlTpl);
 
@@ -46,7 +39,6 @@ const searchByName = (name, cb) => {
     xhr.addEventListener("readystatechange", function() {
         if (this.readyState === this.DONE) {
             cb(this.response);
-
         }
     });
     xhr.open("GET", `https://api.themoviedb.org/3/search/movie?include_adult=false&page=1&query=${name}&language=ru-RU&api_key=532f680f186ee3009db06b2e2efe9aab`);
