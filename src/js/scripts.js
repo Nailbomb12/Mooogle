@@ -61,4 +61,14 @@ function categorySwitcher() {
   }
 }
 
+const onClickHandler = (event) => {
+  event.preventDefault(0);
+  if (event.target.value = '') return;
+  if (event.target.classList.contains('idBtn')) {
+      searchByName(idInput.value);
+  }
+};
+
+document.addEventListener('click', onClickHandler);
+
 categorySwitcher();
