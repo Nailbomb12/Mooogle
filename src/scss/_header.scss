@@ -1,6 +1,10 @@
 html,
 body {
   height: 100%;
+  position: relative;
+}
+.ovfh {
+  overflow: hidden;
 }
 .header__nav {
   background-color: $main-color;
@@ -246,10 +250,13 @@ input:focus {
 .stub {
   background-color: rgba(0,0,0,0.3);
   width: 100%;
-  height: 100vh;
+  min-height: 100%;
+  padding-bottom: 100px;
   position: absolute;
   top: 0;
   left: 0;
+  bottom: 0;
+  right: 0;
   z-index: 99;
   display: none;
 }
@@ -322,13 +329,14 @@ input:focus {
   margin-bottom: 20px;
   display: table;
 }
+.aside__link {
+  text-decoration: none;
+  color: $header_text_color;
+}
 .aside__item:last-child{
   margin-bottom: 0;
 }
-.aside__item:hover {
-  cursor: pointer;
-}
-.aside__item::before {
+.aside__link::before {
   content: url(../img/folder-21.svg);
   display: inline-block;
   width: 23px;
@@ -340,50 +348,13 @@ input:focus {
     height: 25px;
   }
 }
-
-.aside__item-active {
-  color: $main-color;
-}
-.aside__item-active::before {
+.aside__link:hover::before{
   content: url(../img/folder-20.svg);
-  display: inline-block;
-  width: 20px;
-  height: 20px;
-  fill: $main-color;
-  position: absolute;
-  left: -60px;
-  @media (min-width: 480px){
-    width: 30px;
-    height: 25px;
-  }
 }
-// .aside__link {
-//   position: relative;
-//   margin-left: 60px;
-//   margin-bottom: 20px;
-//   display: table;
-// }
-// .aside__link:last-child{
-//   margin-bottom: 0;
-// }
-// .aside__link:hover {
-//   cursor: pointer;
-// }
-// .aside__link::before {
-//   content: url(../img/folder-21.svg);
-//   display: inline-block;
-//   width: 23px;
-//   height: 20px;
-//   position: absolute;
-//   left: -60px;
-//   @media (min-width: 480px){
-//     width: 30px;
-//     height: 25px;
-//   }
-// }
-// .aside__link-active {
-//   color: $main-color;
-// }
+
+.aside__link:hover {
+    color: $main-color;
+  }
 // .aside__link-active::before {
 //   content: url(../img/folder-20.svg);
 //   display: inline-block;
@@ -392,19 +363,6 @@ input:focus {
 //   fill: $main-color;
 //   position: absolute;
 //   left: -60px;
-//   @media (min-width: 480px){
-//     width: 30px;
-//     height: 25px;
-//   }
-// }
-// .favorites::before {
-//   content: url(../img/star.svg);
-//   display: inline-block;
-//   width: 23px;
-//   height: 20px;
-//   position: absolute;
-//   left: -60px;
-//   fill: red;
 //   @media (min-width: 480px){
 //     width: 30px;
 //     height: 25px;

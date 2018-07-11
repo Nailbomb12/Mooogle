@@ -1,4 +1,3 @@
-
 const result = document.querySelector('.videos');
 const idInput = document.querySelector('#idInput');
 const htmlTempl = document.querySelector('#Extendcard').textContent.trim();
@@ -11,47 +10,28 @@ const htmlTemplTvCard = document.querySelector('#ExtendcardTV').textContent.trim
 const compileTvCard = _.template(htmlTemplTvCard);
 const apiKey = '532f680f186ee3009db06b2e2efe9aab';
 
-const updateView = (cards) => {
+const updateView = (cards, parent, template) => {
     let htmlString = '';
     cards.forEach((card) => {
-        htmlString += compiled(card);
+        htmlString += template(card);
     });
-    result.innerHTML = htmlString;
+    parent.innerHTML = htmlString;
 };
 
-const updateViewTV = (cards) => {
-    let htmlString = '';
-    cards.forEach((card) => {
-        htmlString += compil(card);
-    });
-    serials.innerHTML = htmlString;
-};
-
-const getPopular = () => {
-    axios.get(`https://api.themoviedb.org/3/movie/popular?api_key=${apiKey}&language=ru-RU&page=1`)
+const getPopular = (category, parent, template) => {
+    axios.get(`https://api.themoviedb.org/3/${category}/popular?api_key=${apiKey}&language=ru-RU&page=1`)
     .then(response => {
-        updateView(response.data.results);
+        updateView(response.data.results, parent, template);
     })
     .catch(err => {
         console.log(err);
     })
 };
-
-const getPopularTV = () => {
-    axios.get(`https://api.themoviedb.org/3/tv/popular?api_key=${apiKey}&language=ru-RU&page=1`)
-    .then(response => {
-        updateViewTV(response.data.results);
-    })
-    .catch(err => {
-        console.log(err);
-    })
-};
-
 
 const searchByName = (name) => {
     axios.get(`https://api.themoviedb.org/3/search/movie?include_adult=false&page=1&query=${name}&language=ru-RU&api_key=${apiKey}`)
     .then(response => {
-        updateView(response.data.results);
+        updateView(response.data.results, result, compiled);
     })
     .catch(err => {
         console.log(err);
@@ -59,56 +39,50 @@ const searchByName = (name) => {
 };
 
 const showMovie = (id) => renderFullCard(id, 'movie');
-const showTV = (id) => {
-    renderFullCardTV(id, 'tv');
-}
-const updateViewMoview = (data) => {
-  let htmlString = compile(data);
-  result.innerHTML = htmlString;
-}
-const updateViewTvCard = (data) => {
-    let htmlString = compileTvCard(data);
-    serials.innerHTML = htmlString;
-}
+const showTV = (id) => renderFullCardTV(id, 'tv');
+
+const updateViewMovieCard = (data, parent, template) => {
+  let htmlString = template(data);
+  parent.innerHTML = htmlString;
+};
 
 const renderFullCard = (id, category) => {
 
-axios.get(`https://api.themoviedb.org/3/${category}/${id}?language=ru-RU&api_key=${apiKey}`)
-  .then(response => {
-    const { 
-      genres, 
-      overview, 
-      poster_path: poster, 
-      production_countries: countries,
-      release_date: date,
-      runtime,
-      tagline,
-      title
-    } = response.data;
-    axios.get(`https://api.themoviedb.org/3/${category}/${id}/images?api_key=${apiKey}`)
-  			.then(resp => {
-          const { backdrops } = resp.data;
-          axios.get(`https://api.themoviedb.org/3/${category}/${id}/credits?language=ru-RU&api_key=${apiKey}`)
-  				.then(rsp => {
-            const { cast, crew } = rsp.data;
-            axios.get(`https://api.themoviedb.org/3/${category}/${id}/videos?api_key=${apiKey}`)
-            .then(respo => {
-              const key = respo.data.results[0].key;
-              updateViewMoview({ title, genres, overview, poster, countries, date, runtime, tagline, backdrops, cast, crew, key });
+    axios.get(`https://api.themoviedb.org/3/${category}/${id}?language=ru-RU&api_key=${apiKey}`)
+    .then(response => {
+        const { 
+        genres, 
+        overview, 
+        poster_path: poster, 
+        production_countries: countries,
+        release_date: date,
+        runtime,
+        tagline,
+        title
+        } = response.data;
+        axios.get(`https://api.themoviedb.org/3/${category}/${id}/images?api_key=${apiKey}`)
+                .then(resp => {
+            const { backdrops } = resp.data;
+            axios.get(`https://api.themoviedb.org/3/${category}/${id}/credits?language=ru-RU&api_key=${apiKey}`)
+                    .then(rsp => {
+                const { cast, crew } = rsp.data;
+                axios.get(`https://api.themoviedb.org/3/${category}/${id}/videos?api_key=${apiKey}`)
+                .then(respo => {
+                const key = respo.data.results[0].key;
+                updateViewMovieCard({ title, genres, overview, poster, countries, date, runtime, tagline, backdrops, cast, crew, key }, result, compile);
+                })
             })
-  				})
-  			.catch(e => {
-   				console.log(e);
-  				})
-  		})
-  		.catch(err => {
-    		console.log(error);
-  		})
-  })
-
-  .catch(error => {
-    console.log(error);
-  })
+            .catch(e => {
+                console.log(e);
+                })
+            })
+            .catch(err => {
+                console.log(error);
+        })
+    })
+    .catch(error => {
+        console.log(error);
+    })
 };
 
 const renderFullCardTV = (id, category) => {
@@ -123,36 +97,37 @@ const renderFullCardTV = (id, category) => {
           origin_country: countries,
           first_air_date: date,
           episode_run_time: runtime,
-          created_by
+          created_by,
+          number_of_seasons,
+          last_air_date,
+          number_of_episodes,
+          original_name,
+          homepage
         } = response.data;
-        console.log(response.data);
+        //console.log(response.data);
         axios.get(`https://api.themoviedb.org/3/${category}/${id}/images?api_key=${apiKey}`)
                   .then(resp => {
               const { backdrops } = resp.data;
               axios.get(`https://api.themoviedb.org/3/${category}/${id}/credits?language=ru-RU&api_key=${apiKey}`)
                       .then(rsp => {
                 const { cast } = rsp.data;
-                console.log(rsp.data);
                 axios.get(`https://api.themoviedb.org/3/${category}/${id}/videos?api_key=${apiKey}`)
                 .then(respo => {
                   const key = respo.data.results[0].key;
-                  console.log(title, date, key, runtime, cast[0].name);
-                  updateViewTvCard({ title, date, poster, backdrops, countries, cast, created_by, genres, runtime, overview, key });
+                  updateViewMovieCard({ title, date, poster, backdrops, countries, cast, created_by, genres, runtime, overview, key, number_of_seasons, last_air_date, number_of_episodes, original_name, homepage }, serials, compileTvCard );
+                    })
                 })
-                      })
-                  .catch(e => {
-                       console.log(e);
-                      })
+                .catch(e => {
+                    console.log(e);
+                })
               })
               .catch(err => {
                 console.log(error);
-              })
+            })
       })
-    
       .catch(error => {
         console.log(error);
-      })
-    };
+    })
+};
 
-getPopular();
-
+getPopular('movie', result, compiled);

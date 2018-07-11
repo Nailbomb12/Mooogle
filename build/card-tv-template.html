@@ -19,8 +19,12 @@
       </div>
       <div class="main-fields">
         <div class="main-fields__field">
+          <h5>ориг.название</h5>
+          <span>"<%- original_name%>"</span>
+        </div>
+        <div class="main-fields__field">
           <h5>страна</h5>
-          <span><%- countries[0].name%></span>
+          <span><%- countries[0]%></span>
         </div>
         <div class="main-fields__field">
           <h5>режиссер</h5>
@@ -31,8 +35,28 @@
           <span><%- genres[0].name%>, <%- genres[1].name%></span>
         </div>
         <div class="main-fields__field">
-          <h5>время</h5>
+          <h5>сезонов</h5>
+          <span><%- number_of_seasons%></span>
+        </div>
+        <div class="main-fields__field">
+          <h5>серий</h5>
+          <span><%- number_of_episodes%></span>
+        </div>
+        <div class="main-fields__field">
+          <h5>продолж.серии</h5>
           <span><%- runtime %> мин.</span>
+        </div>
+        <div class="main-fields__field">
+          <h5>дата выхода</h5>
+          <span><%- date%></span>
+        </div>
+        <div class="main-fields__field">
+          <h5>последн.серия</h5>
+          <span><%- last_air_date%></span>
+        </div>
+        <div class="main-fields__field">
+          <h5>страница</h5>
+          <a target="_blank" href="<%- homepage%>"><%- homepage%></a>
         </div>
       </div>
       <div class="main-description">
