@@ -73,12 +73,6 @@ const onClickHandler = (event) => {
   if (idInput.value == '') return;
 };
 
-// const onCetegoryClick = (event) => {
-//   if (event.target.tagName.id ='category-serial') {
-//     getPopularTV();
-//   }
-// }
-
 // Category switcher function
 
 const onClickHandlers = (event) => {
@@ -90,14 +84,14 @@ const onClickHandlers = (event) => {
   for (let tab of tabsPane) {
     if (event.target.getAttribute('href') === ('#' + tab.id))
       tab.classList.add('tabs__pane--active');
+    if (event.target.getAttribute('href') === '#pane-1')
+      getPopular('movie', result, compiled);
+    if (event.target.getAttribute('href') === '#pane-2')
+      getPopular('tv', serials, compil);
     }
   }
 }
-document.addEventListener("DOMContentLoaded", getPopularTV());
+
 tabs.addEventListener('click', onClickHandlers);
 searchBtn.addEventListener('click', onClickHandler);
 
-
-//category.addEventListener('click', onCetegoryClick);
-
-//categorySwitcher();
