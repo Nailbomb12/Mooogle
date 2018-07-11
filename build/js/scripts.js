@@ -12,33 +12,17 @@ var htmlTemplTvCard = document.querySelector('#ExtendcardTV').textContent.trim()
 var compileTvCard = _.template(htmlTemplTvCard);
 var apiKey = '532f680f186ee3009db06b2e2efe9aab';
 
-var updateView = function updateView(cards) {
+var updateView = function updateView(cards, parent, template) {
     var htmlString = '';
     cards.forEach(function (card) {
-        htmlString += compiled(card);
+        htmlString += template(card);
     });
-    result.innerHTML = htmlString;
+    parent.innerHTML = htmlString;
 };
 
-var updateViewTV = function updateViewTV(cards) {
-    var htmlString = '';
-    cards.forEach(function (card) {
-        htmlString += compil(card);
-    });
-    serials.innerHTML = htmlString;
-};
-
-var getPopular = function getPopular() {
-    axios.get('https://api.themoviedb.org/3/movie/popular?api_key=' + apiKey + '&language=ru-RU&page=1').then(function (response) {
-        updateView(response.data.results);
-    }).catch(function (err) {
-        console.log(err);
-    });
-};
-
-var getPopularTV = function getPopularTV() {
-    axios.get('https://api.themoviedb.org/3/tv/popular?api_key=' + apiKey + '&language=ru-RU&page=1').then(function (response) {
-        updateViewTV(response.data.results);
+var getPopular = function getPopular(category, parent, template) {
+    axios.get('https://api.themoviedb.org/3/' + category + '/popular?api_key=' + apiKey + '&language=ru-RU&page=1').then(function (response) {
+        updateView(response.data.results, parent, template);
     }).catch(function (err) {
         console.log(err);
     });
@@ -46,7 +30,7 @@ var getPopularTV = function getPopularTV() {
 
 var searchByName = function searchByName(name) {
     axios.get('https://api.themoviedb.org/3/search/movie?include_adult=false&page=1&query=' + name + '&language=ru-RU&api_key=' + apiKey).then(function (response) {
-        updateView(response.data.results);
+        updateView(response.data.results, result, compiled);
     }).catch(function (err) {
         console.log(err);
     });
@@ -56,15 +40,12 @@ var showMovie = function showMovie(id) {
     return renderFullCard(id, 'movie');
 };
 var showTV = function showTV(id) {
-    renderFullCardTV(id, 'tv');
+    return renderFullCardTV(id, 'tv');
 };
-var updateViewMoview = function updateViewMoview(data) {
-    var htmlString = compile(data);
-    result.innerHTML = htmlString;
-};
-var updateViewTvCard = function updateViewTvCard(data) {
-    var htmlString = compileTvCard(data);
-    serials.innerHTML = htmlString;
+
+var updateViewMovieCard = function updateViewMovieCard(data, parent, template) {
+    var htmlString = template(data);
+    parent.innerHTML = htmlString;
 };
 
 var renderFullCard = function renderFullCard(id, category) {
@@ -90,7 +71,7 @@ var renderFullCard = function renderFullCard(id, category) {
 
                 axios.get('https://api.themoviedb.org/3/' + category + '/' + id + '/videos?api_key=' + apiKey).then(function (respo) {
                     var key = respo.data.results[0].key;
-                    updateViewMoview({ title: title, genres: genres, overview: overview, poster: poster, countries: countries, date: date, runtime: runtime, tagline: tagline, backdrops: backdrops, cast: cast, crew: crew, key: key });
+                    updateViewMovieCard({ title: title, genres: genres, overview: overview, poster: poster, countries: countries, date: date, runtime: runtime, tagline: tagline, backdrops: backdrops, cast: cast, crew: crew, key: key }, result, compile);
                 });
             }).catch(function (e) {
                 console.log(e);
@@ -114,20 +95,23 @@ var renderFullCardTV = function renderFullCardTV(id, category) {
             countries = _response$data2.origin_country,
             date = _response$data2.first_air_date,
             runtime = _response$data2.episode_run_time,
-            created_by = _response$data2.created_by;
+            created_by = _response$data2.created_by,
+            number_of_seasons = _response$data2.number_of_seasons,
+            last_air_date = _response$data2.last_air_date,
+            number_of_episodes = _response$data2.number_of_episodes,
+            original_name = _response$data2.original_name,
+            homepage = _response$data2.homepage;
+        //console.log(response.data);
 
-        console.log(response.data);
         axios.get('https://api.themoviedb.org/3/' + category + '/' + id + '/images?api_key=' + apiKey).then(function (resp) {
             var backdrops = resp.data.backdrops;
 
             axios.get('https://api.themoviedb.org/3/' + category + '/' + id + '/credits?language=ru-RU&api_key=' + apiKey).then(function (rsp) {
                 var cast = rsp.data.cast;
 
-                console.log(rsp.data);
                 axios.get('https://api.themoviedb.org/3/' + category + '/' + id + '/videos?api_key=' + apiKey).then(function (respo) {
                     var key = respo.data.results[0].key;
-                    console.log(title, date, key, runtime, cast[0].name);
-                    updateViewTvCard({ title: title, date: date, poster: poster, backdrops: backdrops, countries: countries, cast: cast, created_by: created_by, genres: genres, runtime: runtime, overview: overview, key: key });
+                    updateViewMovieCard({ title: title, date: date, poster: poster, backdrops: backdrops, countries: countries, cast: cast, created_by: created_by, genres: genres, runtime: runtime, overview: overview, key: key, number_of_seasons: number_of_seasons, last_air_date: last_air_date, number_of_episodes: number_of_episodes, original_name: original_name, homepage: homepage }, serials, compileTvCard);
                 });
             }).catch(function (e) {
                 console.log(e);
@@ -140,7 +124,7 @@ var renderFullCardTV = function renderFullCardTV(id, category) {
     });
 };
 
-getPopular();
+getPopular('movie', result, compiled);
 'use strict';
 
 var menu = document.querySelector('.header__menu');
@@ -148,6 +132,7 @@ var stub = document.querySelector('.stub');
 var aside = document.querySelector('.aside');
 var asideList = document.querySelector('.aside__list');
 var asideItem = document.querySelectorAll('.aside__item');
+var asideLink = document.querySelectorAll('.aside__link');
 var tabs = document.querySelector('.category-list');
 var tabLinks = document.querySelectorAll('.category-item');
 var tabsPane = document.querySelectorAll('.tabs__pane');
@@ -155,27 +140,21 @@ var serials = document.querySelector('.tv-serials');
 var hiddenBlockIcon = document.querySelector('.hidden-search');
 var hiddenBlock = document.querySelector('.hidden');
 
-tabLinks[0].classList.add('tabs__link--active');
+tabLinks[0].classList.add('category-item--active');
 tabsPane[0].classList.add('tabs__pane--active');
 
 var toggleAside = function toggleAside() {
   aside.classList.toggle('js-show-aside');
   stub.classList.add('js-show-stub');
+  document.body.classList.add('ovfh');
 };
 
 menu.addEventListener('click', toggleAside);
 
-var toggleCategorys = function toggleCategorys(evt) {
-  if (evt.target.classList.contains('aside__item')) {
-    evt.target.classList.toggle('aside__item-active');
-  }
-};
-
-asideList.addEventListener('click', toggleCategorys);
-
 var toggleHiddenBlock = function toggleHiddenBlock() {
   hiddenBlock.classList.toggle('js-show-hidden');
   stub.classList.add('js-show-stub');
+  document.body.classList.add('ovfh');
 };
 
 hiddenBlockIcon.addEventListener('click', toggleHiddenBlock);
@@ -185,32 +164,15 @@ var hideBlocks = function hideBlocks(evt) {
     hiddenBlock.classList.remove('js-show-hidden');
     aside.classList.remove('js-show-aside');
     stub.classList.remove('js-show-stub');
+    document.body.classList.remove('ovfh');
   }
 };
 
 stub.addEventListener('click', hideBlocks);
 
-function categorySwitcher() {
-  var categories = document.querySelector('.category-list');
-  var categoryItems = document.querySelectorAll('.category-item');
-  var videoItem = document.querySelectorAll('.videos-item');
-  var currentCategory = document.querySelector('.сategory');
-  var topForm = document.querySelector('.top-form');
-
-  categories.addEventListener('click', onCetegoryClick);
-
-  function onCetegoryClick(event) {
-    // topForm.classList.add('top-form--active');
-    categoryItems.forEach(function (elem) {
-      elem.classList.remove('category-item--active');
-    });
-    event.target.classList.add('category-item--active');
-    // currentCategory.textContent = event.target.textContent;
-  }
-}
-
 var searchBtn = document.querySelector('.idBtn');
-var onClickHandler = function onClickHandler(event) {
+
+var headerSearch = function headerSearch(event) {
   event.preventDefault(0);
   if (event.target.classList.contains('idBtn')) {
     searchByName(idInput.value);
@@ -218,21 +180,13 @@ var onClickHandler = function onClickHandler(event) {
   if (idInput.value == '') return;
 };
 
-// const onCetegoryClick = (event) => {
-//   if (event.target.tagName.id ='category-serial') {
-//     getPopularTV();
-//   }
-// }
-
-// Category switcher function
-
-var onClickHandlers = function onClickHandlers(event) {
+var switchTabs = function switchTabs(event) {
   event.preventDefault();
   if (event.target !== tabs) {
     tabLinks.forEach(function (link) {
-      return link.classList.remove('tabs__link--active');
+      return link.classList.remove('category-item--active');
     });
-    event.target.classList.add('tabs__link--active');
+    event.target.classList.add('category-item--active');
     tabsPane.forEach(function (tabs) {
       return tabs.classList.remove('tabs__pane--active');
     });
@@ -245,6 +199,8 @@ var onClickHandlers = function onClickHandlers(event) {
         var tab = _step.value;
 
         if (event.target.getAttribute('href') === '#' + tab.id) tab.classList.add('tabs__pane--active');
+        if (event.target.getAttribute('href') === '#pane-1') getPopular('movie', result, compiled);
+        if (event.target.getAttribute('href') === '#pane-2') getPopular('tv', serials, compil);
       }
     } catch (err) {
       _didIteratorError = true;
@@ -262,10 +218,44 @@ var onClickHandlers = function onClickHandlers(event) {
     }
   }
 };
-document.addEventListener("DOMContentLoaded", getPopularTV());
-tabs.addEventListener('click', onClickHandlers);
-searchBtn.addEventListener('click', onClickHandler);
 
-//category.addEventListener('click', onCetegoryClick);
+// document.addEventListener("DOMContentLoaded", getPopularTV());
+tabs.addEventListener('click', switchTabs);
+searchBtn.addEventListener('click', headerSearch);
 
-//categorySwitcher();
+/**Функция для переключения категорий в эсайде */
+var switchAsideCategorys = function switchAsideCategorys(evt) {
+  if (evt.target.classList.contains('aside__link')) {
+    tabsPane.forEach(function (tabs) {
+      return tabs.classList.remove('tabs__pane--active');
+    });
+    var _iteratorNormalCompletion2 = true;
+    var _didIteratorError2 = false;
+    var _iteratorError2 = undefined;
+
+    try {
+      for (var _iterator2 = tabsPane[Symbol.iterator](), _step2; !(_iteratorNormalCompletion2 = (_step2 = _iterator2.next()).done); _iteratorNormalCompletion2 = true) {
+        var tab = _step2.value;
+
+        if (evt.target.getAttribute('href') === '#' + tab.id) {
+          tab.classList.add('tabs__pane--active');
+        }
+        hideBlocks();
+      }
+    } catch (err) {
+      _didIteratorError2 = true;
+      _iteratorError2 = err;
+    } finally {
+      try {
+        if (!_iteratorNormalCompletion2 && _iterator2.return) {
+          _iterator2.return();
+        }
+      } finally {
+        if (_didIteratorError2) {
+          throw _iteratorError2;
+        }
+      }
+    }
+  }
+};
+asideList.addEventListener('click', switchAsideCategorys);
