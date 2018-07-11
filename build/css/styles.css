@@ -356,9 +356,9 @@ input[type=button] {
   font-weight: normal;
 }
 
+html,
 body {
-  position: relative;
-  min-height: 100vh;
+  height: 100%;
 }
 
 .header__nav {
@@ -623,16 +623,6 @@ input[type="search"]::-webkit-search-cancel-button {
   fill: #77c1bb;
   position: absolute;
   left: -60px;
-}
-
-.favorites::before {
-  content: url(../img/star.svg);
-  display: inline-block;
-  width: 23px;
-  height: 20px;
-  position: absolute;
-  left: -60px;
-  fill: red;
 }
 
 @font-face {
@@ -928,6 +918,8 @@ body {
 
 .wrapper {
   max-width: 1020px;
+  min-height: 100%;
+  padding-bottom: 100px;
   margin: auto;
 }
 
@@ -959,6 +951,14 @@ body {
 
 .category-choose {
   display: none;
+}
+
+.favorites {
+  font-size: 2.0625rem;
+  text-transform: uppercase;
+  text-align: center;
+  opacity: .3;
+  font-weight: bold;
 }
 
 .find-form {
@@ -1076,6 +1076,8 @@ body {
   padding: 15px;
   background-color: #77c1bb;
   color: #372c48;
+  height: 100px;
+  margin-top: -100px;
 }
 
 .social__menu {
@@ -1223,11 +1225,6 @@ body {
   }
 
   .aside__item-active::before {
-    width: 30px;
-    height: 25px;
-  }
-
-  .favorites::before {
     width: 30px;
     height: 25px;
   }
@@ -1549,13 +1546,15 @@ body {
     text-transform: uppercase;
     font-size: 0.875rem;
     display: flex;
+    padding: 20px 25px;
   }
 
   .category-list .category-item {
-    padding: 20px 25px 20px 25px;
+    padding: 20px 25px;
     color: #372c48;
     font-family: 'Roboto-Medium';
     opacity: 0.7;
+    text-decoration: none;
   }
 
   .category-list .category-item:hover {
@@ -1565,7 +1564,8 @@ body {
 
   .category-list .category-item--active {
     opacity: 1;
-    border-bottom: 2px solid;
+    color: #77c1bb;
+    border-bottom: 2px solid #77c1bb;
   }
 
   .content {
@@ -1804,9 +1804,9 @@ body {
   }
 }
 
-@media (min-width: 1200px) {
+@media (min-width: 1440px) {
   .header__nav {
-    padding: 40px;
+    padding: 30px;
   }
 
   .header__menu {
@@ -1839,9 +1839,7 @@ body {
     width: 26px;
     height: 26px;
   }
-}
 
-@media (min-width: 1440px) {
   .main-card {
     width: 1040px;
   }
