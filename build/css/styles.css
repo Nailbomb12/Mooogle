@@ -1137,6 +1137,15 @@ body {
   color: #fff;
 }
 
+.tabs__pane {
+  display: none;
+  color: #212121;
+}
+
+.tabs__pane--active {
+  display: block;
+}
+
 body {
   min-width: 320px;
   font-family: "Roboto-Regular";

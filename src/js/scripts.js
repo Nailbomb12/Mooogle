@@ -3,9 +3,15 @@ const stub = document.querySelector('.stub');
 const aside = document.querySelector('.aside');
 const asideList = document.querySelector('.aside__list');
 const asideItem = document.querySelectorAll('.aside__item')
-const category = document.querySelectorAll('.category__list');
+const tabs = document.querySelector('.category-list');
+const tabLinks = document.querySelectorAll('.category-item');
+const tabsPane = document.querySelectorAll('.tabs__pane');
+const serials = document.querySelector('.tv-serials');
 const hiddenBlockIcon = document.querySelector('.hidden-search');
 const hiddenBlock = document.querySelector('.hidden');
+
+tabLinks[0].classList.add('tabs__link--active');
+tabsPane[0].classList.add('tabs__pane--active');
 
 const toggleAside = () => {
   aside.classList.toggle('js-show-aside');
@@ -38,6 +44,7 @@ const hideBlocks = (evt) => {
 }
 
 stub.addEventListener('click', hideBlocks);
+
 function categorySwitcher() {
   const categories = document.querySelector('.category-list');
   const categoryItems = document.querySelectorAll('.category-item'); 
@@ -66,5 +73,31 @@ const onClickHandler = (event) => {
   if (idInput.value == '') return;
 };
 
+// const onCetegoryClick = (event) => {
+//   if (event.target.tagName.id ='category-serial') {
+//     getPopularTV();
+//   }
+// }
+
+// Category switcher function
+
+const onClickHandlers = (event) => {
+  event.preventDefault();
+  if (event.target !== tabs) {
+    tabLinks.forEach(link => link.classList.remove('tabs__link--active'));
+    event.target.classList.add('tabs__link--active');
+    tabsPane.forEach(tabs => tabs.classList.remove('tabs__pane--active'));
+  for (let tab of tabsPane) {
+    if (event.target.getAttribute('href') === ('#' + tab.id))
+      tab.classList.add('tabs__pane--active');
+    }
+  }
+}
+document.addEventListener("DOMContentLoaded", getPopularTV());
+tabs.addEventListener('click', onClickHandlers);
 searchBtn.addEventListener('click', onClickHandler);
-categorySwitcher();
+
+
+//category.addEventListener('click', onCetegoryClick);
+
+//categorySwitcher();
