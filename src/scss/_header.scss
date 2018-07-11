@@ -264,7 +264,7 @@ input:focus {
   position: absolute;
   top: 0;
   left: -100%;
-  transition: .5s all;
+  transition: .6s all;
   z-index: 100;
   @media (min-width: 480px){
     width: 300px;
@@ -276,6 +276,7 @@ input:focus {
 .js-show-aside {
   left: 0;
 }
+
 .aside-logo {
   display: flex;
   justify-content: center;
