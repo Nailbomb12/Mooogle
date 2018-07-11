@@ -7,7 +7,6 @@ const category = document.querySelectorAll('.category__list');
 const hiddenBlockIcon = document.querySelector('.hidden-search');
 const hiddenBlock = document.querySelector('.hidden');
 
-
 const toggleAside = () => {
   aside.classList.toggle('js-show-aside');
   stub.classList.add('js-show-stub')
