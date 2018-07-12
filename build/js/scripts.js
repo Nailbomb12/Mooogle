@@ -108,6 +108,7 @@ var renderFullCardTV = function renderFullCardTV(id, category) {
             axios.get('https://api.themoviedb.org/3/' + category + '/' + id + '/credits?language=ru-RU&api_key=' + apiKey).then(function (rsp) {
                 var cast = rsp.data.cast;
 
+                console.log(rsp.data);
                 axios.get('https://api.themoviedb.org/3/' + category + '/' + id + '/videos?api_key=' + apiKey).then(function (respo) {
                     var key = respo.data.results[0].key;
                     updateViewMovieCard({ title: title, date: date, poster: poster, backdrops: backdrops, countries: countries, cast: cast, created_by: created_by, genres: genres, runtime: runtime, overview: overview, key: key, number_of_seasons: number_of_seasons, last_air_date: last_air_date, number_of_episodes: number_of_episodes, original_name: original_name, homepage: homepage }, serials, compileTvCard);
@@ -124,6 +125,9 @@ var renderFullCardTV = function renderFullCardTV(id, category) {
 };
 
 getPopular('movie', result, compiled);
+
+//renderFullCard(427641, 'movie');
+//renderFullCardTV(48866, 'tv');
 'use strict';
 
 var menu = document.querySelector('.header__menu');
