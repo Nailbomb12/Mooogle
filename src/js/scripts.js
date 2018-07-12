@@ -9,6 +9,7 @@ const tabLinks = document.querySelectorAll('.category-item');
 const tabsPane = document.querySelectorAll('.tabs__pane');
 const serials = document.querySelector('.tv-serials');
 const hiddenBlockIcon = document.querySelector('.hidden-search');
+const hiddenSearchBtn = document.querySelector('.hidden__form-send');
 const hiddenBlock = document.querySelector('.hidden');
 
 tabLinks[0].classList.add('category-item--active');
@@ -38,19 +39,27 @@ const hideBlocks = (evt) => {
     document.body.classList.remove('ovfh');
   }
 }
-
 stub.addEventListener('click', hideBlocks);
 
 const searchBtn = document.querySelector('.idBtn');
+const idInput = document.querySelector('#idInput');
+const hiddenSearchId = document.querySelector('#hiddenSearchId');
+const header = document.querySelector('.header');
 
-const headerSearch = (event) => {
-  event.preventDefault(0);
-  if (event.target.classList.contains('idBtn')) {
-      searchByName(idInput.value);
-  }
-  if (idInput.value == '') return;
+const mainSearch = (evt) => {
+  evt.preventDefault(0);
+  searchByName(idInput.value);
+  if (idInput.value === '') return;
+};
+const mobileSearch = (evt) => {
+  evt.preventDefault(0);
+  searchByName(hiddenSearchId.value);
+  if (hiddenSearchId.value === '') return;
+  hideBlocks();
 };
 
+searchBtn.addEventListener('click', mainSearch);
+hiddenSearchBtn.addEventListener('click', mobileSearch);
 
 const switchTabs = (event) => {
   event.preventDefault();
@@ -68,21 +77,30 @@ const switchTabs = (event) => {
     }
   }
 }
-
-// document.addEventListener("DOMContentLoaded", getPopularTV());
 tabs.addEventListener('click', switchTabs);
-searchBtn.addEventListener('click', headerSearch);
 
-/**Функция для переключения категорий в эсайде */
 const switchAsideCategorys = (evt) => {
+  event.preventDefault();
+
   if (evt.target.classList.contains('aside__link')){
-    tabsPane.forEach(tabs => tabs.classList.remove('tabs__pane--active'));
-    for (let tab of tabsPane) {
-      if (evt.target.getAttribute('href') === ('#' + tab.id)){
+    tabsPane.forEach((tab, i) => {
+      
+      if (evt.target.getAttribute('href') !== tabLinks[i].getAttribute('href')){
+        tabLinks[i].classList.remove('category-item--active');
+        tab.classList.remove('tabs__pane--active');
+      }
+
+      if (evt.target.getAttribute('href') === ('#' + tab.id) 
+      && evt.target.getAttribute('href') === tabLinks[i].getAttribute('href')){
         tab.classList.add('tabs__pane--active');
-      }  
-    hideBlocks();
-    }
+        tabLinks[i].classList.add('category-item--active');
+        hideBlocks();
+      }
+
+      if (event.target.getAttribute('href') === '#pane-2'){
+        getPopular('tv', serials, compil);
+      }
+    });  
   }
 }
-asideList.addEventListener('click', switchAsideCategorys)
+asideList.addEventListener('click', switchAsideCategorys);

@@ -1,5 +1,4 @@
 const result = document.querySelector('.videos');
-const idInput = document.querySelector('#idInput');
 const htmlTempl = document.querySelector('#Extendcard').textContent.trim();
 const compile = _.template(htmlTempl);
 const htmlTpl = document.querySelector('#card').textContent.trim();

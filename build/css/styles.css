@@ -376,6 +376,7 @@ body {
 .header__menu {
   display: inline-block;
   margin-right: 10px;
+  line-height: 0;
 }
 
 .header__menu:hover {

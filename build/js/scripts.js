@@ -1,7 +1,6 @@
 'use strict';
 
 var result = document.querySelector('.videos');
-var idInput = document.querySelector('#idInput');
 var htmlTempl = document.querySelector('#Extendcard').textContent.trim();
 var compile = _.template(htmlTempl);
 var htmlTpl = document.querySelector('#card').textContent.trim();
@@ -138,6 +137,7 @@ var tabLinks = document.querySelectorAll('.category-item');
 var tabsPane = document.querySelectorAll('.tabs__pane');
 var serials = document.querySelector('.tv-serials');
 var hiddenBlockIcon = document.querySelector('.hidden-search');
+var hiddenSearchBtn = document.querySelector('.hidden__form-send');
 var hiddenBlock = document.querySelector('.hidden');
 
 tabLinks[0].classList.add('category-item--active');
@@ -167,18 +167,27 @@ var hideBlocks = function hideBlocks(evt) {
     document.body.classList.remove('ovfh');
   }
 };
-
 stub.addEventListener('click', hideBlocks);
 
 var searchBtn = document.querySelector('.idBtn');
+var idInput = document.querySelector('#idInput');
+var hiddenSearchId = document.querySelector('#hiddenSearchId');
+var header = document.querySelector('.header');
 
-var headerSearch = function headerSearch(event) {
-  event.preventDefault(0);
-  if (event.target.classList.contains('idBtn')) {
-    searchByName(idInput.value);
-  }
-  if (idInput.value == '') return;
+var mainSearch = function mainSearch(evt) {
+  evt.preventDefault(0);
+  searchByName(idInput.value);
+  if (idInput.value === '') return;
 };
+var mobileSearch = function mobileSearch(evt) {
+  evt.preventDefault(0);
+  searchByName(hiddenSearchId.value);
+  if (hiddenSearchId.value === '') return;
+  hideBlocks();
+};
+
+searchBtn.addEventListener('click', mainSearch);
+hiddenSearchBtn.addEventListener('click', mobileSearch);
 
 var switchTabs = function switchTabs(event) {
   event.preventDefault();
@@ -218,44 +227,29 @@ var switchTabs = function switchTabs(event) {
     }
   }
 };
-
-// document.addEventListener("DOMContentLoaded", getPopularTV());
 tabs.addEventListener('click', switchTabs);
-searchBtn.addEventListener('click', headerSearch);
 
-/**Функция для переключения категорий в эсайде */
 var switchAsideCategorys = function switchAsideCategorys(evt) {
+  event.preventDefault();
+
   if (evt.target.classList.contains('aside__link')) {
-    tabsPane.forEach(function (tabs) {
-      return tabs.classList.remove('tabs__pane--active');
-    });
-    var _iteratorNormalCompletion2 = true;
-    var _didIteratorError2 = false;
-    var _iteratorError2 = undefined;
+    tabsPane.forEach(function (tab, i) {
 
-    try {
-      for (var _iterator2 = tabsPane[Symbol.iterator](), _step2; !(_iteratorNormalCompletion2 = (_step2 = _iterator2.next()).done); _iteratorNormalCompletion2 = true) {
-        var tab = _step2.value;
+      if (evt.target.getAttribute('href') !== tabLinks[i].getAttribute('href')) {
+        tabLinks[i].classList.remove('category-item--active');
+        tab.classList.remove('tabs__pane--active');
+      }
 
-        if (evt.target.getAttribute('href') === '#' + tab.id) {
-          tab.classList.add('tabs__pane--active');
-        }
+      if (evt.target.getAttribute('href') === '#' + tab.id && evt.target.getAttribute('href') === tabLinks[i].getAttribute('href')) {
+        tab.classList.add('tabs__pane--active');
+        tabLinks[i].classList.add('category-item--active');
         hideBlocks();
       }
-    } catch (err) {
-      _didIteratorError2 = true;
-      _iteratorError2 = err;
-    } finally {
-      try {
-        if (!_iteratorNormalCompletion2 && _iterator2.return) {
-          _iterator2.return();
-        }
-      } finally {
-        if (_didIteratorError2) {
-          throw _iteratorError2;
-        }
+
+      if (event.target.getAttribute('href') === '#pane-2') {
+        getPopular('tv', serials, compil);
       }
-    }
+    });
   }
 };
 asideList.addEventListener('click', switchAsideCategorys);
