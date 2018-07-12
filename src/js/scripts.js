@@ -85,4 +85,5 @@ const switchAsideCategorys = (evt) => {
     }
   }
 }
-asideList.addEventListener('click', switchAsideCategorys)
+asideList.addEventListener('click', switchAsideCategorys);
+

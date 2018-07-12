@@ -111,6 +111,7 @@ const renderFullCardTV = (id, category) => {
               axios.get(`https://api.themoviedb.org/3/${category}/${id}/credits?language=ru-RU&api_key=${apiKey}`)
                       .then(rsp => {
                 const { cast } = rsp.data;
+                console.log(rsp.data);
                 axios.get(`https://api.themoviedb.org/3/${category}/${id}/videos?api_key=${apiKey}`)
                 .then(respo => {
                   const key = respo.data.results[0].key;
@@ -131,3 +132,6 @@ const renderFullCardTV = (id, category) => {
 };
 
 getPopular('movie', result, compiled);
+
+//renderFullCard(427641, 'movie');
+//renderFullCardTV(48866, 'tv');
