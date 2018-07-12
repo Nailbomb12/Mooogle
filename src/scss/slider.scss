@@ -1,0 +1,115 @@
+// .screenshots-slider {
+//   //display: inline;
+//   display: flex;
+//   position: relative;
+//   justify-content: space-between;
+//   height: 200px;
+//   //width: 70%;
+//   padding: 0 15px;
+//   div {
+//     //width: 60%;
+//     margin-right: 10px;
+//   }
+//   div:last-of-type {
+//     margin-right: 0;
+//   }
+// }
+
+@import 'animation.scss';
+
+
+/* CONTENT SLIDER */
+#content-slider {
+	//width:100%;
+	//height:215px;
+	//margin: 0 auto;
+}
+/* SLIDER */
+#slider {
+	border:2px solid #eaeaea;
+	box-shadow:1px 1px 5px rgba(0,0,0,0.7);
+	height: 175px;
+	width: 300px;
+	margin: 0 auto;
+	overflow:visible;
+  position:relative;
+  @media(min-width: 1024px) {
+    width: 400px;
+    height: 240px;
+  }
+}
+.slider-img {
+  width: 100%;
+  height: auto;
+  @media(min-width: 1024px) {
+    width: 400px;
+    height: 235px;
+  }
+}
+#mask {
+	overflow: hidden;
+  height: 175px;
+  @media(min-width: 1024px) {
+    width: 400px;
+    height: 240px;
+  }
+}
+#slider ul {
+	margin:0;
+	padding:0;
+	position:relative;
+}
+#slider li {
+	height:170px;
+	width: 300px;
+	position: absolute;
+	top:-325px;
+  list-style:none;
+  @media(min-width: 1024px) {
+    width: 400px;
+    height: 235px;
+  }
+}
+#slider.actors li.firstanimation {
+	-moz-animation:cycle 25s linear infinite;	
+	-webkit-animation:cycle 25s linear infinite;		
+}
+
+
+#slider li.firstanimation {
+	-moz-animation:cycle 25s linear infinite;	
+	-webkit-animation:cycle 25s linear infinite;		
+}
+#slider li.secondanimation {
+	-moz-animation:cycletwo 25s linear infinite;
+	-webkit-animation:cycletwo 25s linear infinite;		
+}
+#slider li.thirdanimation {
+	-moz-animation:cyclethree 25s linear infinite;
+	-webkit-animation:cyclethree 25s linear infinite;		
+}
+#slider li.fourthanimation {
+	-moz-animation:cyclefour 25s linear infinite;
+	-webkit-animation:cyclefour 25s linear infinite;		
+}
+#slider li.fifthanimation {
+	-moz-animation:cyclefive 25s linear infinite;
+	-webkit-animation:cyclefive 25s linear infinite;		
+}
+
+#slider:hover li, 
+#slider:hover .progress-bar {
+	-moz-animation-play-state:paused;
+	-webkit-animation-play-state:paused;
+}
+
+/* PROGRESS BAR */
+.progress-bar { 
+	position:relative;
+	top:-5px;
+	width:100%; 
+	height:5px;
+	background:#000;
+	-moz-animation:fullexpand 25s ease-out infinite;
+	-webkit-animation:fullexpand 25s ease-out infinite;
+}

@@ -18,6 +18,8 @@ body {
 .header__menu {
   display: inline-block;
   margin-right: 10px;
+  line-height: 0;
+  // z-index: 1000;
   @media (min-width: 1440px){
     margin-right: 20px;
   }
