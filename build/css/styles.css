@@ -1753,10 +1753,6 @@ body {
   display: none;
 }
 
-.top-form .find-form {
-  display: flex;
-}
-
 .top-form--active {
   display: flex;
 }
@@ -1768,9 +1764,18 @@ body {
 .favorites {
   font-size: 2.0625rem;
   text-transform: uppercase;
-  text-align: center;
-  opacity: .3;
   font-weight: bold;
+  display: flex;
+  flex-direction: column;
+}
+
+.favtxt--opacity {
+  opacity: .3;
+  margin-bottom: 20px;
+}
+
+.favfilm-container {
+  margin-bottom: 20px;
 }
 
 .find-form {
@@ -2094,6 +2099,13 @@ body {
   .top-form {
     margin-bottom: 25px;
     font-size: 1.25rem;
+  }
+
+  .favorites-films,
+  .favorites-serials {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
   }
 
   .find-form__name {

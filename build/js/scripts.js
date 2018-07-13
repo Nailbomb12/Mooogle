@@ -1,5 +1,49 @@
 'use strict';
 
+var currentId = void 0;
+var favoriteMovieArr = [];
+var favoriteSerialsArr = [];
+var favoritesFilms = document.querySelector('.favorites-films');
+var favoritesSerials = document.querySelector('.favorites-serials');
+var favfilmTxt = document.querySelector('.fav-filmtxt');
+var favSerialTxt = document.querySelector('.fav-serialtxt');
+var favorites = document.querySelector('.favorites');
+
+///add to favorite from movies
+var toFavoriteMovie = function toFavoriteMovie(id) {
+    event.stopPropagation();
+    getCurrentCard(id, 'movie');
+};
+
+///add to favorites from serials
+
+var toFavoriteSerials = function toFavoriteSerials(id) {
+    event.stopPropagation();
+    getCurrentCard(id, 'tv');
+};
+
+var getCurrentCard = function getCurrentCard(id, category) {
+    axios.get('https://api.themoviedb.org/3/' + category + '/' + id + '?language=ru-RU&api_key=' + apiKey).then(function (response) {
+        if (category === 'movie') {
+            favoriteMovieArr.push(response.data);
+        }
+        if (category === 'tv') {
+            favoriteSerialsArr.push(response.data);
+        };
+    }).catch(function (err) {
+        console.log(err);
+    });
+};
+
+/// add to favorite from renderCard
+var toFavFilmOfCard = function toFavFilmOfCard() {
+    getCurrentCard(currentId, 'movie');
+};
+var toFavSerialOfCard = function toFavSerialOfCard() {
+    getCurrentCard(currentId, 'tv');
+};
+'use strict';
+
 var result = document.querySelector('.videos');
 var htmlTempl = document.querySelector('#Extendcard').textContent.trim();
 var compile = _.template(htmlTempl);
@@ -36,10 +80,12 @@ var searchByName = function searchByName(name) {
 };
 
 var showMovie = function showMovie(id) {
-    return renderFullCard(id, 'movie');
+    renderFullCard(id, 'movie');
+    currentId = id;
 };
 var showTV = function showTV(id) {
-    return renderFullCardTV(id, 'tv');
+    renderFullCardTV(id, 'tv');
+    currentId = id;
 };
 
 var updateViewMovieCard = function updateViewMovieCard(data, parent, template) {
@@ -127,7 +173,7 @@ var renderFullCardTV = function renderFullCardTV(id, category) {
 getPopular('movie', result, compiled);
 
 //renderFullCard(427641, 'movie');
-//renderFullCardTV(48866, 'tv');
+//renderFullCardTV(48866, 'tv')
 'use strict';
 
 var menu = document.querySelector('.header__menu');
@@ -148,28 +194,28 @@ tabLinks[0].classList.add('category-item--active');
 tabsPane[0].classList.add('tabs__pane--active');
 
 var toggleAside = function toggleAside() {
-  aside.classList.toggle('js-show-aside');
-  stub.classList.add('js-show-stub');
-  document.body.classList.add('ovfh');
+    aside.classList.toggle('js-show-aside');
+    stub.classList.add('js-show-stub');
+    document.body.classList.add('ovfh');
 };
 
 menu.addEventListener('click', toggleAside);
 
 var toggleHiddenBlock = function toggleHiddenBlock() {
-  hiddenBlock.classList.toggle('js-show-hidden');
-  stub.classList.add('js-show-stub');
-  document.body.classList.add('ovfh');
+    hiddenBlock.classList.toggle('js-show-hidden');
+    stub.classList.add('js-show-stub');
+    document.body.classList.add('ovfh');
 };
 
 hiddenBlockIcon.addEventListener('click', toggleHiddenBlock);
 
 var hideBlocks = function hideBlocks(evt) {
-  if (stub.classList.contains('js-show-stub')) {
-    hiddenBlock.classList.remove('js-show-hidden');
-    aside.classList.remove('js-show-aside');
-    stub.classList.remove('js-show-stub');
-    document.body.classList.remove('ovfh');
-  }
+    if (stub.classList.contains('js-show-stub')) {
+        hiddenBlock.classList.remove('js-show-hidden');
+        aside.classList.remove('js-show-aside');
+        stub.classList.remove('js-show-stub');
+        document.body.classList.remove('ovfh');
+    }
 };
 stub.addEventListener('click', hideBlocks);
 
@@ -179,81 +225,94 @@ var hiddenSearchId = document.querySelector('#hiddenSearchId');
 var header = document.querySelector('.header');
 
 var mainSearch = function mainSearch(evt) {
-  evt.preventDefault(0);
-  searchByName(idInput.value);
-  if (idInput.value === '') return;
+    evt.preventDefault(0);
+    searchByName(idInput.value);
+    if (idInput.value === '') return;
 };
 var mobileSearch = function mobileSearch(evt) {
-  evt.preventDefault(0);
-  searchByName(hiddenSearchId.value);
-  if (hiddenSearchId.value === '') return;
-  hideBlocks();
+    evt.preventDefault(0);
+    searchByName(hiddenSearchId.value);
+    if (hiddenSearchId.value === '') return;
+    hideBlocks();
 };
 
 searchBtn.addEventListener('click', mainSearch);
 hiddenSearchBtn.addEventListener('click', mobileSearch);
 
 var switchTabs = function switchTabs(event) {
-  event.preventDefault();
-  if (event.target !== tabs) {
-    tabLinks.forEach(function (link) {
-      return link.classList.remove('category-item--active');
-    });
-    event.target.classList.add('category-item--active');
-    tabsPane.forEach(function (tabs) {
-      return tabs.classList.remove('tabs__pane--active');
-    });
-    var _iteratorNormalCompletion = true;
-    var _didIteratorError = false;
-    var _iteratorError = undefined;
+    event.preventDefault();
+    if (event.target !== tabs) {
+        tabLinks.forEach(function (link) {
+            return link.classList.remove('category-item--active');
+        });
+        event.target.classList.add('category-item--active');
+        tabsPane.forEach(function (tabs) {
+            return tabs.classList.remove('tabs__pane--active');
+        });
+        var _iteratorNormalCompletion = true;
+        var _didIteratorError = false;
+        var _iteratorError = undefined;
 
-    try {
-      for (var _iterator = tabsPane[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
-        var tab = _step.value;
+        try {
+            for (var _iterator = tabsPane[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
+                var tab = _step.value;
 
-        if (event.target.getAttribute('href') === '#' + tab.id) tab.classList.add('tabs__pane--active');
-        if (event.target.getAttribute('href') === '#pane-1') getPopular('movie', result, compiled);
-        if (event.target.getAttribute('href') === '#pane-2') getPopular('tv', serials, compil);
-      }
-    } catch (err) {
-      _didIteratorError = true;
-      _iteratorError = err;
-    } finally {
-      try {
-        if (!_iteratorNormalCompletion && _iterator.return) {
-          _iterator.return();
+                if (event.target.getAttribute('href') === '#' + tab.id) tab.classList.add('tabs__pane--active');
+                if (event.target.getAttribute('href') === '#pane-1') getPopular('movie', result, compiled);
+                if (event.target.getAttribute('href') === '#pane-2') getPopular('tv', serials, compil);
+                if (event.target.getAttribute('href') === '#pane-3') {
+                    if (favoriteMovieArr.length !== 0 || favoriteSerialsArr.length !== 0) {
+                        favfilmTxt.textContent = '';
+                    }
+                    if (favoriteMovieArr.length !== 0) {
+                        favfilmTxt.textContent = 'favorite films';
+                        updateView(favoriteMovieArr, favoritesFilms, compiled);
+                    }
+                    if (favoriteSerialsArr.length !== 0) {
+                        favSerialTxt.textContent = 'favorite serials';
+                        updateView(favoriteSerialsArr, favoritesSerials, compil);
+                    }
+                };
+            }
+        } catch (err) {
+            _didIteratorError = true;
+            _iteratorError = err;
+        } finally {
+            try {
+                if (!_iteratorNormalCompletion && _iterator.return) {
+                    _iterator.return();
+                }
+            } finally {
+                if (_didIteratorError) {
+                    throw _iteratorError;
+                }
+            }
         }
-      } finally {
-        if (_didIteratorError) {
-          throw _iteratorError;
-        }
-      }
     }
-  }
 };
 tabs.addEventListener('click', switchTabs);
 
 var switchAsideCategorys = function switchAsideCategorys(evt) {
-  event.preventDefault();
+    event.preventDefault();
 
-  if (evt.target.classList.contains('aside__link')) {
-    tabsPane.forEach(function (tab, i) {
+    if (evt.target.classList.contains('aside__link')) {
+        tabsPane.forEach(function (tab, i) {
 
-      if (evt.target.getAttribute('href') !== tabLinks[i].getAttribute('href')) {
-        tabLinks[i].classList.remove('category-item--active');
-        tab.classList.remove('tabs__pane--active');
-      }
+            if (evt.target.getAttribute('href') !== tabLinks[i].getAttribute('href')) {
+                tabLinks[i].classList.remove('category-item--active');
+                tab.classList.remove('tabs__pane--active');
+            }
 
-      if (evt.target.getAttribute('href') === '#' + tab.id && evt.target.getAttribute('href') === tabLinks[i].getAttribute('href')) {
-        tab.classList.add('tabs__pane--active');
-        tabLinks[i].classList.add('category-item--active');
-        hideBlocks();
-      }
+            if (evt.target.getAttribute('href') === '#' + tab.id && evt.target.getAttribute('href') === tabLinks[i].getAttribute('href')) {
+                tab.classList.add('tabs__pane--active');
+                tabLinks[i].classList.add('category-item--active');
+                hideBlocks();
+            }
 
-      if (event.target.getAttribute('href') === '#pane-2') {
-        getPopular('tv', serials, compil);
-      }
-    });
-  }
+            if (event.target.getAttribute('href') === '#pane-2') {
+                getPopular('tv', serials, compil);
+            }
+        });
+    }
 };
 asideList.addEventListener('click', switchAsideCategorys);
