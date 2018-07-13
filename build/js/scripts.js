@@ -184,26 +184,26 @@ var idInput = document.querySelector('#idInput');
 var hiddenSearchId = document.querySelector('#hiddenSearchId');
 var header = document.querySelector('.header');
 
-var searchSwitcher = function searchSwitcher() {
+var searchSwitcher = function searchSwitcher(value) {
   var tabLinks = document.querySelectorAll('.category-item');
   tabLinks.forEach(function (link) {
     if (link.classList.contains('category-item--active') && link.hash === '#pane-1') {
-      searchByName(idInput.value, 'movie', compiled);
+      searchByName(value, 'movie', compiled);
     }
     if (link.classList.contains('category-item--active') && link.hash === '#pane-2') {
-      searchByName(idInput.value, 'tv', compil);
+      searchByName(value, 'tv', compil);
     }
   });
 };
 
 var mainSearch = function mainSearch(evt) {
   evt.preventDefault(0);
-  searchSwitcher();
+  searchSwitcher(idInput.value);
   if (idInput.value === '') return;
 };
 var mobileSearch = function mobileSearch(evt) {
   evt.preventDefault(0);
-  searchSwitcher();
+  searchSwitcher(hiddenSearchId.value);
   if (hiddenSearchId.value === '') return;
   hideBlocks();
 };
