@@ -27,9 +27,17 @@ var getPopular = function getPopular(category, parent, template) {
     });
 };
 
-var searchByName = function searchByName(name) {
-    axios.get('https://api.themoviedb.org/3/search/movie?include_adult=false&page=1&query=' + name + '&language=ru-RU&api_key=' + apiKey).then(function (response) {
-        updateView(response.data.results, result, compiled);
+var searchByName = function searchByName(name, category, template) {
+    axios.get('https://api.themoviedb.org/3/search/' + category + '?include_adult=false&page=1&query=' + name + '&language=ru-RU&api_key=' + apiKey).then(function (response) {
+        var tabLinks = document.querySelectorAll('.category-item');
+        tabLinks.forEach(function (link) {
+            if (link.classList.contains('category-item--active') && link.hash === '#pane-1') {
+                updateView(response.data.results, result, template);
+            }
+            if (link.classList.contains('category-item--active') && link.hash === '#pane-2') {
+                updateView(response.data.results, serials, template);
+            }
+        });
     }).catch(function (err) {
         console.log(err);
     });
@@ -100,7 +108,6 @@ var renderFullCardTV = function renderFullCardTV(id, category) {
             number_of_episodes = _response$data2.number_of_episodes,
             original_name = _response$data2.original_name,
             homepage = _response$data2.homepage;
-        //console.log(response.data);
 
         axios.get('https://api.themoviedb.org/3/' + category + '/' + id + '/images?api_key=' + apiKey).then(function (resp) {
             var backdrops = resp.data.backdrops;
@@ -108,7 +115,6 @@ var renderFullCardTV = function renderFullCardTV(id, category) {
             axios.get('https://api.themoviedb.org/3/' + category + '/' + id + '/credits?language=ru-RU&api_key=' + apiKey).then(function (rsp) {
                 var cast = rsp.data.cast;
 
-                console.log(rsp.data);
                 axios.get('https://api.themoviedb.org/3/' + category + '/' + id + '/videos?api_key=' + apiKey).then(function (respo) {
                     var key = respo.data.results[0].key;
                     updateViewMovieCard({ title: title, date: date, poster: poster, backdrops: backdrops, countries: countries, cast: cast, created_by: created_by, genres: genres, runtime: runtime, overview: overview, key: key, number_of_seasons: number_of_seasons, last_air_date: last_air_date, number_of_episodes: number_of_episodes, original_name: original_name, homepage: homepage }, serials, compileTvCard);
@@ -178,15 +184,27 @@ var idInput = document.querySelector('#idInput');
 var hiddenSearchId = document.querySelector('#hiddenSearchId');
 var header = document.querySelector('.header');
 
+var searchSwitcher = function searchSwitcher(value) {
+  var tabLinks = document.querySelectorAll('.category-item');
+  tabLinks.forEach(function (link) {
+    if (link.classList.contains('category-item--active') && link.hash === '#pane-1') {
+      searchByName(value, 'movie', compiled);
+    }
+    if (link.classList.contains('category-item--active') && link.hash === '#pane-2') {
+      searchByName(value, 'tv', compil);
+    }
+  });
+};
+
 var mainSearch = function mainSearch(evt) {
   evt.preventDefault(0);
-  searchByName(idInput.value);
+  searchSwitcher(idInput.value);
   if (idInput.value === '') return;
   idInput.value = '';
 };
 var mobileSearch = function mobileSearch(evt) {
   evt.preventDefault(0);
-  searchByName(hiddenSearchId.value);
+  searchSwitcher(hiddenSearchId.value);
   if (hiddenSearchId.value === '') return;
   hideBlocks();
   hiddenSearchId.value = '';
