@@ -46,14 +46,26 @@ const idInput = document.querySelector('#idInput');
 const hiddenSearchId = document.querySelector('#hiddenSearchId');
 const header = document.querySelector('.header');
 
+const searchSwitcher = () => {
+  const tabLinks = document.querySelectorAll('.category-item');
+    tabLinks.forEach(link => {
+      if (link.classList.contains('category-item--active') && (link.hash === '#pane-1')) {
+        searchByName(idInput.value, 'movie', compiled);
+      }
+      if (link.classList.contains('category-item--active') && (link.hash === '#pane-2')) {
+        searchByName(idInput.value, 'tv', compil);
+      }
+  });
+};
+
 const mainSearch = (evt) => {
   evt.preventDefault(0);
-  searchByName(idInput.value);
+  searchSwitcher();
   if (idInput.value === '') return;
 };
 const mobileSearch = (evt) => {
   evt.preventDefault(0);
-  searchByName(hiddenSearchId.value);
+  searchSwitcher();
   if (hiddenSearchId.value === '') return;
   hideBlocks();
 };
