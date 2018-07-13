@@ -50,12 +50,14 @@ const mainSearch = (evt) => {
   evt.preventDefault(0);
   searchByName(idInput.value);
   if (idInput.value === '') return;
+  idInput.value = '';
 };
 const mobileSearch = (evt) => {
   evt.preventDefault(0);
   searchByName(hiddenSearchId.value);
   if (hiddenSearchId.value === '') return;
   hideBlocks();
+  hiddenSearchId.value = '';
 };
 
 searchBtn.addEventListener('click', mainSearch);

@@ -132,5 +132,5 @@ const renderFullCardTV = (id, category) => {
 
 getPopular('movie', result, compiled);
 
-//renderFullCard(427641, 'movie');
+// renderFullCard(427641, 'movie');
 //renderFullCardTV(48866, 'tv');

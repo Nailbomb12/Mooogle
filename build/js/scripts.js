@@ -126,7 +126,7 @@ var renderFullCardTV = function renderFullCardTV(id, category) {
 
 getPopular('movie', result, compiled);
 
-//renderFullCard(427641, 'movie');
+// renderFullCard(427641, 'movie');
 //renderFullCardTV(48866, 'tv');
 'use strict';
 
@@ -182,12 +182,14 @@ var mainSearch = function mainSearch(evt) {
   evt.preventDefault(0);
   searchByName(idInput.value);
   if (idInput.value === '') return;
+  idInput.value = '';
 };
 var mobileSearch = function mobileSearch(evt) {
   evt.preventDefault(0);
   searchByName(hiddenSearchId.value);
   if (hiddenSearchId.value === '') return;
   hideBlocks();
+  hiddenSearchId.value = '';
 };
 
 searchBtn.addEventListener('click', mainSearch);
