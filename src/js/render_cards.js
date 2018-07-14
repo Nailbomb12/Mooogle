@@ -45,8 +45,23 @@ const searchByName = (name, category, template) => {
     })
 };
 
-const showMovie = (id) => renderFullCard(id, 'movie');
-const showTV = (id) => renderFullCardTV(id, 'tv');
+const tabFavorRender = (tabNum) => {
+    tabLinks.forEach(link => {
+        if (link.classList.contains('category-item--active') && (link.hash === '#pane-3')) {
+            tabsPane[tabNum].classList.add('tabs__pane--active');
+            tabsPane[2].classList.remove('tabs__pane--active');
+        };
+    });
+};
+
+const showMovie = (id) => {
+    renderFullCard(id, 'movie');
+    tabFavorRender(0);
+};
+const showTV = (id) => {
+    renderFullCardTV(id, 'tv');
+    tabFavorRender(1);
+};
 
 const updateViewMovieCard = (data, parent, template) => {
   let htmlString = template(data);
@@ -65,7 +80,8 @@ const renderFullCard = (id, category) => {
         release_date: date,
         runtime,
         tagline,
-        title
+        title,
+        id
         } = response.data;
         axios.get(`https://api.themoviedb.org/3/${category}/${id}/images?api_key=${apiKey}`)
                 .then(resp => {
@@ -76,7 +92,7 @@ const renderFullCard = (id, category) => {
                 axios.get(`https://api.themoviedb.org/3/${category}/${id}/videos?api_key=${apiKey}`)
                 .then(respo => {
                 const key = respo.data.results[0].key;
-                updateViewMovieCard({ title, genres, overview, poster, countries, date, runtime, tagline, backdrops, cast, crew, key }, result, compile);
+                updateViewMovieCard({ title, genres, overview, poster, countries, date, runtime, tagline, backdrops, cast, crew, key, id }, result, compile);
                 })
             })
             .catch(e => {
@@ -109,7 +125,8 @@ const renderFullCardTV = (id, category) => {
           last_air_date,
           number_of_episodes,
           original_name,
-          homepage
+          homepage,
+          id
         } = response.data;
         axios.get(`https://api.themoviedb.org/3/${category}/${id}/images?api_key=${apiKey}`)
                   .then(resp => {
@@ -120,7 +137,7 @@ const renderFullCardTV = (id, category) => {
                 axios.get(`https://api.themoviedb.org/3/${category}/${id}/videos?api_key=${apiKey}`)
                 .then(respo => {
                   const key = respo.data.results[0].key;
-                  updateViewMovieCard({ title, date, poster, backdrops, countries, cast, created_by, genres, runtime, overview, key, number_of_seasons, last_air_date, number_of_episodes, original_name, homepage }, serials, compileTvCard );
+                  updateViewMovieCard({ title, date, poster, backdrops, countries, cast, created_by, genres, runtime, overview, key, number_of_seasons, last_air_date, number_of_episodes, original_name, homepage, id }, serials, compileTvCard );
                     })
                 })
                 .catch(e => {

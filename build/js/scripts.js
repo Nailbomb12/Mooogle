@@ -1,25 +1,22 @@
 'use strict';
 
-var currentId = void 0;
-var favoriteMovieArr = [];
-var favoriteSerialsArr = [];
 var favoritesFilms = document.querySelector('.favorites-films');
 var favoritesSerials = document.querySelector('.favorites-serials');
 var favfilmTxt = document.querySelector('.fav-filmtxt');
 var favSerialTxt = document.querySelector('.fav-serialtxt');
 var favorites = document.querySelector('.favorites');
+var favoriteMovieArr = [];
+var favoriteSerialsArr = [];
+var idArr = [];
 
-///add to favorite from movies
-var toFavoriteMovie = function toFavoriteMovie(id) {
+///add to favorites tab
+
+var addToFavorites = function addToFavorites(id, category) {
     event.stopPropagation();
-    getCurrentCard(id, 'movie');
-};
-
-///add to favorites from serials
-
-var toFavoriteSerials = function toFavoriteSerials(id) {
-    event.stopPropagation();
-    getCurrentCard(id, 'tv');
+    if (idArr.includes(id)) return;else {
+        idArr.push(id);
+        getCurrentCard(id, category);
+    }
 };
 
 var getCurrentCard = function getCurrentCard(id, category) {
@@ -33,14 +30,6 @@ var getCurrentCard = function getCurrentCard(id, category) {
     }).catch(function (err) {
         console.log(err);
     });
-};
-
-/// add to favorite from renderCard
-var toFavFilmOfCard = function toFavFilmOfCard() {
-    getCurrentCard(currentId, 'movie');
-};
-var toFavSerialOfCard = function toFavSerialOfCard() {
-    getCurrentCard(currentId, 'tv');
 };
 'use strict';
 
@@ -87,11 +76,22 @@ var searchByName = function searchByName(name, category, template) {
     });
 };
 
+var tabFavorRender = function tabFavorRender(tabNum) {
+    tabLinks.forEach(function (link) {
+        if (link.classList.contains('category-item--active') && link.hash === '#pane-3') {
+            tabsPane[tabNum].classList.add('tabs__pane--active');
+            tabsPane[2].classList.remove('tabs__pane--active');
+        };
+    });
+};
+
 var showMovie = function showMovie(id) {
-    return renderFullCard(id, 'movie');
+    renderFullCard(id, 'movie');
+    tabFavorRender(0);
 };
 var showTV = function showTV(id) {
-    return renderFullCardTV(id, 'tv');
+    renderFullCardTV(id, 'tv');
+    tabFavorRender(1);
 };
 
 var updateViewMovieCard = function updateViewMovieCard(data, parent, template) {
@@ -110,7 +110,8 @@ var renderFullCard = function renderFullCard(id, category) {
             date = _response$data.release_date,
             runtime = _response$data.runtime,
             tagline = _response$data.tagline,
-            title = _response$data.title;
+            title = _response$data.title,
+            id = _response$data.id;
 
         axios.get('https://api.themoviedb.org/3/' + category + '/' + id + '/images?api_key=' + apiKey).then(function (resp) {
             var backdrops = resp.data.backdrops;
@@ -122,7 +123,7 @@ var renderFullCard = function renderFullCard(id, category) {
 
                 axios.get('https://api.themoviedb.org/3/' + category + '/' + id + '/videos?api_key=' + apiKey).then(function (respo) {
                     var key = respo.data.results[0].key;
-                    updateViewMovieCard({ title: title, genres: genres, overview: overview, poster: poster, countries: countries, date: date, runtime: runtime, tagline: tagline, backdrops: backdrops, cast: cast, crew: crew, key: key }, result, compile);
+                    updateViewMovieCard({ title: title, genres: genres, overview: overview, poster: poster, countries: countries, date: date, runtime: runtime, tagline: tagline, backdrops: backdrops, cast: cast, crew: crew, key: key, id: id }, result, compile);
                 });
             }).catch(function (e) {
                 console.log(e);
@@ -151,7 +152,8 @@ var renderFullCardTV = function renderFullCardTV(id, category) {
             last_air_date = _response$data2.last_air_date,
             number_of_episodes = _response$data2.number_of_episodes,
             original_name = _response$data2.original_name,
-            homepage = _response$data2.homepage;
+            homepage = _response$data2.homepage,
+            id = _response$data2.id;
 
         axios.get('https://api.themoviedb.org/3/' + category + '/' + id + '/images?api_key=' + apiKey).then(function (resp) {
             var backdrops = resp.data.backdrops;
@@ -161,7 +163,7 @@ var renderFullCardTV = function renderFullCardTV(id, category) {
 
                 axios.get('https://api.themoviedb.org/3/' + category + '/' + id + '/videos?api_key=' + apiKey).then(function (respo) {
                     var key = respo.data.results[0].key;
-                    updateViewMovieCard({ title: title, date: date, poster: poster, backdrops: backdrops, countries: countries, cast: cast, created_by: created_by, genres: genres, runtime: runtime, overview: overview, key: key, number_of_seasons: number_of_seasons, last_air_date: last_air_date, number_of_episodes: number_of_episodes, original_name: original_name, homepage: homepage }, serials, compileTvCard);
+                    updateViewMovieCard({ title: title, date: date, poster: poster, backdrops: backdrops, countries: countries, cast: cast, created_by: created_by, genres: genres, runtime: runtime, overview: overview, key: key, number_of_seasons: number_of_seasons, last_air_date: last_air_date, number_of_episodes: number_of_episodes, original_name: original_name, homepage: homepage, id: id }, serials, compileTvCard);
                 });
             }).catch(function (e) {
                 console.log(e);
@@ -283,11 +285,11 @@ var switchTabs = function switchTabs(event) {
                         favfilmTxt.textContent = '';
                     }
                     if (favoriteMovieArr.length !== 0) {
-                        favfilmTxt.textContent = 'favorite films';
+                        favfilmTxt.textContent = 'Фильмы';
                         updateView(favoriteMovieArr, favoritesFilms, compiled);
                     }
                     if (favoriteSerialsArr.length !== 0) {
-                        favSerialTxt.textContent = 'favorite serials';
+                        favSerialTxt.textContent = 'Сериалы';
                         updateView(favoriteSerialsArr, favoritesSerials, compil);
                     }
                 };

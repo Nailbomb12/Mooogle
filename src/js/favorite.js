@@ -1,30 +1,28 @@
-let currentId;
-let favoriteMovieArr = [];
-let favoriteSerialsArr = [];
 const favoritesFilms = document.querySelector('.favorites-films');
 const favoritesSerials = document.querySelector('.favorites-serials');
 const favfilmTxt = document.querySelector('.fav-filmtxt');
 const favSerialTxt = document.querySelector('.fav-serialtxt');
 const favorites = document.querySelector('.favorites');
+const favoriteMovieArr = [];
+const favoriteSerialsArr = [];
+const idArr = [];
 
-///add to favorite from movies
-const toFavoriteMovie = (id) => {
+///add to favorites tab
+
+const addToFavorites = (id, category) => {
     event.stopPropagation();
-    getCurrentCard(id, 'movie')
-}
-
-///add to favorites from serials
-
-const toFavoriteSerials = (id) => {
-    event.stopPropagation();
-    getCurrentCard(id, 'tv')
-}
+    if (idArr.includes(id)) return;
+    else {
+        idArr.push(id);
+        getCurrentCard(id, category);
+    }
+};
 
 const getCurrentCard = (id, category) => {
     axios.get(`https://api.themoviedb.org/3/${category}/${id}?language=ru-RU&api_key=${apiKey}`)
         .then(response => {
             if (category === 'movie') {
-                favoriteMovieArr.push(response.data)
+                favoriteMovieArr.push(response.data);
             }
             if (category === 'tv') {
                 favoriteSerialsArr.push(response.data);
@@ -34,11 +32,3 @@ const getCurrentCard = (id, category) => {
             console.log(err)
         })
 };
-
-/// add to favorite from renderCard
-const toFavFilmOfCard = () => {
-    getCurrentCard(currentId, 'movie');
-}
-const toFavSerialOfCard = () => {
-    getCurrentCard(currentId, 'tv');
-}
