@@ -27,10 +27,18 @@ const getPopular = (category, parent, template) => {
     })
 };
 
-const searchByName = (name) => {
-    axios.get(`https://api.themoviedb.org/3/search/movie?include_adult=false&page=1&query=${name}&language=ru-RU&api_key=${apiKey}`)
+const searchByName = (name, category, template) => {
+    axios.get(`https://api.themoviedb.org/3/search/${category}?include_adult=false&page=1&query=${name}&language=ru-RU&api_key=${apiKey}`)
     .then(response => {
-        updateView(response.data.results, result, compiled);
+        const tabLinks = document.querySelectorAll('.category-item');
+        tabLinks.forEach(link => {
+            if (link.classList.contains('category-item--active') && (link.hash === '#pane-1')) {
+                updateView(response.data.results, result, template);
+            }
+            if (link.classList.contains('category-item--active') && (link.hash === '#pane-2')) {
+                updateView(response.data.results, serials, template);
+            }
+        });
     })
     .catch(err => {
         console.log(err);
@@ -103,14 +111,12 @@ const renderFullCardTV = (id, category) => {
           original_name,
           homepage
         } = response.data;
-        //console.log(response.data);
         axios.get(`https://api.themoviedb.org/3/${category}/${id}/images?api_key=${apiKey}`)
                   .then(resp => {
               const { backdrops } = resp.data;
               axios.get(`https://api.themoviedb.org/3/${category}/${id}/credits?language=ru-RU&api_key=${apiKey}`)
                       .then(rsp => {
                 const { cast } = rsp.data;
-                console.log(rsp.data);
                 axios.get(`https://api.themoviedb.org/3/${category}/${id}/videos?api_key=${apiKey}`)
                 .then(respo => {
                   const key = respo.data.results[0].key;
