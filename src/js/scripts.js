@@ -2,63 +2,132 @@ const menu = document.querySelector('.header__menu');
 const stub = document.querySelector('.stub');
 const aside = document.querySelector('.aside');
 const asideList = document.querySelector('.aside__list');
-const asideItem = document.querySelectorAll('.aside__item')
-const category = document.querySelectorAll('.category__list');
-const searchBtn = document.querySelector('.hidden-search');
+const asideItem = document.querySelectorAll('.aside__item');
+const asideLink = document.querySelectorAll('.aside__link')
+const tabs = document.querySelector('.category-list');
+const tabLinks = document.querySelectorAll('.category-item');
+const tabsPane = document.querySelectorAll('.tabs__pane');
+const serials = document.querySelector('.tv-serials');
+const hiddenBlockIcon = document.querySelector('.hidden-search');
+const hiddenSearchBtn = document.querySelector('.hidden__form-send');
 const hiddenBlock = document.querySelector('.hidden');
 
+tabLinks[0].classList.add('category-item--active');
+tabsPane[0].classList.add('tabs__pane--active');
 
 const toggleAside = () => {
-  aside.classList.toggle('js-show-aside');
-  stub.classList.add('js-show-stub')
+    aside.classList.toggle('js-show-aside');
+    stub.classList.add('js-show-stub');
+    document.body.classList.add('ovfh');
 }
 
 menu.addEventListener('click', toggleAside);
 
-const toggleCategorys = (evt) => {
-  if (evt.target.classList.contains('aside__item')){
-    evt.target.classList.toggle('aside__item-active');
-    evt.target.firstElementChild.classList.toggle('js-show-category-list');
-  }
-}
-
-asideList.addEventListener('click', toggleCategorys);
-
 const toggleHiddenBlock = () => {
-  hiddenBlock.classList.toggle('js-show-hidden');
-  stub.classList.add('js-show-stub')
+    hiddenBlock.classList.toggle('js-show-hidden');
+    stub.classList.add('js-show-stub');
+    document.body.classList.add('ovfh');
 }
 
-searchBtn.addEventListener('click', toggleHiddenBlock);
+hiddenBlockIcon.addEventListener('click', toggleHiddenBlock);
 
 const hideBlocks = (evt) => {
-  if (stub.classList.contains('js-show-stub')){
-    hiddenBlock.classList.remove('js-show-hidden');
-    aside.classList.remove('js-show-aside');
-    stub.classList.remove('js-show-stub');
-  }
-  // if (evt.target.clssList.contains9('hidden__logo-block'))
+    if (stub.classList.contains('js-show-stub')) {
+        hiddenBlock.classList.remove('js-show-hidden');
+        aside.classList.remove('js-show-aside');
+        stub.classList.remove('js-show-stub');
+        document.body.classList.remove('ovfh');
+    }
 }
-// const logo = document.querySelector('.header__logo-link');
-// logo.addEventListener('click', getPopular());
 stub.addEventListener('click', hideBlocks);
-function categorySwitcher() {
-  const categories = document.querySelector('.category-list'); //
-  const categoryItems = document.querySelectorAll('.category-item'); //
-  const videoItem = document.querySelectorAll('.videos-item');
-  const currentCategory = document.querySelector('.сategory');
-  const topForm = document.querySelector('.top-form');
 
-  categories.addEventListener('click', onCetegoryClick);
+const searchBtn = document.querySelector('.idBtn');
+const idInput = document.querySelector('#idInput');
+const hiddenSearchId = document.querySelector('#hiddenSearchId');
+const header = document.querySelector('.header');
 
-  function onCetegoryClick(event) {
-    topForm.classList.add('top-form--active');
-    categoryItems.forEach(function(elem) {
-      elem.classList.remove('category-item--active');
-    })
-    event.target.classList.add('category-item--active');
-    currentCategory.textContent = event.target.textContent;
-  }
+const searchSwitcher = (value) => {
+    const tabLinks = document.querySelectorAll('.category-item');
+    tabLinks.forEach(link => {
+        if (link.classList.contains('category-item--active') && (link.hash === '#pane-1')) {
+            searchByName(value, 'movie', compiled);
+        }
+        if (link.classList.contains('category-item--active') && (link.hash === '#pane-2')) {
+            searchByName(value, 'tv', compil);
+        }
+    });
+};
+
+const mainSearch = (evt) => {
+    evt.preventDefault(0);
+    searchSwitcher(idInput.value);
+    if (idInput.value === '') return;
+    idInput.value = '';
+};
+const mobileSearch = (evt) => {
+    evt.preventDefault(0);
+    searchSwitcher(hiddenSearchId.value);
+    if (hiddenSearchId.value === '') return;
+    hideBlocks();
+    hiddenSearchId.value = '';
+};
+
+searchBtn.addEventListener('click', mainSearch);
+hiddenSearchBtn.addEventListener('click', mobileSearch);
+
+const switchTabs = (event) => {
+    event.preventDefault();
+    if (event.target !== tabs) {
+        tabLinks.forEach(link => link.classList.remove('category-item--active'));
+        event.target.classList.add('category-item--active');
+        tabsPane.forEach(tabs => tabs.classList.remove('tabs__pane--active'));
+        for (let tab of tabsPane) {
+            if (event.target.getAttribute('href') === ('#' + tab.id))
+                tab.classList.add('tabs__pane--active');
+            if (event.target.getAttribute('href') === '#pane-1')
+                getPopular('movie', result, compiled);
+            if (event.target.getAttribute('href') === '#pane-2')
+                getPopular('tv', serials, compil);
+            if (event.target.getAttribute('href') === '#pane-3') {
+                if (favoriteMovieArr.length !== 0 || favoriteSerialsArr.length !== 0) {
+                    favfilmTxt.textContent = '';
+                }
+                if (favoriteMovieArr.length !== 0) {
+                    favfilmTxt.textContent = 'Фильмы';
+                    updateView(favoriteMovieArr, favoritesFilms, compiled);
+                }
+                if (favoriteSerialsArr.length !== 0) {
+                    favSerialTxt.textContent = 'Сериалы';
+                    updateView(favoriteSerialsArr, favoritesSerials, compil);
+                }
+            };
+        }
+    }
 }
+tabs.addEventListener('click', switchTabs);
 
-categorySwitcher();
+const switchAsideCategorys = (evt) => {
+    event.preventDefault();
+
+    if (evt.target.classList.contains('aside__link')) {
+        tabsPane.forEach((tab, i) => {
+
+            if (evt.target.getAttribute('href') !== tabLinks[i].getAttribute('href')) {
+                tabLinks[i].classList.remove('category-item--active');
+                tab.classList.remove('tabs__pane--active');
+            }
+
+            if (evt.target.getAttribute('href') === ('#' + tab.id) &&
+                evt.target.getAttribute('href') === tabLinks[i].getAttribute('href')) {
+                tab.classList.add('tabs__pane--active');
+                tabLinks[i].classList.add('category-item--active');
+                hideBlocks();
+            }
+
+            if (event.target.getAttribute('href') === '#pane-2') {
+                getPopular('tv', serials, compil);
+            }
+        });
+    }
+}
+asideList.addEventListener('click', switchAsideCategorys);

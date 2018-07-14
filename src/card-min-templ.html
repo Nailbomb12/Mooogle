@@ -1,0 +1,23 @@
+<script type="text/template" id="card">
+    <div class="render-card videos__preview film-preview " style="background-image: url('https://image.tmdb.org/t/p/w400/<%- poster_path%>')" onclick="showMovie(<%- id%>)">
+        <svg class="icon" onclick='addToFavorites(<%- id%>, "movie")'>
+      <use href="img/star-jingle-sprite.svg#mark-as-favorite-star " ></use>
+    </svg>
+        <h1 class="videos__name">
+            <%- title%> (
+                <%- release_date.slice(0, -6)%>)
+        </h1>
+    </div>
+</script>
+
+<script type="text/template" id="cardTV">
+    <div class="render-card videos__preview film-preview " style="background-image: url('https://image.tmdb.org/t/p/w400/<%- poster_path%>')" onclick="showTV(<%- id%>)">
+        <svg class="icon" onclick='addToFavorites(<%- id%>, "tv")'>
+      <use href="img/star-jingle-sprite.svg#mark-as-favorite-star " ></use>
+    </svg>
+        <h1 class="videos__name">
+            <%- name%> (
+                <%- first_air_date.slice(0, -6)%>)
+        </h1>
+    </div>
+</script>

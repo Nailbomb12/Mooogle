@@ -1,16 +1,28 @@
+html,
 body {
+  height: 100%;
   position: relative;
-  min-height: 100vh;
+}
+.ovfh {
+  overflow: hidden;
 }
 .header__nav {
   background-color: $main-color;
   padding: 20px;
   display: flex;
   justify-content: space-between;
+  @media (min-width: 1440px){
+    padding: 30px;
+  }
 }
 .header__menu {
   display: inline-block;
   margin-right: 10px;
+  line-height: 0;
+  // z-index: 1000;
+  @media (min-width: 1440px){
+    margin-right: 20px;
+  }
 }
 .header__menu:hover {
   cursor: pointer;
@@ -25,6 +37,10 @@ body {
     width: 27px;
     height: 19px;
   }
+  @media (min-width: 1440px){
+    width: 33px;
+    height: 25px;
+  }
 }
 .header__logo {
   height: 25px;
@@ -34,15 +50,21 @@ body {
     width: 35px;
     height: 32px;
   }
+  @media (min-width: 1440px){
+    width: 41px;
+    height: 38px;
+  }
 }
 .header__logo-link {
-  // font-size: rem(20);
   font-size: rem(20);
   font-family: $med-font;
   color: $header_text_color;
   text-decoration: none;
   @media (min-width: 480px) {
     font-size: rem(25);
+  }
+  @media (min-width: 1440px){
+    font-size: rem(31);
   }
 }
 .header__form {
@@ -68,6 +90,9 @@ body {
     display: inline-block;
     font-size: rem(16);
   }
+  @media (min-width: 1440px){
+    font-size: rem(22);
+  }
 }
 .header__form input[type="search"]:focus,
 .header__form input[type="search"]:active,
@@ -84,6 +109,9 @@ input[type="search"]:-webkit-autofill {
   color: #372c48;
   font-size: rem(14);
   font-family: $med-font;
+  @media (min-width: 1440px){
+    font-size: rem(22);
+  }
  } 
  .header__form input[type="search"]::-ms-clear {
   background: #333;
@@ -98,6 +126,10 @@ input[type="search"]:-webkit-autofill {
   }
   @media (min-width: 768px) {
     margin-right: 5px;
+  }
+  @media (min-width: 1440px){
+    width: 26px;
+    height: 26px;
   }
 }
 .hidden-search {
@@ -220,10 +252,13 @@ input:focus {
 .stub {
   background-color: rgba(0,0,0,0.3);
   width: 100%;
-  height: 100vh;
+  min-height: 100%;
+  padding-bottom: 100px;
   position: absolute;
   top: 0;
   left: 0;
+  bottom: 0;
+  right: 0;
   z-index: 99;
   display: none;
 }
@@ -233,20 +268,24 @@ input:focus {
 
 .aside {
   width: 250px;
-  min-height: 100vh;
+  min-height: 100%;
   background-color: #fff;
   position: absolute;
   top: 0;
   left: -100%;
-  transition: .5s all;
+  transition: .6s all;
   z-index: 100;
   @media (min-width: 480px){
     width: 300px;
+  }
+  @media (min-width: 1024px){
+    width: 430px;
   }
 }
 .js-show-aside {
   left: 0;
 }
+
 .aside-logo {
   display: flex;
   justify-content: center;
@@ -292,13 +331,14 @@ input:focus {
   margin-bottom: 20px;
   display: table;
 }
+.aside__link {
+  text-decoration: none;
+  color: $header_text_color;
+}
 .aside__item:last-child{
   margin-bottom: 0;
 }
-.aside__item:hover {
-  cursor: pointer;
-}
-.aside__item::before {
+.aside__link::before {
   content: url(../img/folder-21.svg);
   display: inline-block;
   width: 23px;
@@ -310,54 +350,23 @@ input:focus {
     height: 25px;
   }
 }
-.aside__item-active {
-  color: $main-color;
-}
-.aside__item-active::before {
+.aside__link:hover::before{
   content: url(../img/folder-20.svg);
-  display: inline-block;
-  width: 20px;
-  height: 20px;
-  fill: $main-color;
-  position: absolute;
-  left: -60px;
-  @media (min-width: 480px){
-    width: 30px;
-    height: 25px;
-  }
-}
-.favorites::before {
-  content: url(../img/star.svg);
-  display: inline-block;
-  width: 23px;
-  height: 20px;
-  position: absolute;
-  left: -60px;
-  fill: red;
-  @media (min-width: 480px){
-    width: 30px;
-    height: 25px;
-  }
-}
-.category__list {
-  padding-left: 10px;
-  transition: 1s max-height;
-  display: none;
-}
-.js-show-category-list{
-  display: block;
 }
 
-
-.category__list-link {
-  text-decoration: none;
-  color: $header_text_color;
-  font-size: rem(12);
-  font-family: $med-font;
-  @media (min-width: 480px){
-    font-size: rem(15);
+.aside__link:hover {
+    color: $main-color;
   }
-}
-.category__list-link:hover {
-  color: $main-color;
-}
+// .aside__link-active::before {
+//   content: url(../img/folder-20.svg);
+//   display: inline-block;
+//   width: 20px;
+//   height: 20px;
+//   fill: $main-color;
+//   position: absolute;
+//   left: -60px;
+//   @media (min-width: 480px){
+//     width: 30px;
+//     height: 25px;
+//   }
+// }

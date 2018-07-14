@@ -6,9 +6,11 @@
 @import 'film_card.scss';
 @import 'gallary.scss';
 @import '_footer.scss';
+@import '_tabs-pane.scss';
+@import 'animation.scss';
+@import 'slider.scss';
+
 body {
   min-width: 320px;
   font-family: $reg-font;
-}
-
-
+};
