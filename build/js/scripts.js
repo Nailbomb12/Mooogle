@@ -5,27 +5,47 @@ var favoritesSerials = document.querySelector('.favorites-serials');
 var favfilmTxt = document.querySelector('.fav-filmtxt');
 var favSerialTxt = document.querySelector('.fav-serialtxt');
 var favorites = document.querySelector('.favorites');
-var favoriteMovieArr = [];
-var favoriteSerialsArr = [];
+// const favoriteMovieArr = [];
+// const favoriteSerialsArr = [];
 var idArr = [];
 
 ///add to favorites tab
 
-var addToFavorites = function addToFavorites(id, category) {
+var addToFavorites = function addToFavorites(id, category, event) {
     event.stopPropagation();
     if (idArr.includes(id)) return;else {
         idArr.push(id);
         getCurrentCard(id, category);
     }
 };
+// Метод для удаления элемента массива
+Array.prototype.remove = function (value) {
+    var idx = this.indexOf(value);
+    if (idx != -1) {
+        return this.splice(idx, 1);
+    }
+    return false;
+};
+
+var removeFromFavorites = function removeFromFavorites(id, event) {
+    event.stopPropagation();
+    tabLinks.forEach(function (link) {
+        if (link.classList.contains('category-item--active') && link.hash === '#pane-3') {
+            idArr.remove(id);
+            event.currentTarget.parentNode.remove();
+        }
+    });
+};
 
 var getCurrentCard = function getCurrentCard(id, category) {
     axios.get('https://api.themoviedb.org/3/' + category + '/' + id + '?language=ru-RU&api_key=' + apiKey).then(function (response) {
         if (category === 'movie') {
-            favoriteMovieArr.push(response.data);
+            //favoriteMovieArr.push(response.data);
+            addCardToFav(response.data, favoritesFilms, compiled);
         }
         if (category === 'tv') {
-            favoriteSerialsArr.push(response.data);
+            //favoriteSerialsArr.push(response.data);
+            addCardToFav(response.data, favoritesSerials, compil);
         };
     }).catch(function (err) {
         console.log(err);
@@ -50,6 +70,9 @@ var updateView = function updateView(cards, parent, template) {
         htmlString += template(card);
     });
     parent.innerHTML = htmlString;
+};
+var addCardToFav = function addCardToFav(card, parent, template) {
+    parent.innerHTML += template(card);
 };
 
 var getPopular = function getPopular(category, parent, template) {
@@ -281,16 +304,14 @@ var switchTabs = function switchTabs(event) {
                 if (event.target.getAttribute('href') === '#pane-1') getPopular('movie', result, compiled);
                 if (event.target.getAttribute('href') === '#pane-2') getPopular('tv', serials, compil);
                 if (event.target.getAttribute('href') === '#pane-3') {
-                    if (favoriteMovieArr.length !== 0 || favoriteSerialsArr.length !== 0) {
-                        favfilmTxt.textContent = '';
-                    }
-                    if (favoriteMovieArr.length !== 0) {
+                    // if (idArr.length == 0) {
+                    //     favfilmTxt.textContent = 'Здесь нету нифига!';
+                    // }
+                    if (idArr.length !== 0) {
                         favfilmTxt.textContent = 'Фильмы';
-                        updateView(favoriteMovieArr, favoritesFilms, compiled);
                     }
-                    if (favoriteSerialsArr.length !== 0) {
+                    if (idArr.length !== 0) {
                         favSerialTxt.textContent = 'Сериалы';
-                        updateView(favoriteSerialsArr, favoritesSerials, compil);
                     }
                 };
             }

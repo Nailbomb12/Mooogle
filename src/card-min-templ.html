@@ -1,8 +1,11 @@
 <script type="text/template" id="card">
     <div class="render-card videos__preview film-preview " style="background-image: url('https://image.tmdb.org/t/p/w400/<%- poster_path%>')" onclick="showMovie(<%- id%>)">
-        <svg class="icon" onclick='addToFavorites(<%- id%>, "movie")'>
+        <svg class="icon" onclick='addToFavorites(<%- id%>, "movie", event)'>
       <use href="img/star-jingle-sprite.svg#mark-as-favorite-star " ></use>
     </svg>
+    <svg class="icon" id="remove" onclick='removeFromFavorites(<%- id%>, event)'>
+        <use href="img/star-jingle-sprite.svg#bell" ></use>
+      </svg>
         <h1 class="videos__name">
             <%- title%> (
                 <%- release_date.slice(0, -6)%>)
@@ -12,8 +15,11 @@
 
 <script type="text/template" id="cardTV">
     <div class="render-card videos__preview film-preview " style="background-image: url('https://image.tmdb.org/t/p/w400/<%- poster_path%>')" onclick="showTV(<%- id%>)">
-        <svg class="icon" onclick='addToFavorites(<%- id%>, "tv")'>
+    <svg class="icon" onclick='addToFavorites(<%- id%>, "tv", event)'>
       <use href="img/star-jingle-sprite.svg#mark-as-favorite-star " ></use>
+    </svg>
+    <svg class="icon" id="remove" onclick='removeFromFavorites(<%- id%>, event)'>
+    <use href="img/star-jingle-sprite.svg#bell" ></use>
     </svg>
         <h1 class="videos__name">
             <%- name%> (
