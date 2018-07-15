@@ -11,7 +11,7 @@
             <h2 class="main-title desk"> <%- title%> <span>(<%- date.slice(0, -6)%>)</span></h2>
             <div class="icons-block">
                 <div class="icons">
-                    <svg class="icon star" onclick='toFavFilmOfCard()'>
+                    <svg class="icon star" onclick='addToFavorites(<%- id%>, "movie")'>
               <use href="img/star-jingle-sprite.svg#mark-as-favorite-star"></use>
           </svg>
                 </div>
@@ -89,49 +89,6 @@
                 </div>
             </div>
         </div>
-        <div class="main-screenshots">
-            <h2 class="main-block-header">Кадры из фильма</h2>
-            <section class="screenshots-slider">
-                <div id="slider">
-                    <div id="mask">
-                        <ul>
-                            <li id="first" class="firstanimation">
-                                <img class="slider-img" src="https://image.tmdb.org/t/p/w400/<%- backdrops[0].file_path%>" alt="Cougar" />
-                            </li>
-
-                            <li id="second" class="secondanimation">
-                                <img class="slider-img" src="https://image.tmdb.org/t/p/w400/<%- backdrops[1].file_path%>" alt="Lions" />
-                            </li>
-
-                            <li id="third" class="thirdanimation">
-                                <img class="slider-img" src="https://image.tmdb.org/t/p/w400/<%- backdrops[2].file_path%>" alt="Snowalker" />
-                            </li>
-
-                            <li id="fourth" class="fourthanimation">
-                                <img class="slider-img" src="https://image.tmdb.org/t/p/w400/<%- backdrops[3].file_path%>" alt="Howling" />
-                            </li>
-
-                            <li id="fifth" class="fifthanimation">
-                                <img class="slider-img" src="https://image.tmdb.org/t/p/w400/<%- backdrops[4].file_path%>" alt="Sunbathing" />
-                            </li>
-                        </ul>
-                    </div>
-                    <div class="progress-bar"></div>
-                </div>
-            </section>
-
-        </div>
-
-        <div class="main-trailer">
-            <h2 class="main-block-header">Трейлер</h2>
-            <div class="main-trailer-container">
-                <div class="main-trailer-frame">
-                    <iframe src="https://www.youtube.com/embed/<%- key%>" frameborder="0" allowfullscreen></iframe>
-                </div>
-            </div>
-        </div>
-    </div>
-  </div>
   <div class="main-screenshots">
     <h2 class="main-block-header">Кадры из фильма</h2>
     <section class="screenshots-slider">
@@ -176,28 +133,19 @@
   <div class="main-reviews">
     <h2 class="main-block-header">Отзывы</h2>
     <div class="main-reviews__review">
-      <img src="img/reviews/review1.png" alt="review image">
-      <div class="review-text">
-          <h4>Виктория Гуменюк</h4><span>28 дек</span>
-          <p>Молодцы, хороший фильм.</p>
-      </div>
-        <div class="main-reviews">
-            <h2 class="main-block-header">Отзывы</h2>
-            <div class="main-reviews__review">
-                <img src="img/reviews/review1.png" alt="review image">
-                <div class="review-text">
-                    <h4>Виктория Гуменюк</h4><span>28 дек</span>
-                    <p>Молодцы, хороший фильм.</p>
-                </div>
-            </div>
-            <div class="main-reviews__review">
-                <img src="img/reviews/review2.png" alt="review image">
-                <div class="review-text">
-                    <h4>Андрей Чад</h4><span>вчера</span>
-                    <p class="article">Гари Олдману большая пятерка. Фильму – ноль. Врятли кого из здравомыслящих людей интересует жизнь полу-диктатора уровня Муссолини в повествовательном ключе. Вот как поймали и расстреляли второго – я бы посмотрел. А это лишь унылая
-                        попытка Великобритании обелить одного из кучи масонских кукловодов.
-                    </p>
-                </div>
-            </div>
+        <img src="img/reviews/review1.png" alt="review image">
+        <div class="review-text">
+            <h4>Виктория Гуменюк</h4><span>28 дек</span>
+            <p>Молодцы, хороший фильм.</p>
         </div>
-    </div></script>
+    </div>
+    <div class="main-reviews__review">
+        <img src="img/reviews/review2.png" alt="review image">
+        <div class="review-text">
+            <h4>Андрей Чад</h4><span>вчера</span>
+            <p class="article">Гари Олдману большая пятерка. Фильму – ноль. Врятли кого из здравомыслящих людей интересует жизнь полу-диктатора уровня Муссолини в повествовательном ключе. Вот как поймали и расстреляли второго – я бы посмотрел. А это лишь унылая попытка Великобритании обелить одного из кучи масонских кукловодов.
+            </p>
+        </div>
+    </div>
+</div>
+</div></script>

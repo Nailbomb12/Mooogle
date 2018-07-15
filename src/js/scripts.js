@@ -93,11 +93,11 @@ const switchTabs = (event) => {
                     favfilmTxt.textContent = '';
                 }
                 if (favoriteMovieArr.length !== 0) {
-                    favfilmTxt.textContent = 'favorite films';
+                    favfilmTxt.textContent = 'Фильмы';
                     updateView(favoriteMovieArr, favoritesFilms, compiled);
                 }
                 if (favoriteSerialsArr.length !== 0) {
-                    favSerialTxt.textContent = 'favorite serials';
+                    favSerialTxt.textContent = 'Сериалы';
                     updateView(favoriteSerialsArr, favoritesSerials, compil);
                 }
             };
