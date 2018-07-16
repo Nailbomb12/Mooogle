@@ -1,6 +1,6 @@
 <script type="text/template" id="card">
     <div class="render-card videos__preview film-preview " style="background-image: url('https://image.tmdb.org/t/p/w400/<%- poster_path%>')" onclick="showMovie(<%- id%>)">
-    <svg class="icon" onclick='addToFavorites(<%- id%>, "movie", event), removeFromFavorites(<%- id%>, event)'>
+    <svg class="icon" onclick='addToFavorites(<%- id%>, "movie"), removeFromFavorites(<%- id%>)'>
       <use href="img/star-jingle-sprite.svg#mark-as-favorite-star " ></use>
     </svg>
         <h1 class="videos__name">
@@ -11,7 +11,7 @@
 
 <script type="text/template" id="cardTV">
     <div class="render-card videos__preview film-preview " style="background-image: url('https://image.tmdb.org/t/p/w400/<%- poster_path%>')" onclick="showTV(<%- id%>)">
-    <svg class="icon" onclick='addToFavorites(<%- id%>, "tv", event), removeFromFavorites(<%- id%>, event)'>
+    <svg class="icon" onclick='addToFavorites(<%- id%>, "tv"), removeFromFavorites(<%- id%>)'>
       <use href="img/star-jingle-sprite.svg#mark-as-favorite-star " ></use>
     </svg>
         <h1 class="videos__name">

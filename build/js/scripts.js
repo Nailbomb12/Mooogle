@@ -11,7 +11,7 @@ var idArr = [];
 
 ///add to favorites tab
 
-var addToFavorites = function addToFavorites(id, category, event) {
+var addToFavorites = function addToFavorites(id, category) {
     event.stopPropagation();
     if (idArr.includes(id)) return;else {
         idArr.push(id);
@@ -27,8 +27,8 @@ Array.prototype.remove = function (value) {
     return false;
 };
 
-var removeFromFavorites = function removeFromFavorites(id, event) {
-    event.stopPropagation();
+var removeFromFavorites = function removeFromFavorites(id) {
+    //event.stopPropagation();
     tabLinks.forEach(function (link) {
         if (link.classList.contains('category-item--active') && link.hash === '#pane-3') {
             idArr.remove(id);

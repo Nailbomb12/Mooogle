@@ -9,7 +9,7 @@ const idArr = [];
 
 ///add to favorites tab
 
-const addToFavorites = (id, category, event) => {
+const addToFavorites = (id, category) => {
     event.stopPropagation();
     if (idArr.includes(id)) return;
     else {
@@ -26,8 +26,8 @@ Array.prototype.remove = function(value) {
     return false;
 };
 
-const removeFromFavorites = (id, event) => {
-    event.stopPropagation();
+const removeFromFavorites = (id) => {
+    //event.stopPropagation();
     tabLinks.forEach(link => {
         if (link.classList.contains('category-item--active') && (link.hash === '#pane-3')) {
             idArr.remove(id);
