@@ -75,6 +75,7 @@ const mobileSearch = (evt) => {
 searchBtn.addEventListener('click', mainSearch);
 hiddenSearchBtn.addEventListener('click', mobileSearch);
 
+
 const switchTabs = (event) => {
     event.preventDefault();
     if (event.target !== tabs) {
@@ -89,16 +90,14 @@ const switchTabs = (event) => {
             if (event.target.getAttribute('href') === '#pane-2')
                 getPopular('tv', serials, compil);
             if (event.target.getAttribute('href') === '#pane-3') {
-                if (favoriteMovieArr.length !== 0 || favoriteSerialsArr.length !== 0) {
-                    favfilmTxt.textContent = '';
+                // if (idArr.length == 0) {
+                //     favfilmTxt.textContent = 'Здесь нету нифига!';
+                // }
+                if (idArr.length !== 0) {
+                    favfilmTxt.textContent = 'Фильмы';    
                 }
-                if (favoriteMovieArr.length !== 0) {
-                    favfilmTxt.textContent = 'Фильмы';
-                    updateView(favoriteMovieArr, favoritesFilms, compiled);
-                }
-                if (favoriteSerialsArr.length !== 0) {
+                if (idArr.length !== 0) {
                     favSerialTxt.textContent = 'Сериалы';
-                    updateView(favoriteSerialsArr, favoritesSerials, compil);
                 }
             };
         }

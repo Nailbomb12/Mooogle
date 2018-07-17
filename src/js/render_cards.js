@@ -16,6 +16,9 @@ const updateView = (cards, parent, template) => {
     });
     parent.innerHTML = htmlString;
 };
+const addCardToFav = (card, parent, template) => {
+      parent.innerHTML += template(card);
+};
 
 const getPopular = (category, parent, template) => {
     axios.get(`https://api.themoviedb.org/3/${category}/popular?api_key=${apiKey}&language=ru-RU&page=1`)
