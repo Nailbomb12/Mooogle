@@ -153,21 +153,27 @@
   </div>
   <div class="main-reviews">
     <h2 class="main-block-header">Отзывы</h2>
-    <div class="main-reviews__review">
-        <img src="img/reviews/review1.png" alt="review image">
-        <div class="review-text">
-            <h4>Виктория Гуменюк</h4><span>28 дек</span>
-            <p>Молодцы, хороший фильм.</p>
+    <div class="main-reviews-container">
+        <div class="main-reviews__review">
+            <img src="img/reviews/review1.png" alt="review image">
+            <div class="review-text">
+                <h4>Виктория Гуменюк</h4><span>28.12.2017</span>
+                <p>Молодцы, хороший фильм.</p>
+            </div>
+        </div>
+        <div class="main-reviews__review">
+            <img src="img/reviews/review2.png" alt="review image">
+            <div class="review-text">
+                <h4>Андрей Чад</h4><span>23.12.2017</span>
+                <p class="article">Фильм так себе, на любителя.</p>
+            </div>
         </div>
     </div>
-    <div class="main-reviews__review">
-        <img src="img/reviews/review2.png" alt="review image">
-        <div class="review-text">
-            <h4>Андрей Чад</h4><span>вчера</span>
-            <p class="article">Гари Олдману большая пятерка. Фильму – ноль. Врятли кого из здравомыслящих людей интересует жизнь полу-диктатора уровня Муссолини в повествовательном ключе. Вот как поймали и расстреляли второго – я бы посмотрел. А это лишь унылая попытка Великобритании обелить одного из кучи масонских кукловодов.
-            </p>
-        </div>
-    </div>
+    <form class="mainform" onSubmit='event.preventDefault(), formHandler()'>
+       <input type="text" id="user-name" name="name" placeholder="Введите своё имя" required/>
+       <textarea name="msg" id="user-review" placeholder="Введите текст отзыва" required></textarea>
+       <p><button class="">Добавить отзыв</button></p>
+    </form>
 </div>
 </div>
 </script>

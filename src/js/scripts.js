@@ -12,8 +12,8 @@ const hiddenBlockIcon = document.querySelector('.hidden-search');
 const hiddenSearchBtn = document.querySelector('.hidden__form-send');
 const hiddenBlock = document.querySelector('.hidden');
 
-tabLinks[0].classList.add('category-item--active');
-tabsPane[0].classList.add('tabs__pane--active');
+tabLinks[1].classList.add('category-item--active');
+tabsPane[1].classList.add('tabs__pane--active');
 
 const toggleAside = () => {
     aside.classList.toggle('js-show-aside');

@@ -53,6 +53,32 @@ var getCurrentCard = function getCurrentCard(id, category) {
 };
 'use strict';
 
+var htmlTplRev = document.querySelector('#reviewBlock').textContent.trim();
+var compileded = _.template(htmlTplRev);
+
+var addNewReview = function addNewReview(revObj, parent, template) {
+  parent.insertAdjacentHTML('afterbegin', template(revObj));
+};
+
+var formHandler = function formHandler() {
+  setTimeout(function () {
+    var form = document.querySelector('.mainform');
+    var name = document.querySelector('#user-name');
+    var review = document.querySelector('#user-review');
+    var revContainer = document.querySelector('.main-reviews-container');
+    var date = new Date().toLocaleString("ru");
+    var reviewObj = {
+      userName: name.value,
+      userReview: review.value,
+      userDate: date.slice(0, -10)
+    };
+    addNewReview(reviewObj, revContainer, compileded);
+
+    form.reset();
+  }, 300);
+};
+'use strict';
+
 var result = document.querySelector('.videos');
 var htmlTempl = document.querySelector('#Extendcard').textContent.trim();
 var compile = _.template(htmlTempl);
@@ -112,6 +138,7 @@ var showMovie = function showMovie(id) {
     renderFullCard(id, 'movie');
     tabFavorRender(0);
 };
+
 var showTV = function showTV(id) {
     renderFullCardTV(id, 'tv');
     tabFavorRender(1);
@@ -199,10 +226,10 @@ var renderFullCardTV = function renderFullCardTV(id, category) {
     });
 };
 
-getPopular('movie', result, compiled);
+//getPopular('movie', result, compiled);
 
 //renderFullCard(427641, 'movie');
-//renderFullCardTV(48866, 'tv');
+renderFullCardTV(48866, 'tv');
 'use strict';
 
 var menu = document.querySelector('.header__menu');
@@ -219,8 +246,8 @@ var hiddenBlockIcon = document.querySelector('.hidden-search');
 var hiddenSearchBtn = document.querySelector('.hidden__form-send');
 var hiddenBlock = document.querySelector('.hidden');
 
-tabLinks[0].classList.add('category-item--active');
-tabsPane[0].classList.add('tabs__pane--active');
+tabLinks[1].classList.add('category-item--active');
+tabsPane[1].classList.add('tabs__pane--active');
 
 var toggleAside = function toggleAside() {
     aside.classList.toggle('js-show-aside');

@@ -61,6 +61,7 @@ const showMovie = (id) => {
     renderFullCard(id, 'movie');
     tabFavorRender(0);
 };
+
 const showTV = (id) => {
     renderFullCardTV(id, 'tv');
     tabFavorRender(1);
@@ -156,7 +157,7 @@ const renderFullCardTV = (id, category) => {
     })
 };
 
-getPopular('movie', result, compiled);
+//getPopular('movie', result, compiled);
 
 //renderFullCard(427641, 'movie');
-//renderFullCardTV(48866, 'tv');
+renderFullCardTV(48866, 'tv');

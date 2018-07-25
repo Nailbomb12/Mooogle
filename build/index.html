@@ -132,21 +132,27 @@
     </div>
     <div class="main-reviews">
       <h2 class="main-block-header">Отзывы</h2>
-      <div class="main-reviews__review">
-          <img src="img/reviews/review1.png" alt="review image">
-          <div class="review-text">
-              <h4>Виктория Гуменюк</h4><span>28 дек</span>
-              <p>Молодцы, хороший фильм.</p>
+      <div class="main-reviews-container">
+          <div class="main-reviews__review">
+              <img src="img/reviews/review1.png" alt="review image">
+              <div class="review-text">
+                  <h4>Виктория Гуменюк</h4><span>28.12.2017</span>
+                  <p>Молодцы, хороший фильм.</p>
+              </div>
+          </div>
+          <div class="main-reviews__review">
+              <img src="img/reviews/review2.png" alt="review image">
+              <div class="review-text">
+                  <h4>Андрей Чад</h4><span>23.12.2017</span>
+                  <p class="article">Фильм так себе, на любителя.</p>
+              </div>
           </div>
       </div>
-      <div class="main-reviews__review">
-          <img src="img/reviews/review2.png" alt="review image">
-          <div class="review-text">
-              <h4>Андрей Чад</h4><span>вчера</span>
-              <p class="article">Гари Олдману большая пятерка. Фильму – ноль. Врятли кого из здравомыслящих людей интересует жизнь полу-диктатора уровня Муссолини в повествовательном ключе. Вот как поймали и расстреляли второго – я бы посмотрел. А это лишь унылая попытка Великобритании обелить одного из кучи масонских кукловодов.
-              </p>
-          </div>
-      </div>
+      <form class="mainform" onSubmit='event.preventDefault(), formHandler()'>
+         <input type="text" id="user-name" name="name" placeholder="Введите своё имя" required/>
+         <textarea name="msg" id="user-review" placeholder="Введите текст отзыва" required></textarea>
+         <p><button class="">Добавить отзыв</button></p>
+      </form>
   </div>
   </div></script><script type="text/template" id="card"><div class="render-card videos__preview film-preview " style="background-image: url('https://image.tmdb.org/t/p/w400/<%- poster_path%>')" onclick="showMovie(<%- id%>)">
       <svg class="icon" onclick='addToFavorites(<%- id%>, "movie"), removeFromFavorites(<%- id%>)'>
@@ -291,20 +297,32 @@
           </div>
           <div class="main-reviews">
               <h2 class="main-block-header">Отзывы</h2>
-              <div class="main-reviews__review">
-                  <img src="img/reviews/review1.png" alt="review image">
-                  <div class="review-text">
-                      <h4>Виктория Гуменюк</h4><span>28 дек</span>
-                      <p>Молодцы, хороший фильм.</p>
+              <div class="main-reviews-container">
+                  <div class="main-reviews__review">
+                      <img src="img/reviews/review1.png" alt="review image">
+                      <div class="review-text">
+                          <h4>Валентина Иванова</h4><span>05.03.2018</span>
+                          <p>Очень интересный сериал! Всем любителям данного жанра советую.</p>
+                      </div>
+                  </div>
+                  <div class="main-reviews__review">
+                      <img src="img/reviews/review2.png" alt="review image">
+                      <div class="review-text">
+                          <h4>Афанасий Никитин</h4><span>01.02.2018</span>
+                          <p class="article">Сериал не очень понравился. Слишком затянут, да и игра актёров оставляет желать лучшего.</p>
+                      </div>
                   </div>
               </div>
-              <div class="main-reviews__review">
-                  <img src="img/reviews/review2.png" alt="review image">
-                  <div class="review-text">
-                      <h4>Андрей Чад</h4><span>вчера</span>
-                      <p class="article">Гари Олдману большая пятерка. Фильму – ноль. Врятли кого из здравомыслящих людей интересует жизнь полу-диктатора уровня Муссолини в повествовательном ключе. Вот как поймали и расстреляли второго – я бы посмотрел. А это лишь унылая попытка Великобритании обелить одного из кучи масонских кукловодов.
-                      </p>
-                  </div>
-              </div>
+              <form class="mainform" onSubmit='event.preventDefault(), formHandler()'>
+                 <input type="text" id="user-name" name="name" placeholder="Введите своё имя" required/>
+                 <textarea name="msg" id="user-review" placeholder="Введите текст отзыва" required></textarea>
+                 <p><button class="">Добавить отзыв</button></p>
+              </form>
           </div>
-      </div></script><footer class="footer"><div class="social"><ul class="social__menu"><li class="social__item"><a href="https://www.facebook.com/goITclub/?ref=br_rs" target="_blank" class="social__link"><svg class="social__icon social__icon--mod"><use href="img/social.svg#facebook"></use></svg></a></li><li class="social__item"><a href="https://www.youtube.com/channel/UCN7NQEBOUuIoXrJZzqVb58Q" target="_blank" class="social__link" rel="nofollow noopener"><svg class="social__icon social__icon--mod"><use href="img/social.svg#youtube"></use></svg></a></li><li class="social__item"><a href="https://www.goit.ua/" target="_blank" class="social__link"><svg class="social__icon social__icon--mod"><use href="img/social.svg#google"></use></svg></a></li><li class="social__item"><a href="https://www.instagram.com/goitclub/?hl=ru" target="_blank" class="social__link"><svg class="social__icon social__icon--mod"><use href="img/social.svg#instagram"></use></svg></a></li></ul></div><div class="info"><ul class="info__list"><li class="info__item"><a href="/" class="info__link">Главная</a></li><li class="info__item"><a href="https://www.goit.ua/contacts.html" class="info__link" target="_blank">Контакты</a></li><li class="info__item"><a href="#" class="info__link" target="_blank">Правообладателям</a></li></ul></div></footer><script src="https://unpkg.com/axios/dist/axios.min.js"></script><script src="https://cdn.jsdelivr.net/npm/lodash@4.17.4/lodash.min.js"></script><script src="js/scripts.js"></script></body></html>
+      </div></script><footer class="footer"><div class="social"><ul class="social__menu"><li class="social__item"><a href="https://www.facebook.com/goITclub/?ref=br_rs" target="_blank" class="social__link"><svg class="social__icon social__icon--mod"><use href="img/social.svg#facebook"></use></svg></a></li><li class="social__item"><a href="https://www.youtube.com/channel/UCN7NQEBOUuIoXrJZzqVb58Q" target="_blank" class="social__link" rel="nofollow noopener"><svg class="social__icon social__icon--mod"><use href="img/social.svg#youtube"></use></svg></a></li><li class="social__item"><a href="https://www.goit.ua/" target="_blank" class="social__link"><svg class="social__icon social__icon--mod"><use href="img/social.svg#google"></use></svg></a></li><li class="social__item"><a href="https://www.instagram.com/goitclub/?hl=ru" target="_blank" class="social__link"><svg class="social__icon social__icon--mod"><use href="img/social.svg#instagram"></use></svg></a></li></ul></div><div class="info"><ul class="info__list"><li class="info__item"><a href="/" class="info__link">Главная</a></li><li class="info__item"><a href="https://www.goit.ua/contacts.html" class="info__link" target="_blank">Контакты</a></li><li class="info__item"><a href="#" class="info__link" target="_blank">Правообладателям</a></li></ul></div></footer><script type="text/template" id="reviewBlock"><div class="main-reviews__review">
+      <img src="img/user.svg" alt="review image">
+      <div class="review-text">
+          <h4><%- userName%></h4><span><%- userDate%></span>
+          <p><%- userReview%></p>
+      </div>
+    </div></script><script src="https://unpkg.com/axios/dist/axios.min.js"></script><script src="https://cdn.jsdelivr.net/npm/lodash@4.17.4/lodash.min.js"></script><script src="js/scripts.js"></script></body></html>

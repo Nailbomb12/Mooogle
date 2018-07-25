@@ -643,6 +643,39 @@ input[type="search"]::-webkit-search-cancel-button {
   font-weight: normal;
 }
 
+.mainform {
+  display: flex;
+  flex-direction: column;
+  width: 50%;
+  padding: 15px;
+}
+
+.mainform input,
+.mainform textarea {
+  width: 100%;
+  border: solid 1px #CCCCCC;
+  margin-bottom: 5px;
+  padding: 4px;
+  outline: 0;
+  font-family: "Roboto-Regular";
+  background: #F9F9F9;
+  border-radius: 4px;
+}
+
+.mainform input:hover,
+.mainform textarea:hover,
+.mainform input:focus,
+.mainform textarea:focus {
+  background-color: #f7f6bb;
+  border-color: yellow;
+}
+
+textarea {
+  height: 150px;
+  line-height: 150%;
+  resize: none;
+}
+
 body {
   min-width: 320px;
 }
@@ -800,6 +833,7 @@ body {
 
 .main-reviews {
   padding: 0 7px;
+  width: 100%;
 }
 
 .main-reviews__review {
@@ -837,7 +871,7 @@ body {
 
 .main-reviews__review span {
   color: #757575;
-  width: 16%;
+  width: 35%;
   text-align: right;
   float: right;
 }
@@ -2312,7 +2346,7 @@ body {
   }
 
   .main-reviews__review span {
-    width: 7%;
+    width: 20%;
   }
 
   .main-reviews .main-block-header {
@@ -2694,5 +2728,11 @@ body {
 
   .wrapper {
     max-width: 65%;
+  }
+}
+
+@media screen and (min-width: 320px) and (max-width: 767px) {
+  .mainform {
+    width: 100%;
   }
 }
