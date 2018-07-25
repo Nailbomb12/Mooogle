@@ -1,6 +1,7 @@
 @import '_variables.scss';
 @import '_fonts.scss';
 @import '_px_to_rem_func.scss';
+@import 'form_review.scss';
 
 body {
   min-width:320px;
@@ -10,6 +11,7 @@ body {
   max-width: 1040px;
   padding: 10px;
   margin: 0 auto;
+  color: $main-color;
   @media (min-width: 768px){
     display: flex;
     flex-wrap: wrap;
@@ -179,6 +181,7 @@ body {
   }
   p {
     font-size: rem(15);
+    color: #c7c7c7;
     @media (min-width: 480px){
       font-size: rem(17);
     }
@@ -197,7 +200,7 @@ body {
 .main-block-header {
   font-family: $reg-font;
   font-size: rem(16);
-  color: #372c48;
+  color: $main-color;
   margin-bottom: 14px;
   @media (min-width: 480px) {
     font-size: rem(21.31);
@@ -254,7 +257,7 @@ body {
     }
     h4 {
       font-size: rem(14);
-      color: $main-color;
+      color: $grey_color;
       font-family: $reg-font;
       @media (min-width: 480px) {
         font-size: rem(16);
@@ -316,12 +319,13 @@ body {
 }
 
 .main-trailer-frame {
+  border: 5px solid #979797;
   position:relative;
   padding-bottom:56.25%;
   padding-top:30px;
   height:0;
   overflow:hidden;
-  border:1px solid #ccc;
+  // border:1px solid #ccc;
 
   & iframe,.myvideo object,.myvideo embed {
     position:absolute;
@@ -334,6 +338,7 @@ body {
 
 .main-reviews {
   padding: 0 7px;
+  width: 100%;
   @media (min-width: 768px) {
     order: 6;
     margin-top: 35px;
@@ -384,6 +389,7 @@ body {
       }
     }
     h4 {
+      color: $main-color;
       display: inline-block;
       margin-bottom: 6px;
       @media (min-width: 1024px){
@@ -403,11 +409,11 @@ body {
     }
     span {
       color: #757575;
-      width: 16%;
+      width: 35%;
       text-align: right;
       float: right;
       @media (min-width: 768px) {
-        width: 7%;
+        width: 20%;
       }
     }
     .review-text {
@@ -436,7 +442,16 @@ body {
     padding-left: 15px;
   }
   &__field:nth-child(2n-1) {
-    background-color: $main-color;
+    background:  linear-gradient( to right,
+      rgba(92, 90, 87, 1), 
+      rgba(92, 90, 87, .2)
+    );
+  }
+  &__field:nth-child(2n) {
+    background:  linear-gradient( to right,
+      rgba(92, 90, 87, .5), 
+      rgba(92, 90, 87, .1)
+    );
   }
   @media (min-width: 1024px){
     font-size: rem(16);

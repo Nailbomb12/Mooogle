@@ -1,16 +1,26 @@
 .content {
     padding: 20px 8px;
 }
-
-.wrapper {
-    max-width: 1020px;
+.main{
+    background-image: url(../img/bg.png);
+    background-repeat: no-repeat;
+    background-size: 100% 65%;
+    background-position: 50% 0;
     min-height: 100%;
     padding-bottom: 100px;
-    margin: auto;
+}
+.wrapper {
+    max-width: 1020px;
+    min-height: 100vh;
+    background-color: rgba(0,0,0,0.78);
+    margin: 20px auto;
 }
 
 .header-bottom {
     display: none;
+    background-color: rgba(0,0,0,0.5);
+    // background-color: #1a1114;
+    // opacity: .6;
 }
 
 .top-form {
@@ -101,7 +111,7 @@
         display: block;
     }
     &__preview {
-        padding: 15px 15px 20px 15px;
+        padding: 15px;
         display: flex;
         flex-direction: column;
         justify-content: space-between;
@@ -179,7 +189,7 @@
         justify-content: space-between;
         &__preview {
             width: 49%;
-            padding: 20px 20px 25px 20px;
+            padding: 20px;
             margin-bottom: 10px;
             height: 220px;
             .icon {
@@ -188,7 +198,7 @@
             }
         }
         &__name {
-            font-size: rem(25);
+            font-size: rem(16);
         }
     }
 }
@@ -196,7 +206,7 @@
 @media(min-width: 768px) {
     .header-bottom {
         display: block;
-        box-shadow: 0 5px 10px -3px #c0c0c0;
+        box-shadow: 0 5px 5px  #1a1114;
         margin-bottom: 10px;
     }
     .top-nav {
@@ -213,19 +223,19 @@
         padding: 20px 25px;
         .category-item {
             padding: 20px 25px;
-            color: #372c48;
+            color: $grey_color;
             font-family: 'Roboto-Medium';
-            opacity: 0.7;
+            // opacity: 0.7;
             text-decoration: none;
             &:hover {
                 cursor: pointer;
-                opacity: 1;
+                opacity: .8;
             }
         }
         .category-item--active {
-            opacity: 1;
+            // opacity: .8;
             color: $main-color;
-            border-bottom: 2px solid $main-color;
+            // border-bottom: 2px solid $main-color;
         }
     }
     .content {
@@ -291,7 +301,7 @@
     }
     .videos {
         &__preview {
-            padding: 15px 15px 15px 15px;
+            padding: 15px;
         }
     }
 }
