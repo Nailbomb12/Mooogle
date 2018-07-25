@@ -2,12 +2,13 @@ html,
 body {
   height: 100%;
   position: relative;
+  background-color: #060000;
 }
 .ovfh {
   overflow: hidden;
 }
 .header__nav {
-  background-color: $main-color;
+  background: radial-gradient(at 50% 85%, #ae0000, #630000);
   padding: 20px;
   display: flex;
   justify-content: space-between;
@@ -19,7 +20,6 @@ body {
   display: inline-block;
   margin-right: 10px;
   line-height: 0;
-  // z-index: 1000;
   @media (min-width: 1440px){
     margin-right: 20px;
   }
@@ -32,7 +32,7 @@ body {
   width: 20px;
   height: 15px;
   display: inline-block;
-  fill: $header_text_color;
+  fill: $headers-color;
   @media (min-width: 480px) {
     width: 27px;
     height: 19px;
@@ -58,7 +58,7 @@ body {
 .header__logo-link {
   font-size: rem(20);
   font-family: $med-font;
-  color: $header_text_color;
+  color: $headers-color;
   text-decoration: none;
   @media (min-width: 480px) {
     font-size: rem(25);
@@ -72,14 +72,14 @@ body {
   @media (min-width: 768px) {
     display: inline-block;
     padding-bottom: 5px;
-    border-bottom: 1px solid $header_text_color;
+    border-bottom: 1px solid $headers-color;
   }
 }
 .header__form input[type="search"] {
   display: none;
   background-color: inherit;
   border: none;
-  color: $header_text_color;
+  color: $headers-color;
   font-size: rem(14);
   font-family: $med-font;
   vertical-align: bottom; 
@@ -106,7 +106,7 @@ input[type="search"]:-webkit-autofill {
 }
 
 .header__form input[type="search"]::-webkit-input-placeholder {
-  color: #372c48;
+  color: $headers-color;
   font-size: rem(14);
   font-family: $med-font;
   @media (min-width: 1440px){
@@ -135,7 +135,7 @@ input[type="search"]:-webkit-autofill {
 .hidden-search {
   width: 20px;
   height: 20px;
-  fill: $header_text_color;
+  fill: $headers-color;
   @media (min-width: 480px) {
     vertical-align: -webkit-baseline-middle;
   }
@@ -149,7 +149,8 @@ input[type="search"]:-webkit-autofill {
 }
 
 .hidden {
-  background-color: $main-color;
+  // background-color: $main-color;
+  background: radial-gradient(circle at 50% 110%, #B80000, #850000);
   position: absolute;
   width: 100%;
   padding: 60px;
@@ -169,7 +170,7 @@ input[type="search"]:-webkit-autofill {
   font-size: rem(24.18);
   font-family: $med-font;
   margin-bottom: 60px;
-  color: $header_text_color;
+  color: $main-color;
   @media (min-width: 480px) {
     font-size: rem(32.23);
   }
@@ -269,7 +270,7 @@ input:focus {
 .aside {
   width: 250px;
   min-height: 100%;
-  background-color: #fff;
+  background-color: #1A1114;
   position: absolute;
   top: 0;
   left: -100%;
@@ -293,9 +294,9 @@ input:focus {
   text-align: center;
   font-size: rem(20);
   font-family: $med-font;
-  background-color: $main-color;
+  background: radial-gradient(circle at 50% 110%, #B80000, #850000);
   width: 100%;
-  color: $header_text_color;
+  color: $headers-color;
   @media (min-width: 480px) {
     font-size: rem(25);
     
@@ -333,7 +334,7 @@ input:focus {
 }
 .aside__link {
   text-decoration: none;
-  color: $header_text_color;
+  color: $grey_color;
 }
 .aside__item:last-child{
   margin-bottom: 0;
@@ -355,18 +356,5 @@ input:focus {
 }
 
 .aside__link:hover {
-    color: $main-color;
+    color: $headers-color;
   }
-// .aside__link-active::before {
-//   content: url(../img/folder-20.svg);
-//   display: inline-block;
-//   width: 20px;
-//   height: 20px;
-//   fill: $main-color;
-//   position: absolute;
-//   left: -60px;
-//   @media (min-width: 480px){
-//     width: 30px;
-//     height: 25px;
-//   }
-// }
