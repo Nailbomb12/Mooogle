@@ -226,10 +226,10 @@ var renderFullCardTV = function renderFullCardTV(id, category) {
     });
 };
 
-//getPopular('movie', result, compiled);
+getPopular('movie', result, compiled);
 
 //renderFullCard(427641, 'movie');
-renderFullCardTV(48866, 'tv');
+//renderFullCardTV(48866, 'tv');
 'use strict';
 
 var menu = document.querySelector('.header__menu');
@@ -246,8 +246,8 @@ var hiddenBlockIcon = document.querySelector('.hidden-search');
 var hiddenSearchBtn = document.querySelector('.hidden__form-send');
 var hiddenBlock = document.querySelector('.hidden');
 
-tabLinks[1].classList.add('category-item--active');
-tabsPane[1].classList.add('tabs__pane--active');
+tabLinks[0].classList.add('category-item--active');
+tabsPane[0].classList.add('tabs__pane--active');
 
 var toggleAside = function toggleAside() {
     aside.classList.toggle('js-show-aside');
