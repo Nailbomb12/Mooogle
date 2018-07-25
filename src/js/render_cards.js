@@ -61,6 +61,7 @@ const showMovie = (id) => {
     renderFullCard(id, 'movie');
     tabFavorRender(0);
 };
+
 const showTV = (id) => {
     renderFullCardTV(id, 'tv');
     tabFavorRender(1);

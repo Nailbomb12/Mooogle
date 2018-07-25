@@ -53,6 +53,32 @@ var getCurrentCard = function getCurrentCard(id, category) {
 };
 'use strict';
 
+var htmlTplRev = document.querySelector('#reviewBlock').textContent.trim();
+var compileded = _.template(htmlTplRev);
+
+var addNewReview = function addNewReview(revObj, parent, template) {
+  parent.insertAdjacentHTML('afterbegin', template(revObj));
+};
+
+var formHandler = function formHandler() {
+  setTimeout(function () {
+    var form = document.querySelector('.mainform');
+    var name = document.querySelector('#user-name');
+    var review = document.querySelector('#user-review');
+    var revContainer = document.querySelector('.main-reviews-container');
+    var date = new Date().toLocaleString("ru");
+    var reviewObj = {
+      userName: name.value,
+      userReview: review.value,
+      userDate: date.slice(0, -10)
+    };
+    addNewReview(reviewObj, revContainer, compileded);
+
+    form.reset();
+  }, 300);
+};
+'use strict';
+
 var result = document.querySelector('.videos');
 var htmlTempl = document.querySelector('#Extendcard').textContent.trim();
 var compile = _.template(htmlTempl);
@@ -112,6 +138,7 @@ var showMovie = function showMovie(id) {
     renderFullCard(id, 'movie');
     tabFavorRender(0);
 };
+
 var showTV = function showTV(id) {
     renderFullCardTV(id, 'tv');
     tabFavorRender(1);

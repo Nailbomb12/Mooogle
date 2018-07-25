@@ -1,6 +1,7 @@
 @import '_variables.scss';
 @import '_fonts.scss';
 @import '_px_to_rem_func.scss';
+@import 'form_review.scss';
 
 body {
   min-width:320px;
@@ -337,6 +338,7 @@ body {
 
 .main-reviews {
   padding: 0 7px;
+  width: 100%;
   @media (min-width: 768px) {
     order: 6;
     margin-top: 35px;
@@ -407,11 +409,11 @@ body {
     }
     span {
       color: #757575;
-      width: 16%;
+      width: 35%;
       text-align: right;
       float: right;
       @media (min-width: 768px) {
-        width: 7%;
+        width: 20%;
       }
     }
     .review-text {
