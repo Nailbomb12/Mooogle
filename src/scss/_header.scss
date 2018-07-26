@@ -94,17 +94,6 @@ body {
     font-size: rem(22);
   }
 }
-.header__form input[type="search"]:focus,
-.header__form input[type="search"]:active,
-.header__form input[type="search"]:checked{
-  outline: 0;
-  background-color: inherit;
-}
-/*!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!*/
-input[type="search"]:-webkit-autofill {
-  box-shadow: inset 0 0 0 50px inherit;
-  -webkit-text-fill-color: #000; 
-}
 
 .header__form input[type="search"]::-webkit-input-placeholder {
   color: $headers-color;

@@ -418,20 +418,6 @@ body {
   vertical-align: bottom;
 }
 
-.header__form input[type="search"]:focus,
-.header__form input[type="search"]:active,
-.header__form input[type="search"]:checked {
-  outline: 0;
-  background-color: inherit;
-}
-
-/*!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!*/
-
-input[type="search"]:-webkit-autofill {
-  box-shadow: inset 0 0 0 50px inherit;
-  -webkit-text-fill-color: #000;
-}
-
 .header__form input[type="search"]::-webkit-input-placeholder {
   color: #f0e9e9;
   font-size: 0.875rem;
@@ -706,7 +692,7 @@ input::-webkit-input-placeholder,
 }
 
 .review-btn {
-  margin-left: auto;
+  margin: auto;
   display: inline-block;
   padding: 8px;
   color: #fff;
@@ -989,7 +975,7 @@ body {
   font-family: "Roboto-Regular";
   outline: none;
   border: none;
-  background-color: #5c5a57;
+  background: none;
   color: #fff;
   font-size: 0.9375rem;
 }
@@ -2070,13 +2056,14 @@ body {
   outline: none;
   border: none;
   font-family: "Roboto-Regular";
-  background-color: #5c5a57;
-  color: #fff;
+  background-color: rgba(0, 0, 0, 0);
+  color: #5c5a57;
+  font-size: 1.0625rem;
 }
 
 .page-active {
-  background-color: #fff !important;
-  color: #5c5a57 !important;
+  background-color: rgba(0, 0, 0, 0) !important;
+  color: #fff !important;
   font-family: "Roboto-Medium" !important;
 }
 
@@ -2159,6 +2146,11 @@ body {
   .fav_link::before {
     width: 30px;
     height: 25px;
+  }
+
+  .review-btn {
+    margin: 0;
+    margin-left: auto;
   }
 
   .main-title.mob {
@@ -2264,6 +2256,10 @@ body {
   .videos__preview .icon {
     width: 20px;
     height: 20px;
+  }
+
+  .videos__preview:nth-last-child(-n + 2) {
+    margin-bottom: 0;
   }
 
   .videos__name {
@@ -2515,7 +2511,7 @@ body {
   }
 
   .content {
-    padding: 25px 25px;
+    padding: 25px;
   }
 
   .top-form {
@@ -2562,11 +2558,6 @@ body {
   .videos__preview .icon {
     width: 23px;
     height: 23px;
-  }
-
-  .videos__preview:last-child,
-  .videos__preview:nth-last-child(2) {
-    margin-bottom: 0;
   }
 
   .videos__name {
@@ -2712,7 +2703,7 @@ body {
   }
 
   .content {
-    padding: 25px 25px;
+    padding: 25px;
   }
 
   .top-form {
@@ -2740,6 +2731,10 @@ body {
 
   .videos__preview:nth-child(4n) {
     margin-right: 0;
+  }
+
+  .videos__preview:nth-last-child(-n + 4) {
+    margin-bottom: 0;
   }
 
   .videos__name {
@@ -2816,7 +2811,7 @@ body {
   }
 
   .content {
-    padding: 25px 25px;
+    padding: 25px;
   }
 
   .wrapper {
@@ -2824,7 +2819,7 @@ body {
   }
 }
 
-@media (min-width: 320px) and (max-width: 1023px) {
+@media (min-width: 480px) and (max-width: 1023px) {
   .videos__preview:nth-child(2n) {
     margin-right: 0;
   }

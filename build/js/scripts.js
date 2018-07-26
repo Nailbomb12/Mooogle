@@ -266,17 +266,26 @@ var renderFullCardTV = function renderFullCardTV(id, category) {
         console.log(error);
     });
 };
-
+var switcherReset = function switcherReset() {
+    allButtons.forEach(function (button) {
+        return button.classList.remove('page-active');
+    });
+    allButtons[0].classList.add('page-active');
+};
 var onBackButtonHandler = function onBackButtonHandler() {
     var tabLinks = document.querySelectorAll('.category-item');
     tabLinks.forEach(function (link) {
         if (link.classList.contains('category-item--active') && link.hash === '#pane-1') {
             getPopular('movie', result, compiled);
             window.scrollTo(0, 0);
+            pageButtons.style.display = 'block';
+            switcherReset();
         }
         if (link.classList.contains('category-item--active') && link.hash === '#pane-2') {
             getPopular('tv', serials, compil);
             window.scrollTo(0, 0);
+            pageButtons.style.display = 'block';
+            switcherReset();
         }
         if (link.classList.contains('category-item--active') && link.hash === '#pane-3') {
             tabFavorBackRender();
@@ -325,6 +334,7 @@ var toggleHiddenBlock = function toggleHiddenBlock() {
 hiddenBlockIcon.addEventListener('click', toggleHiddenBlock);
 
 var hideBlocks = function hideBlocks(evt) {
+
     if (stub.classList.contains('js-show-stub')) {
         hiddenBlock.classList.remove('js-show-hidden');
         aside.classList.remove('js-show-aside');
@@ -342,10 +352,12 @@ var header = document.querySelector('.header');
 var searchSwitcher = function searchSwitcher(value) {
     var tabLinks = document.querySelectorAll('.category-item');
     tabLinks.forEach(function (link) {
+
         if (link.classList.contains('category-item--active') && link.hash === '#pane-1') {
             searchByName(value, 'movie', compiled);
             pageButtons.style.display = 'none';
         }
+
         if (link.classList.contains('category-item--active') && link.hash === '#pane-2') {
             searchByName(value, 'tv', compil);
             pageButtons.style.display = 'none';
@@ -356,12 +368,14 @@ var searchSwitcher = function searchSwitcher(value) {
 var mainSearch = function mainSearch(evt) {
     evt.preventDefault(0);
     searchSwitcher(idInput.value);
+
     if (idInput.value === '') return;
     idInput.value = '';
 };
 var mobileSearch = function mobileSearch(evt) {
     evt.preventDefault(0);
     searchSwitcher(hiddenSearchId.value);
+
     if (hiddenSearchId.value === '') return;
     hideBlocks();
     hiddenSearchId.value = '';
@@ -372,6 +386,7 @@ hiddenSearchBtn.addEventListener('click', mobileSearch);
 
 var switchTabs = function switchTabs(event) {
     event.preventDefault();
+
     if (event.target !== tabs) {
         tabLinks.forEach(function (link) {
             return link.classList.remove('category-item--active');
@@ -388,16 +403,21 @@ var switchTabs = function switchTabs(event) {
             for (var _iterator = tabsPane[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
                 var tab = _step.value;
 
+
                 if (event.target.getAttribute('href') === '#' + tab.id) tab.classList.add('tabs__pane--active');
+
                 if (event.target.getAttribute('href') === '#pane-1') getPopular('movie', result, compiled);
                 pageButtons.style.display = 'block';
+
                 if (event.target.getAttribute('href') === '#pane-2') getPopular('tv', serials, compil);
                 pageButtons.style.display = 'block';
                 allButtons.forEach(function (button) {
                     return button.classList.remove('page-active');
                 });
                 allButtons[0].classList.add('page-active');
+
                 if (event.target.getAttribute('href') === '#pane-3') {
+
                     if (idArr.length !== 0) {
                         favfilmTxt.textContent = 'Фильмы';
                     }

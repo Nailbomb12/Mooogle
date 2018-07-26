@@ -29,7 +29,7 @@ input::-webkit-input-placeholder,
 	color: $main-color;
 }
 .review-btn {
-	margin-left: auto;
+	margin: auto;
 	display: inline-block;
 	padding: 8px;
 	color: $main-color;
@@ -38,6 +38,10 @@ input::-webkit-input-placeholder,
 	transition: all .8s;
 	border: none;
 	position: relative;
+	@media (min-width: 480px){
+		margin: 0;
+		margin-left: auto;
+	}
 }
 .review-btn:hover {
 	background: linear-gradient(#5c5a57,rgba(92,90,87,.2));

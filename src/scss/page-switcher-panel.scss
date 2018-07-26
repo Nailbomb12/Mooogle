@@ -6,13 +6,14 @@
     outline: none;
     border: none;
     font-family: $reg-font;
-    background-color: #5c5a57;
-    color: #fff;
+    background-color: rgba(0,0,0,0); 
+    color: #5c5a57;
+    font-size: rem(17);
   }
 }
 
 .page-active {
-  background-color: #fff !important;
-  color: #5c5a57 !important;
+  background-color: rgba(0,0,0,0) !important;
+  color: #fff !important;
   font-family: $med-font !important;
 }

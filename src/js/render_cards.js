@@ -175,17 +175,24 @@ const renderFullCardTV = (id, category) => {
         console.log(error);
     })
 };
-
+const switcherReset = () => {
+    allButtons.forEach(button => button.classList.remove('page-active'));
+    allButtons[0].classList.add('page-active');
+};
 const onBackButtonHandler = () => {
     const tabLinks = document.querySelectorAll('.category-item');
     tabLinks.forEach(link => {
         if (link.classList.contains('category-item--active') && (link.hash === '#pane-1')) {
             getPopular('movie', result, compiled);
             window.scrollTo(0, 0);
+            pageButtons.style.display = 'block';
+            switcherReset();
         }
         if (link.classList.contains('category-item--active') && (link.hash === '#pane-2')) {
             getPopular('tv', serials, compil);
             window.scrollTo(0, 0);
+            pageButtons.style.display = 'block';
+            switcherReset();
         }
         if (link.classList.contains('category-item--active') && (link.hash === '#pane-3')) {
             tabFavorBackRender();
