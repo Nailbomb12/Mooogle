@@ -3,8 +3,6 @@ const favoritesSerials = document.querySelector('.favorites-serials');
 const favfilmTxt = document.querySelector('.fav-filmtxt');
 const favSerialTxt = document.querySelector('.fav-serialtxt');
 const favorites = document.querySelector('.favorites');
-// const favoriteMovieArr = [];
-// const favoriteSerialsArr = [];
 const idArr = [];
 
 ///add to favorites tab
@@ -27,7 +25,6 @@ Array.prototype.remove = function(value) {
 };
 
 const removeFromFavorites = (id) => {
-    //event.stopPropagation();
     tabLinks.forEach(link => {
         if (link.classList.contains('category-item--active') && (link.hash === '#pane-3')) {
             idArr.remove(id);
@@ -40,11 +37,9 @@ const getCurrentCard = (id, category) => {
     axios.get(`https://api.themoviedb.org/3/${category}/${id}?language=ru-RU&api_key=${apiKey}`)
         .then(response => {
             if (category === 'movie') {
-                //favoriteMovieArr.push(response.data);
                 addCardToFav(response.data, favoritesFilms, compiled);
             }
             if (category === 'tv') {
-                //favoriteSerialsArr.push(response.data);
                 addCardToFav(response.data, favoritesSerials, compil);
             };
         })
