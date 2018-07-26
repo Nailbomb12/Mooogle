@@ -5,8 +5,6 @@ var favoritesSerials = document.querySelector('.favorites-serials');
 var favfilmTxt = document.querySelector('.fav-filmtxt');
 var favSerialTxt = document.querySelector('.fav-serialtxt');
 var favorites = document.querySelector('.favorites');
-// const favoriteMovieArr = [];
-// const favoriteSerialsArr = [];
 var idArr = [];
 
 ///add to favorites tab
@@ -28,7 +26,6 @@ Array.prototype.remove = function (value) {
 };
 
 var removeFromFavorites = function removeFromFavorites(id) {
-    //event.stopPropagation();
     tabLinks.forEach(function (link) {
         if (link.classList.contains('category-item--active') && link.hash === '#pane-3') {
             idArr.remove(id);
@@ -40,11 +37,9 @@ var removeFromFavorites = function removeFromFavorites(id) {
 var getCurrentCard = function getCurrentCard(id, category) {
     axios.get('https://api.themoviedb.org/3/' + category + '/' + id + '?language=ru-RU&api_key=' + apiKey).then(function (response) {
         if (category === 'movie') {
-            //favoriteMovieArr.push(response.data);
             addCardToFav(response.data, favoritesFilms, compiled);
         }
         if (category === 'tv') {
-            //favoriteSerialsArr.push(response.data);
             addCardToFav(response.data, favoritesSerials, compil);
         };
     }).catch(function (err) {
@@ -79,6 +74,33 @@ var formHandler = function formHandler() {
 };
 'use strict';
 
+var pageButtons = document.querySelector('.page-switcher-panel');
+var allButtons = document.querySelectorAll('.page-switcher-panel>button');
+
+allButtons[0].classList.add('page-active');
+
+var pageSwitcher = function pageSwitcher(event) {
+  if (event.target !== event.currentTarget) {
+    var pageNumber = event.target.textContent;
+    tabLinks.forEach(function (link) {
+      if (link.classList.contains('category-item--active') && link.hash === '#pane-1') {
+        getPopular('movie', result, compiled, pageNumber);
+      }
+      if (link.classList.contains('category-item--active') && link.hash === '#pane-2') {
+        getPopular('tv', serials, compil, pageNumber);
+      }
+    });
+    allButtons.forEach(function (button) {
+      return button.classList.remove('page-active');
+    });
+    event.target.classList.add('page-active');
+    window.scrollTo(0, 0);
+  }
+};
+
+pageButtons.addEventListener('click', pageSwitcher);
+'use strict';
+
 var result = document.querySelector('.videos');
 var htmlTempl = document.querySelector('#Extendcard').textContent.trim();
 var compile = _.template(htmlTempl);
@@ -101,24 +123,31 @@ var addCardToFav = function addCardToFav(card, parent, template) {
     parent.innerHTML += template(card);
 };
 
-var getPopular = function getPopular(category, parent, template) {
-    axios.get('https://api.themoviedb.org/3/' + category + '/popular?api_key=' + apiKey + '&language=ru-RU&page=1').then(function (response) {
+var getPopular = function getPopular(category, parent, template, page) {
+    axios.get('https://api.themoviedb.org/3/' + category + '/popular?api_key=' + apiKey + '&language=ru-RU&page=' + page).then(function (response) {
         updateView(response.data.results, parent, template);
     }).catch(function (err) {
         console.log(err);
     });
 };
 
+var searchFailMessage = function searchFailMessage(response, parent) {
+    if (response.length === 0) {
+        parent.innerHTML = '<p class="search-error">По вашему запросу ничего не найдено :(</p>';
+    };
+};
+
 var searchByName = function searchByName(name, category, template) {
     axios.get('https://api.themoviedb.org/3/search/' + category + '?include_adult=false&page=1&query=' + name + '&language=ru-RU&api_key=' + apiKey).then(function (response) {
+        var responseData = response.data.results;
         var tabLinks = document.querySelectorAll('.category-item');
         tabLinks.forEach(function (link) {
-            if (link.classList.contains('category-item--active') && link.hash === '#pane-1') {
-                updateView(response.data.results, result, template);
-            }
-            if (link.classList.contains('category-item--active') && link.hash === '#pane-2') {
-                updateView(response.data.results, serials, template);
-            }
+            if (link.classList.contains('category-item--active') && link.hash === '#pane-1' && responseData.length > 0) {
+                updateView(responseData, result, template);
+            } else searchFailMessage(responseData, result);
+            if (link.classList.contains('category-item--active') && link.hash === '#pane-2' && responseData.length > 0) {
+                updateView(responseData, serials, template);
+            } else searchFailMessage(responseData, serials);
         });
     }).catch(function (err) {
         console.log(err);
@@ -130,6 +159,16 @@ var tabFavorRender = function tabFavorRender(tabNum) {
         if (link.classList.contains('category-item--active') && link.hash === '#pane-3') {
             tabsPane[tabNum].classList.add('tabs__pane--active');
             tabsPane[2].classList.remove('tabs__pane--active');
+        };
+    });
+};
+
+var tabFavorBackRender = function tabFavorBackRender() {
+    tabLinks.forEach(function (link) {
+        if (link.classList.contains('category-item--active') && link.hash === '#pane-3') {
+            tabsPane[2].classList.add('tabs__pane--active');
+            tabsPane[1].classList.remove('tabs__pane--active');
+            tabsPane[0].classList.remove('tabs__pane--active');
         };
     });
 };
@@ -174,6 +213,7 @@ var renderFullCard = function renderFullCard(id, category) {
                 axios.get('https://api.themoviedb.org/3/' + category + '/' + id + '/videos?api_key=' + apiKey).then(function (respo) {
                     var key = respo.data.results[0].key;
                     updateViewMovieCard({ title: title, genres: genres, overview: overview, poster: poster, countries: countries, date: date, runtime: runtime, tagline: tagline, backdrops: backdrops, cast: cast, crew: crew, key: key, id: id }, result, compile);
+                    pageButtons.style.display = 'none';
                 });
             }).catch(function (e) {
                 console.log(e);
@@ -214,6 +254,7 @@ var renderFullCardTV = function renderFullCardTV(id, category) {
                 axios.get('https://api.themoviedb.org/3/' + category + '/' + id + '/videos?api_key=' + apiKey).then(function (respo) {
                     var key = respo.data.results[0].key;
                     updateViewMovieCard({ title: title, date: date, poster: poster, backdrops: backdrops, countries: countries, cast: cast, created_by: created_by, genres: genres, runtime: runtime, overview: overview, key: key, number_of_seasons: number_of_seasons, last_air_date: last_air_date, number_of_episodes: number_of_episodes, original_name: original_name, homepage: homepage, id: id }, serials, compileTvCard);
+                    pageButtons.style.display = 'none';
                 });
             }).catch(function (e) {
                 console.log(e);
@@ -226,9 +267,27 @@ var renderFullCardTV = function renderFullCardTV(id, category) {
     });
 };
 
-getPopular('movie', result, compiled);
+var onBackButtonHandler = function onBackButtonHandler() {
+    var tabLinks = document.querySelectorAll('.category-item');
+    tabLinks.forEach(function (link) {
+        if (link.classList.contains('category-item--active') && link.hash === '#pane-1') {
+            getPopular('movie', result, compiled);
+            window.scrollTo(0, 0);
+        }
+        if (link.classList.contains('category-item--active') && link.hash === '#pane-2') {
+            getPopular('tv', serials, compil);
+            window.scrollTo(0, 0);
+        }
+        if (link.classList.contains('category-item--active') && link.hash === '#pane-3') {
+            tabFavorBackRender();
+            window.scrollTo(0, 0);
+        }
+    });
+};
 
-// renderFullCard(427641, 'movie');
+getPopular('movie', result, compiled, "1");
+
+//renderFullCard(427641, 'movie');
 //renderFullCardTV(48866, 'tv');
 'use strict';
 
@@ -285,9 +344,11 @@ var searchSwitcher = function searchSwitcher(value) {
     tabLinks.forEach(function (link) {
         if (link.classList.contains('category-item--active') && link.hash === '#pane-1') {
             searchByName(value, 'movie', compiled);
+            pageButtons.style.display = 'none';
         }
         if (link.classList.contains('category-item--active') && link.hash === '#pane-2') {
             searchByName(value, 'tv', compil);
+            pageButtons.style.display = 'none';
         }
     });
 };
@@ -329,17 +390,21 @@ var switchTabs = function switchTabs(event) {
 
                 if (event.target.getAttribute('href') === '#' + tab.id) tab.classList.add('tabs__pane--active');
                 if (event.target.getAttribute('href') === '#pane-1') getPopular('movie', result, compiled);
+                pageButtons.style.display = 'block';
                 if (event.target.getAttribute('href') === '#pane-2') getPopular('tv', serials, compil);
+                pageButtons.style.display = 'block';
+                allButtons.forEach(function (button) {
+                    return button.classList.remove('page-active');
+                });
+                allButtons[0].classList.add('page-active');
                 if (event.target.getAttribute('href') === '#pane-3') {
-                    // if (idArr.length == 0) {
-                    //     favfilmTxt.textContent = 'Здесь нету нифига!';
-                    // }
                     if (idArr.length !== 0) {
                         favfilmTxt.textContent = 'Фильмы';
                     }
                     if (idArr.length !== 0) {
                         favSerialTxt.textContent = 'Сериалы';
                     }
+                    pageButtons.style.display = 'none';
                 };
             }
         } catch (err) {

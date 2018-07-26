@@ -20,8 +20,8 @@ const addCardToFav = (card, parent, template) => {
       parent.innerHTML += template(card);
 };
 
-const getPopular = (category, parent, template) => {
-    axios.get(`https://api.themoviedb.org/3/${category}/popular?api_key=${apiKey}&language=ru-RU&page=1`)
+const getPopular = (category, parent, template, page) => {
+    axios.get(`https://api.themoviedb.org/3/${category}/popular?api_key=${apiKey}&language=ru-RU&page=${page}`)
     .then(response => {
         updateView(response.data.results, parent, template);
     })
@@ -30,17 +30,24 @@ const getPopular = (category, parent, template) => {
     })
 };
 
+const searchFailMessage = (response, parent) => {
+    if (response.length === 0) { 
+       parent.innerHTML = '<p class="search-error">По вашему запросу ничего не найдено :(</p>';
+    };
+};
+
 const searchByName = (name, category, template) => {
     axios.get(`https://api.themoviedb.org/3/search/${category}?include_adult=false&page=1&query=${name}&language=ru-RU&api_key=${apiKey}`)
     .then(response => {
+        const responseData = response.data.results;
         const tabLinks = document.querySelectorAll('.category-item');
         tabLinks.forEach(link => {
-            if (link.classList.contains('category-item--active') && (link.hash === '#pane-1')) {
-                updateView(response.data.results, result, template);
-            }
-            if (link.classList.contains('category-item--active') && (link.hash === '#pane-2')) {
-                updateView(response.data.results, serials, template);
-            }
+            if (link.classList.contains('category-item--active') && (link.hash === '#pane-1') && (responseData.length > 0)) {
+                updateView(responseData, result, template);
+            } else searchFailMessage(responseData, result);
+            if (link.classList.contains('category-item--active') && (link.hash === '#pane-2') && (responseData.length > 0)) {
+                updateView(responseData, serials, template);
+            } else searchFailMessage(responseData, serials);
         });
     })
     .catch(err => {
@@ -53,6 +60,16 @@ const tabFavorRender = (tabNum) => {
         if (link.classList.contains('category-item--active') && (link.hash === '#pane-3')) {
             tabsPane[tabNum].classList.add('tabs__pane--active');
             tabsPane[2].classList.remove('tabs__pane--active');
+        };
+    });
+};
+
+const tabFavorBackRender = () => {
+    tabLinks.forEach(link => {
+        if (link.classList.contains('category-item--active') && (link.hash === '#pane-3')) {
+            tabsPane[2].classList.add('tabs__pane--active');
+            tabsPane[1].classList.remove('tabs__pane--active');
+            tabsPane[0].classList.remove('tabs__pane--active');
         };
     });
 };
@@ -97,6 +114,7 @@ const renderFullCard = (id, category) => {
                 .then(respo => {
                 const key = respo.data.results[0].key;
                 updateViewMovieCard({ title, genres, overview, poster, countries, date, runtime, tagline, backdrops, cast, crew, key, id }, result, compile);
+                pageButtons.style.display = 'none';
                 })
             })
             .catch(e => {
@@ -142,6 +160,7 @@ const renderFullCardTV = (id, category) => {
                 .then(respo => {
                   const key = respo.data.results[0].key;
                   updateViewMovieCard({ title, date, poster, backdrops, countries, cast, created_by, genres, runtime, overview, key, number_of_seasons, last_air_date, number_of_episodes, original_name, homepage, id }, serials, compileTvCard );
+                  pageButtons.style.display = 'none';
                     })
                 })
                 .catch(e => {
@@ -157,7 +176,26 @@ const renderFullCardTV = (id, category) => {
     })
 };
 
-getPopular('movie', result, compiled);
+const onBackButtonHandler = () => {
+    const tabLinks = document.querySelectorAll('.category-item');
+    tabLinks.forEach(link => {
+        if (link.classList.contains('category-item--active') && (link.hash === '#pane-1')) {
+            getPopular('movie', result, compiled);
+            window.scrollTo(0, 0);
+        }
+        if (link.classList.contains('category-item--active') && (link.hash === '#pane-2')) {
+            getPopular('tv', serials, compil);
+            window.scrollTo(0, 0);
+        }
+        if (link.classList.contains('category-item--active') && (link.hash === '#pane-3')) {
+            tabFavorBackRender();
+            window.scrollTo(0, 0);
+        }
+    });
+    
+};
 
-// renderFullCard(427641, 'movie');
+getPopular('movie', result, compiled, "1");
+
+//renderFullCard(427641, 'movie');
 //renderFullCardTV(48866, 'tv');

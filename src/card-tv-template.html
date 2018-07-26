@@ -161,10 +161,13 @@
                 </div>
             </div>
             <form class="mainform" onSubmit='event.preventDefault(), formHandler()'>
-               <input type="text" id="user-name" name="name" placeholder="Введите своё имя" required/>
+               <input type="text"  minlength="5" maxlength="20" id="user-name" name="name" placeholder="Введите своё имя" pattern="^[A-Za-zА-Яа-яЁё\s]+$"/>
                <textarea name="msg" id="user-review" placeholder="Введите текст отзыва" required></textarea>
                <p><button class="">Добавить отзыв</button></p>
             </form>
+        </div>
+        <div class="button-panel">
+            <button class="button-back" onclick='onBackButtonHandler()'>Назад</button>
         </div>
     </div>
 </script>

@@ -775,7 +775,7 @@ body {
 .main-slider {
   position: relative;
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
 }
 
 .main-actors {
@@ -837,6 +837,7 @@ body {
 .main-reviews {
   padding: 0 7px;
   width: 100%;
+  margin-bottom: 20px;
 }
 
 .main-reviews__review {
@@ -864,13 +865,16 @@ body {
 
 .main-reviews__review h4 {
   color: #fff;
+  width: 60%;
   display: inline-block;
   margin-bottom: 6px;
+  word-wrap: break-word;
 }
 
 .main-reviews__review p {
   color: #757575;
   width: 84%;
+  word-wrap: break-word;
 }
 
 .main-reviews__review span {
@@ -881,7 +885,7 @@ body {
 }
 
 .main-reviews__review .review-text {
-  width: 100%;
+  width: 84%;
 }
 
 .main-fields {
@@ -903,44 +907,32 @@ body {
   background: linear-gradient(to right, rgba(92, 90, 87, 0.5), rgba(92, 90, 87, 0.1));
 }
 
-.arrow {
-  display: block;
-  padding: 0;
-  margin: 0;
-  border: none;
-  background: none;
-  fill: #fff;
-  transition: .5s linear;
-  display: none;
-  outline: none;
-  position: absolute;
-  z-index: 10;
-}
-
-.arrow:hover {
-  fill: #FFD700;
-  -webkit-transform: scale(1.3);
-  transform: scale(1.3);
-  transition: .5s linear;
-}
-
-.arrow.back svg,
-.arrow.forward svg {
-  width: 15px;
-  height: 10px;
-}
-
-.arrow.forward {
-  right: 0;
-  bottom: 45%;
-}
-
-.arrow.back {
-  bottom: 45%;
-}
-
 .main-screenshots {
   display: none;
+}
+
+.search-error {
+  color: red;
+  font-family: "Roboto-Regular";
+  font-size: 1.25rem;
+  width: 100%;
+  text-align: center;
+}
+
+.button-panel {
+  order: 6;
+  width: 100%;
+  text-align: center;
+}
+
+.button-back {
+  cursor: pointer;
+  font-family: "Roboto-Regular";
+  outline: none;
+  border: none;
+  background-color: #5c5a57;
+  color: #fff;
+  font-size: 0.9375rem;
 }
 
 .content {
@@ -2014,6 +2006,25 @@ body {
   animation: fullexpand 25s ease-out infinite;
 }
 
+.page-switcher-panel {
+  text-align: center;
+}
+
+.page-switcher-panel button {
+  cursor: pointer;
+  outline: none;
+  border: none;
+  font-family: "Roboto-Regular";
+  background-color: #5c5a57;
+  color: #fff;
+}
+
+.page-active {
+  background-color: #fff !important;
+  color: #5c5a57 !important;
+  font-family: "Roboto-Medium" !important;
+}
+
 body {
   min-width: 320px;
   font-family: "Roboto-Regular";
@@ -2369,6 +2380,10 @@ body {
     width: 20%;
   }
 
+  .main-reviews__review .review-text {
+    width: 100%;
+  }
+
   .main-reviews .main-block-header {
     font-size: 1rem;
     font-family: "Roboto-Medium";
@@ -2387,10 +2402,6 @@ body {
   .main-fields span {
     display: inline-block;
     width: 65%;
-  }
-
-  .arrow {
-    display: block;
   }
 
   .main-screenshots {

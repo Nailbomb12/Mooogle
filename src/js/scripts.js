@@ -51,9 +51,11 @@ const searchSwitcher = (value) => {
     tabLinks.forEach(link => {
         if (link.classList.contains('category-item--active') && (link.hash === '#pane-1')) {
             searchByName(value, 'movie', compiled);
+            pageButtons.style.display = 'none';
         }
         if (link.classList.contains('category-item--active') && (link.hash === '#pane-2')) {
             searchByName(value, 'tv', compil);
+            pageButtons.style.display = 'none';
         }
     });
 };
@@ -87,18 +89,20 @@ const switchTabs = (event) => {
                 tab.classList.add('tabs__pane--active');
             if (event.target.getAttribute('href') === '#pane-1')
                 getPopular('movie', result, compiled);
+                pageButtons.style.display = 'block';
             if (event.target.getAttribute('href') === '#pane-2')
                 getPopular('tv', serials, compil);
+                pageButtons.style.display = 'block';
+                allButtons.forEach(button => button.classList.remove('page-active'));
+                allButtons[0].classList.add('page-active');
             if (event.target.getAttribute('href') === '#pane-3') {
-                // if (idArr.length == 0) {
-                //     favfilmTxt.textContent = 'Здесь нету нифига!';
-                // }
                 if (idArr.length !== 0) {
                     favfilmTxt.textContent = 'Фильмы';    
                 }
                 if (idArr.length !== 0) {
                     favSerialTxt.textContent = 'Сериалы';
                 }
+                pageButtons.style.display = 'none';
             };
         }
     }
