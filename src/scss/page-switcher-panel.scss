@@ -1,0 +1,19 @@
+.page-switcher-panel {
+  text-align: center;
+  
+  button {
+    cursor: pointer;
+    outline: none;
+    border: none;
+    font-family: $reg-font;
+    background-color: rgba(0,0,0,0); 
+    color: #5c5a57;
+    font-size: rem(17);
+  }
+}
+
+.page-active {
+  background-color: rgba(0,0,0,0) !important;
+  color: #fff !important;
+  font-family: $med-font !important;
+}

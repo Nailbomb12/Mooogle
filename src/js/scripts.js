@@ -32,6 +32,7 @@ const toggleHiddenBlock = () => {
 hiddenBlockIcon.addEventListener('click', toggleHiddenBlock);
 
 const hideBlocks = (evt) => {
+    
     if (stub.classList.contains('js-show-stub')) {
         hiddenBlock.classList.remove('js-show-hidden');
         aside.classList.remove('js-show-aside');
@@ -49,11 +50,15 @@ const header = document.querySelector('.header');
 const searchSwitcher = (value) => {
     const tabLinks = document.querySelectorAll('.category-item');
     tabLinks.forEach(link => {
+
         if (link.classList.contains('category-item--active') && (link.hash === '#pane-1')) {
             searchByName(value, 'movie', compiled);
+            pageButtons.style.display = 'none';
         }
+
         if (link.classList.contains('category-item--active') && (link.hash === '#pane-2')) {
             searchByName(value, 'tv', compil);
+            pageButtons.style.display = 'none';
         }
     });
 };
@@ -61,12 +66,14 @@ const searchSwitcher = (value) => {
 const mainSearch = (evt) => {
     evt.preventDefault(0);
     searchSwitcher(idInput.value);
+
     if (idInput.value === '') return;
     idInput.value = '';
 };
 const mobileSearch = (evt) => {
     evt.preventDefault(0);
     searchSwitcher(hiddenSearchId.value);
+
     if (hiddenSearchId.value === '') return;
     hideBlocks();
     hiddenSearchId.value = '';
@@ -78,27 +85,35 @@ hiddenSearchBtn.addEventListener('click', mobileSearch);
 
 const switchTabs = (event) => {
     event.preventDefault();
+
     if (event.target !== tabs) {
         tabLinks.forEach(link => link.classList.remove('category-item--active'));
         event.target.classList.add('category-item--active');
         tabsPane.forEach(tabs => tabs.classList.remove('tabs__pane--active'));
         for (let tab of tabsPane) {
+
             if (event.target.getAttribute('href') === ('#' + tab.id))
                 tab.classList.add('tabs__pane--active');
+
             if (event.target.getAttribute('href') === '#pane-1')
                 getPopular('movie', result, compiled);
+                pageButtons.style.display = 'block';
+
             if (event.target.getAttribute('href') === '#pane-2')
                 getPopular('tv', serials, compil);
+                pageButtons.style.display = 'block';
+                allButtons.forEach(button => button.classList.remove('page-active'));
+                allButtons[0].classList.add('page-active');
+
             if (event.target.getAttribute('href') === '#pane-3') {
-                // if (idArr.length == 0) {
-                //     favfilmTxt.textContent = 'Здесь нету нифига!';
-                // }
+
                 if (idArr.length !== 0) {
                     favfilmTxt.textContent = 'Фильмы';    
                 }
                 if (idArr.length !== 0) {
                     favSerialTxt.textContent = 'Сериалы';
                 }
+                pageButtons.style.display = 'none';
             };
         }
     }
