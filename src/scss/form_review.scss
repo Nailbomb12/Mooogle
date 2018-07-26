@@ -1,31 +1,49 @@
-
 .mainform {
-	@media screen and (min-width: 320px) and (max-width: 767px){
-		width: 100%;
-	}
 	display: flex;
 	flex-direction: column;
-	width: 50%;
-	padding: 15px;
+	width: 100%;
+	margin-top: 30px;
 	input, textarea {
 		width: 100%;
-		border: solid 1px #CCCCCC;
+		border: none;
 		margin-bottom: 5px;
-		padding: 4px;
+		padding: 10px;
 		outline: 0;
 		font-family: $reg-font;
-		background: #F9F9F9;
+		font-size: rem(14);
+		color: $main-color;
 		border-radius: 4px;
 	}
-	input:hover, textarea:hover, input:focus, textarea:focus {
-		background-color: rgb(247, 246, 187);
-		border-color: yellow;
+	input {
+		background: linear-gradient(90deg,#5c5a57,rgba(92,90,87,.2));
 	}
 }
-
-textarea {
-	height: 150px;
+#user-review {
+	width: 100%;
 	line-height: 150%;
-	resize: none
+	margin-bottom: 8px;
+	background: linear-gradient(90deg,rgba(92,90,87,.5),rgba(92,90,87,.1));
 }
-
+input::-webkit-input-placeholder,
+#user-review::-webkit-input-placeholder{
+	color: $main-color;
+}
+.review-btn {
+	margin-left: auto;
+	display: inline-block;
+	padding: 8px;
+	color: $main-color;
+	background: linear-gradient(rgba(92,90,87,.5),rgba(92,90,87,.1));
+	font-size: rem(14);
+	transition: all .8s;
+	border: none;
+	position: relative;
+}
+.review-btn:hover {
+	background: linear-gradient(#5c5a57,rgba(92,90,87,.2));
+}
+.review-btn:active,
+.review-btn:focus {
+	border: none;
+	outline: 0;
+}

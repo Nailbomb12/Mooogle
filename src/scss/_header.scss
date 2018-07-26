@@ -100,8 +100,9 @@ body {
   outline: 0;
   background-color: inherit;
 }
+/*!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!*/
 input[type="search"]:-webkit-autofill {
-  box-shadow: inset 0 0 0 50px $main-color;
+  box-shadow: inset 0 0 0 50px inherit;
   -webkit-text-fill-color: #000; 
 }
 
@@ -149,7 +150,6 @@ input[type="search"]:-webkit-autofill {
 }
 
 .hidden {
-  // background-color: $main-color;
   background: radial-gradient(circle at 50% 110%, #B80000, #850000);
   position: absolute;
   width: 100%;
@@ -241,13 +241,11 @@ input:focus {
 }
 
  .hidden__form-send {
-  width: 20px;
-  height: 20px;
+  width: 15px;
+  height: 15px;
   @media (min-width: 480px) {
-    width: 25px;
-    height: 25px;
-  }
-  @media (min-width: 768px) {
+    width: 20px;
+    height: 20px;
   }
 }
 .stub {
@@ -324,7 +322,8 @@ input:focus {
 }
 .aside__list {
   line-height: 1.8;
-  padding: 20px;
+  padding-top: 10%;
+  padding-left: 20%;
 }
 .aside__item {
   position: relative;
@@ -340,7 +339,7 @@ input:focus {
   margin-bottom: 0;
 }
 .aside__link::before {
-  content: url(../img/folder-21.svg);
+  content: url(../img/video.svg);
   display: inline-block;
   width: 23px;
   height: 20px;
@@ -352,9 +351,31 @@ input:focus {
   }
 }
 .aside__link:hover::before{
-  content: url(../img/folder-20.svg);
+  content: url(../img/video_act.svg);
 }
 
 .aside__link:hover {
-    color: $headers-color;
+  color: $headers-color;
+}
+.fav_link {
+  text-decoration: none;
+  color: $grey_color;
+}
+.fav_link:hover {
+  color: $headers-color;
+}
+.fav_link::before {
+  content: url(../img/star.svg);
+  display: inline-block;
+  width: 23px;
+  height: 20px;
+  position: absolute;
+  left: -60px;
+  @media (min-width: 480px){
+    width: 30px;
+    height: 25px;
   }
+}
+.fav_link:hover::before{
+  content: url(../img/star_act.svg);
+}

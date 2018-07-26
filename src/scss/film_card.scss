@@ -241,8 +241,6 @@ body {
     display: flex;
     justify-content: space-around;
     @media (min-width: 768px) {
-      // position: relative;
-      // align-items: center;
       width: 50%;
     }
   }
@@ -452,6 +450,13 @@ body {
       rgba(92, 90, 87, .5), 
       rgba(92, 90, 87, .1)
     );
+  }
+  &__field a {
+    color: $grey_color;
+  }
+  &__field a:hover {
+    color: $main-color;
+    text-decoration: none;
   }
   @media (min-width: 1024px){
     font-size: rem(16);

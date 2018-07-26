@@ -229,7 +229,7 @@ var renderFullCardTV = function renderFullCardTV(id, category) {
 getPopular('movie', result, compiled);
 
 // renderFullCard(427641, 'movie');
-//renderFullCardTV(48866, 'tv');
+// renderFullCardTV(48866, 'tv');
 'use strict';
 
 var menu = document.querySelector('.header__menu');
