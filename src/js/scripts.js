@@ -31,7 +31,7 @@ const toggleHiddenBlock = () => {
 
 hiddenBlockIcon.addEventListener('click', toggleHiddenBlock);
 
-const hideBlocks = (evt) => {
+const hideBlocks = (event) => {
     
     if (stub.classList.contains('js-show-stub')) {
         hiddenBlock.classList.remove('js-show-hidden');
@@ -63,15 +63,15 @@ const searchSwitcher = (value) => {
     });
 };
 
-const mainSearch = (evt) => {
-    evt.preventDefault(0);
+const mainSearch = (event) => {
+    event.preventDefault(0);
     searchSwitcher(idInput.value);
 
     if (idInput.value === '') return;
     idInput.value = '';
 };
-const mobileSearch = (evt) => {
-    evt.preventDefault(0);
+const mobileSearch = (event) => {
+    event.preventDefault(0);
     searchSwitcher(hiddenSearchId.value);
 
     if (hiddenSearchId.value === '') return;
@@ -120,19 +120,19 @@ const switchTabs = (event) => {
 }
 tabs.addEventListener('click', switchTabs);
 
-const switchAsideCategorys = (evt) => {
+const switchAsideCategorys = (event) => {
     event.preventDefault();
 
-    if (evt.target.classList.contains('aside__link')) {
+    if (event.target.classList.contains('aside__link')) {
         tabsPane.forEach((tab, i) => {
 
-            if (evt.target.getAttribute('href') !== tabLinks[i].getAttribute('href')) {
+            if (event.target.getAttribute('href') !== tabLinks[i].getAttribute('href')) {
                 tabLinks[i].classList.remove('category-item--active');
                 tab.classList.remove('tabs__pane--active');
             }
 
-            if (evt.target.getAttribute('href') === ('#' + tab.id) &&
-                evt.target.getAttribute('href') === tabLinks[i].getAttribute('href')) {
+            if (event.target.getAttribute('href') === ('#' + tab.id) &&
+            event.target.getAttribute('href') === tabLinks[i].getAttribute('href')) {
                 tab.classList.add('tabs__pane--active');
                 tabLinks[i].classList.add('category-item--active');
                 hideBlocks();

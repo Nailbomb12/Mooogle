@@ -10,8 +10,13 @@
 @import 'animation.scss';
 @import 'slider.scss';
 @import 'page-switcher-panel.scss';
+@import 'form_review.scss';
 
+html,
 body {
   min-width: 320px;
   font-family: $reg-font;
+  height: 100%;
+  position: relative;
+  background-color: #060000;
 };

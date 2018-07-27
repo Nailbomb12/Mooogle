@@ -204,5 +204,5 @@ const onBackButtonHandler = () => {
 
 getPopular('movie', result, compiled, "1");
 
-//renderFullCard(427641, 'movie');
+// renderFullCard(427641, 'movie');
 //renderFullCardTV(48866, 'tv');
