@@ -12,6 +12,7 @@ const hiddenBlockIcon = document.querySelector('.hidden-search');
 const hiddenSearchBtn = document.querySelector('.hidden__form-send');
 const hiddenBlock = document.querySelector('.hidden');
 
+
 tabLinks[0].classList.add('category-item--active');
 tabsPane[0].classList.add('tabs__pane--active');
 
@@ -96,11 +97,11 @@ const switchTabs = (event) => {
                 tab.classList.add('tabs__pane--active');
 
             if (event.target.getAttribute('href') === '#pane-1')
-                getPopular('movie', result, compiled);
+                getPopular('movie', result, compiled, "1");
                 pageButtons.style.display = 'block';
 
             if (event.target.getAttribute('href') === '#pane-2')
-                getPopular('tv', serials, compil);
+                getPopular('tv', serials, compil, "1");
                 pageButtons.style.display = 'block';
                 allButtons.forEach(button => button.classList.remove('page-active'));
                 allButtons[0].classList.add('page-active');
@@ -139,7 +140,7 @@ const switchAsideCategorys = (event) => {
             }
 
             if (event.target.getAttribute('href') === '#pane-2') {
-                getPopular('tv', serials, compil);
+                getPopular('tv', serials, compil, "1");
             }
         });
     }
