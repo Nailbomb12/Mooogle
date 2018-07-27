@@ -55,22 +55,58 @@ var addNewReview = function addNewReview(revObj, parent, template) {
   parent.insertAdjacentHTML('afterbegin', template(revObj));
 };
 
-var formHandler = function formHandler() {
+var reviewsArr = localStorage.getItem('revObj') !== null ? JSON.parse(localStorage.getItem("revObj")) : [];
+
+var formHandler = function formHandler(id) {
   setTimeout(function () {
     var form = document.querySelector('.mainform');
     var name = document.querySelector('#user-name');
     var review = document.querySelector('#user-review');
     var revContainer = document.querySelector('.main-reviews-container');
-    var date = new Date().toLocaleString("ru");
-    var reviewObj = {
-      userName: name.value,
-      userReview: review.value,
-      userDate: date.slice(0, -10)
+    var date = new Date().toLocaleString("ru").slice(0, -10);
+
+    var dataObj = {
+      id: id,
+      comment: {
+        userName: name.value,
+        userReview: review.value,
+        userDate: date
+      }
     };
-    addNewReview(reviewObj, revContainer, compileded);
+
+    var _dataObj$comment = dataObj.comment,
+        userName = _dataObj$comment.userName,
+        userReview = _dataObj$comment.userReview,
+        userDate = _dataObj$comment.userDate;
+
+    addNewReview({ userDate: userDate, userName: userName, userReview: userReview }, revContainer, compileded);
+    reviewsArr.push(dataObj);
+    var storageObj = JSON.stringify(reviewsArr);
+    localStorage.setItem("revObj", storageObj);
 
     form.reset();
   }, 300);
+};
+
+var reviewsRender = function reviewsRender(id) {
+  setTimeout(function () {
+    var revContainer = document.querySelector('.main-reviews-container');
+    var parseArr = JSON.parse(localStorage.getItem("revObj"));
+    if (localStorage.getItem('revObj') === null) {
+      return;
+    }
+
+    parseArr.map(function (elem) {
+      if (elem.id === id) {
+        var _elem$comment = elem.comment,
+            userName = _elem$comment.userName,
+            userReview = _elem$comment.userReview,
+            userDate = _elem$comment.userDate;
+
+        addNewReview({ userDate: userDate, userName: userName, userReview: userReview }, revContainer, compileded);
+      }
+    });
+  }, 500);
 };
 'use strict';
 
@@ -213,13 +249,14 @@ var renderFullCard = function renderFullCard(id, category) {
                 axios.get('https://api.themoviedb.org/3/' + category + '/' + id + '/videos?api_key=' + apiKey).then(function (respo) {
                     var key = respo.data.results[0].key;
                     updateViewMovieCard({ title: title, genres: genres, overview: overview, poster: poster, countries: countries, date: date, runtime: runtime, tagline: tagline, backdrops: backdrops, cast: cast, crew: crew, key: key, id: id }, result, compile);
+                    reviewsRender(id);
                     pageButtons.style.display = 'none';
                 });
             }).catch(function (e) {
                 console.log(e);
             });
         }).catch(function (err) {
-            console.log(error);
+            console.log(err);
         });
     }).catch(function (error) {
         console.log(error);
@@ -254,38 +291,41 @@ var renderFullCardTV = function renderFullCardTV(id, category) {
                 axios.get('https://api.themoviedb.org/3/' + category + '/' + id + '/videos?api_key=' + apiKey).then(function (respo) {
                     var key = respo.data.results[0].key;
                     updateViewMovieCard({ title: title, date: date, poster: poster, backdrops: backdrops, countries: countries, cast: cast, created_by: created_by, genres: genres, runtime: runtime, overview: overview, key: key, number_of_seasons: number_of_seasons, last_air_date: last_air_date, number_of_episodes: number_of_episodes, original_name: original_name, homepage: homepage, id: id }, serials, compileTvCard);
+                    reviewsRender(id);
                     pageButtons.style.display = 'none';
                 });
             }).catch(function (e) {
                 console.log(e);
             });
         }).catch(function (err) {
-            console.log(error);
+            console.log(err);
         });
     }).catch(function (error) {
         console.log(error);
     });
 };
-var switcherReset = function switcherReset() {
-    allButtons.forEach(function (button) {
-        return button.classList.remove('page-active');
-    });
-    allButtons[0].classList.add('page-active');
-};
+
 var onBackButtonHandler = function onBackButtonHandler() {
     var tabLinks = document.querySelectorAll('.category-item');
     tabLinks.forEach(function (link) {
         if (link.classList.contains('category-item--active') && link.hash === '#pane-1') {
-            getPopular('movie', result, compiled);
-            window.scrollTo(0, 0);
-            pageButtons.style.display = 'block';
-            switcherReset();
+            allButtons.forEach(function (button) {
+                if (button.classList.contains('page-active')) {
+                    var pageNum = button.textContent;
+                    getPopular('movie', result, compiled, pageNum);
+                    pageButtons.style.display = 'block';
+                }
+            });
         }
         if (link.classList.contains('category-item--active') && link.hash === '#pane-2') {
-            getPopular('tv', serials, compil);
-            window.scrollTo(0, 0);
-            pageButtons.style.display = 'block';
-            switcherReset();
+            allButtons.forEach(function (button) {
+                if (button.classList.contains('page-active')) {
+                    var pageNum = button.textContent;
+                    getPopular('tv', serials, compil, pageNum);
+                    pageButtons.style.display = 'block';
+                }
+            });
+            // window.scrollTo(0, 0);
         }
         if (link.classList.contains('category-item--active') && link.hash === '#pane-3') {
             tabFavorBackRender();
@@ -296,7 +336,7 @@ var onBackButtonHandler = function onBackButtonHandler() {
 
 getPopular('movie', result, compiled, "1");
 
-//renderFullCard(427641, 'movie');
+// renderFullCard(427641, 'movie');
 //renderFullCardTV(48866, 'tv');
 'use strict';
 
@@ -333,7 +373,7 @@ var toggleHiddenBlock = function toggleHiddenBlock() {
 
 hiddenBlockIcon.addEventListener('click', toggleHiddenBlock);
 
-var hideBlocks = function hideBlocks(evt) {
+var hideBlocks = function hideBlocks(event) {
 
     if (stub.classList.contains('js-show-stub')) {
         hiddenBlock.classList.remove('js-show-hidden');
@@ -365,15 +405,15 @@ var searchSwitcher = function searchSwitcher(value) {
     });
 };
 
-var mainSearch = function mainSearch(evt) {
-    evt.preventDefault(0);
+var mainSearch = function mainSearch(event) {
+    event.preventDefault(0);
     searchSwitcher(idInput.value);
 
     if (idInput.value === '') return;
     idInput.value = '';
 };
-var mobileSearch = function mobileSearch(evt) {
-    evt.preventDefault(0);
+var mobileSearch = function mobileSearch(event) {
+    event.preventDefault(0);
     searchSwitcher(hiddenSearchId.value);
 
     if (hiddenSearchId.value === '') return;
@@ -406,10 +446,10 @@ var switchTabs = function switchTabs(event) {
 
                 if (event.target.getAttribute('href') === '#' + tab.id) tab.classList.add('tabs__pane--active');
 
-                if (event.target.getAttribute('href') === '#pane-1') getPopular('movie', result, compiled);
+                if (event.target.getAttribute('href') === '#pane-1') getPopular('movie', result, compiled, "1");
                 pageButtons.style.display = 'block';
 
-                if (event.target.getAttribute('href') === '#pane-2') getPopular('tv', serials, compil);
+                if (event.target.getAttribute('href') === '#pane-2') getPopular('tv', serials, compil, "1");
                 pageButtons.style.display = 'block';
                 allButtons.forEach(function (button) {
                     return button.classList.remove('page-active');
@@ -445,25 +485,25 @@ var switchTabs = function switchTabs(event) {
 };
 tabs.addEventListener('click', switchTabs);
 
-var switchAsideCategorys = function switchAsideCategorys(evt) {
+var switchAsideCategorys = function switchAsideCategorys(event) {
     event.preventDefault();
 
-    if (evt.target.classList.contains('aside__link')) {
+    if (event.target.classList.contains('aside__link')) {
         tabsPane.forEach(function (tab, i) {
 
-            if (evt.target.getAttribute('href') !== tabLinks[i].getAttribute('href')) {
+            if (event.target.getAttribute('href') !== tabLinks[i].getAttribute('href')) {
                 tabLinks[i].classList.remove('category-item--active');
                 tab.classList.remove('tabs__pane--active');
             }
 
-            if (evt.target.getAttribute('href') === '#' + tab.id && evt.target.getAttribute('href') === tabLinks[i].getAttribute('href')) {
+            if (event.target.getAttribute('href') === '#' + tab.id && event.target.getAttribute('href') === tabLinks[i].getAttribute('href')) {
                 tab.classList.add('tabs__pane--active');
                 tabLinks[i].classList.add('category-item--active');
                 hideBlocks();
             }
 
             if (event.target.getAttribute('href') === '#pane-2') {
-                getPopular('tv', serials, compil);
+                getPopular('tv', serials, compil, "1");
             }
         });
     }

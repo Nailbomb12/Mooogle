@@ -1,6 +1,6 @@
 .mainform {
-	display: flex;
-	flex-direction: column;
+	// display: flex;
+	// flex-direction: column;
 	width: 100%;
 	margin-top: 30px;
 	input, textarea {
@@ -13,6 +13,7 @@
 		font-size: rem(14);
 		color: $main-color;
 		border-radius: 4px;
+		resize: none;
 	}
 	input {
 		background: linear-gradient(90deg,#5c5a57,rgba(92,90,87,.2));
@@ -30,7 +31,7 @@ input::-webkit-input-placeholder,
 }
 .review-btn {
 	margin: auto;
-	display: inline-block;
+	display: block;
 	padding: 8px;
 	color: $main-color;
 	background: linear-gradient(rgba(92,90,87,.5),rgba(92,90,87,.1));
