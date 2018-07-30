@@ -9,6 +9,7 @@
     min-height: 100%;
     padding-bottom: 100px;
 }
+
 .wrapper {
     max-width: 1020px;
     min-height: 100vh;
@@ -39,6 +40,34 @@
 .top-form--active {
     display: flex;
 }
+////////////////////
+.status-window{
+    display: none;
+    background-color: #fff;
+    width: 160px;
+    opacity: 0.7;
+    border: #1a1114 3px solid;
+    border-radius: 10px;
+    // padding-top: 10px;
+    padding: 10px 0 10px 0;
+    z-index: 9999;
+    margin: auto;
+    position: fixed; 
+    &__txt{
+        color: #1a1114;
+        text-align: center;
+    }
+    &__txt--bold{
+        font-weight: 900;
+        text-align: center;      
+    }
+    &:hover{
+        transform: scale(1.1);
+        transition: all .5s;
+    }
+}
+
+///////////////////////
 
 .category-choose {
     display: none;
@@ -138,6 +167,9 @@
             transform: scale(1.2);
             transition:all .3s;
             cursor: pointer;
+            fill: #FFD700;
+        }
+        .gold-icon{
             fill: #FFD700;
         }
     }
