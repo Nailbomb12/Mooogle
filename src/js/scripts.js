@@ -11,6 +11,8 @@ const serials = document.querySelector('.tv-serials');
 const hiddenBlockIcon = document.querySelector('.hidden-search');
 const hiddenSearchBtn = document.querySelector('.hidden__form-send');
 const hiddenBlock = document.querySelector('.hidden');
+const favoritesFilms = document.querySelector('.favorites-films');///////////////////
+const favoritesSerials = document.querySelector('.favorites-serials');//////////////
 
 
 tabLinks[0].classList.add('category-item--active');
@@ -109,10 +111,12 @@ const switchTabs = (event) => {
             if (event.target.getAttribute('href') === '#pane-3') {
 
                 if (idArr.length !== 0) {
-                    favfilmTxt.textContent = 'Фильмы';    
+                    favfilmTxt.textContent = 'Фильмы';
+                    goldenStars(favoritesFilms);    
                 }
                 if (idArr.length !== 0) {
                     favSerialTxt.textContent = 'Сериалы';
+                    goldenStars(favoritesSerials);
                 }
                 pageButtons.style.display = 'none';
             };
@@ -120,6 +124,13 @@ const switchTabs = (event) => {
     }
 }
 tabs.addEventListener('click', switchTabs);
+
+const goldenStars = (moviectegory) =>{
+    let goldenIcons =  moviectegory.querySelectorAll('.icon');
+    goldenIcons.forEach(elem =>{
+    elem.classList.add('gold-icon');
+    })
+}
 
 const switchAsideCategorys = (event) => {
     event.preventDefault();
