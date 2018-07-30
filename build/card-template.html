@@ -149,7 +149,7 @@
         </div>
     </div>
         <form class="mainform" onSubmit='event.preventDefault(), formHandler(<%- id%>)'>
-            <input type="text" minlength="2" maxlength="20" id="user-name" name="name" placeholder="Введите имя" pattern="^[A-Za-zА-Яа-яЁё\s]+$" autocomplete="off"/>
+            <input type="text" minlength="2" maxlength="20" id="user-name" name="name" placeholder="Введите имя" pattern="^[A-Za-zА-Яа-яЁё0-9\s]+$" autocomplete="off"/>
             <textarea name="msg" maxlength="200" id="user-review" placeholder="Введите текст сообщения..." required></textarea>
             <button class="review-btn">Комментировать</button>
         </form>
