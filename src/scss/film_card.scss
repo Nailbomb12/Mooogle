@@ -27,7 +27,7 @@
   }
   .main-title {
     position: absolute;
-    top: calc(75%);
+    top: calc(70%);
     left: calc(5%);
     color: #fff;
     font-family: $med-font;
@@ -124,12 +124,17 @@
 }
 
 .icons {
-  width: 15%;
-  display: inline-block;
+  // width: 15%;
+  width: 5%;
+  // display: inline-block;
+  float: right;
+  @media (min-width: 768px){
+    float: none;
+  }
 }
 
 .rel-date {
-  float: right;
+  // float: right;
   color: $main-color;
   font-family: $reg-font;
   font-size: rem(14);
