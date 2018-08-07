@@ -12,7 +12,10 @@ const statusWindowTxt = document.querySelector('.status-window__txt');
 
 const addToFavorites = (id, category, name) => {
     event.stopPropagation();
-    if (idArr.includes(id)) return;
+    if (idArr.includes(id)){
+        statuWindow.innerHTML = `<p class = "status-window__txt--bold">Уже во вкладке избранное</p>`;
+        toFav(event.clientY, event.clientX);
+        return} 
     else {
         idArr.push(id);
         getCurrentCard(id, category);

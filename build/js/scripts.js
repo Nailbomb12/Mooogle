@@ -14,7 +14,11 @@ var statusWindowTxt = document.querySelector('.status-window__txt');
 
 var addToFavorites = function addToFavorites(id, category, name) {
     event.stopPropagation();
-    if (idArr.includes(id)) return;else {
+    if (idArr.includes(id)) {
+        statuWindow.innerHTML = '<p class = "status-window__txt--bold">\u0423\u0436\u0435 \u0432\u043E \u0432\u043A\u043B\u0430\u0434\u043A\u0435 \u0438\u0437\u0431\u0440\u0430\u043D\u043D\u043E\u0435</p>';
+        toFav(event.clientY, event.clientX);
+        return;
+    } else {
         idArr.push(id);
         getCurrentCard(id, category);
         statuWindow.innerHTML = '<p class = "status-window__txt--bold">' + name + '</p><p class = "status-window__txt">\u0414\u043E\u0431\u0430\u0432\u043B\u0435\u043D\u043D\u043E \u0432 \u0438\u0437\u0431\u0440\u0430\u043D\u043D\u043E\u0435</p>';

@@ -642,7 +642,7 @@ input[type="search"]::-webkit-search-cancel-button {
 
 .main-card .main-title {
   position: absolute;
-  top: calc(75%);
+  top: calc(70%);
   left: calc(5%);
   color: #fff;
   font-family: "Roboto-Medium";
@@ -687,12 +687,11 @@ input[type="search"]::-webkit-search-cancel-button {
 }
 
 .icons {
-  width: 15%;
-  display: inline-block;
+  width: 5%;
+  float: right;
 }
 
 .rel-date {
-  float: right;
   color: #fff;
   font-family: "Roboto-Regular";
   font-size: 0.875rem;
@@ -939,7 +938,7 @@ input[type="search"]::-webkit-search-cancel-button {
   display: none;
   background-color: #fff;
   width: 160px;
-  opacity: 0.7;
+  opacity: 0.8;
   border: #1a1114 3px solid;
   border-radius: 10px;
   padding: 10px 0 10px 0;
@@ -2355,6 +2354,10 @@ body {
 
   .icon.star {
     margin-right: 7px;
+  }
+
+  .icons {
+    float: none;
   }
 
   .rel-date {
