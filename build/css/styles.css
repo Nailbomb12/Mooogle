@@ -384,6 +384,10 @@ input[type=button] {
   fill: #f0e9e9;
 }
 
+.header__menu-icon:hover {
+  fill: #fff;
+}
+
 .header__logo {
   height: 27px;
   width: 25px;
@@ -432,6 +436,9 @@ input[type=button] {
 .hidden-search:hover {
   cursor: pointer;
   fill: #fff;
+  -webkit-transform: scale(1.1);
+  transform: scale(1.1);
+  transition: all .5s;
 }
 
 .hidden {
@@ -441,7 +448,7 @@ input[type=button] {
   padding: 60px;
   transition: .5s all;
   z-index: 100;
-  top: -100%;
+  top: -200%;
 }
 
 .js-show-hidden {
@@ -2819,5 +2826,27 @@ body {
 @media (min-width: 480px) and (max-width: 1023px) {
   .videos__preview:nth-child(2n) {
     margin-right: 0;
+  }
+}
+
+@media (orientation: landscape) {
+  .hidden {
+    padding: 30px;
+  }
+
+  .hidden__logo-block {
+    margin-bottom: 30px;
+  }
+
+  .hidden__logo-block span {
+    position: relative;
+    bottom: 20px;
+  }
+
+  .hidden__logo-img {
+    display: inline-block;
+    margin-bottom: 0;
+    width: 70px;
+    height: 80px;
   }
 }
