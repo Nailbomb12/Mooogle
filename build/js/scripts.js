@@ -426,13 +426,28 @@ var searchSwitcher = function searchSwitcher(value) {
     });
 };
 
+var placeholderSwitch = function placeholderSwitch(event) {
+
+    if (event.target == idInput || event.target == hiddenSearchId) {
+        idInput.placeholder = '';
+        hiddenSearchId.placeholder = '';
+    } else {
+        idInput.placeholder = 'Search';
+        hiddenSearchId.placeholder = 'Search';
+    };
+};
+
+document.addEventListener('click', placeholderSwitch);
+
 var mainSearch = function mainSearch(event) {
     event.preventDefault(0);
-    searchSwitcher(idInput.value);
-
     if (idInput.value === '') return;
+    searchSwitcher(idInput.value);
     idInput.value = '';
 };
+
+searchBtn.addEventListener('click', mainSearch);
+
 var mobileSearch = function mobileSearch(event) {
     event.preventDefault(0);
     searchSwitcher(hiddenSearchId.value);
@@ -442,7 +457,6 @@ var mobileSearch = function mobileSearch(event) {
     hiddenSearchId.value = '';
 };
 
-searchBtn.addEventListener('click', mainSearch);
 hiddenSearchBtn.addEventListener('click', mobileSearch);
 
 var switchTabs = function switchTabs(event) {

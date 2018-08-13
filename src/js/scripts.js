@@ -66,13 +66,28 @@ const searchSwitcher = (value) => {
     });
 };
 
+const placeholderSwitch = (event) => {
+
+    if(event.target == idInput || event.target == hiddenSearchId ){
+        idInput.placeholder = '';
+        hiddenSearchId.placeholder = '';
+    } else {
+        idInput.placeholder = 'Search';
+        hiddenSearchId.placeholder = 'Search';
+    };
+}
+
+document.addEventListener('click', placeholderSwitch);
+
 const mainSearch = (event) => {
     event.preventDefault(0);
-    searchSwitcher(idInput.value);
-
     if (idInput.value === '') return;
+    searchSwitcher(idInput.value);
     idInput.value = '';
-};
+}
+
+searchBtn.addEventListener('click', mainSearch);
+
 const mobileSearch = (event) => {
     event.preventDefault(0);
     searchSwitcher(hiddenSearchId.value);
@@ -82,7 +97,6 @@ const mobileSearch = (event) => {
     hiddenSearchId.value = '';
 };
 
-searchBtn.addEventListener('click', mainSearch);
 hiddenSearchBtn.addEventListener('click', mobileSearch);
 
 
